@@ -84,6 +84,9 @@
     .pin-save{position:absolute;top:11px;right:11px;background:var(--rust);color:#fff;border:none;border-radius:2px;padding:6px 13px;font-size:11px;font-weight:500;letter-spacing:1px;opacity:0;transform:translateY(-6px);transition:opacity .3s,transform .3s;cursor:pointer;}
     .pin-card:hover .pin-save{opacity:1;transform:translateY(0);}
 
+    /* NEW BADGE */
+    .pin-new-badge{position:absolute;top:11px;left:11px;background:var(--accent);color:var(--dark);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 9px;border-radius:2px;}
+
     /* LIGHTBOX */
     #lightbox{position:fixed;inset:0;background:rgba(28,24,20,.95);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s;}
     #lightbox.open{opacity:1;pointer-events:all;}
@@ -124,7 +127,7 @@
     .review-stars{color:var(--rust);font-size:15px;margin-bottom:16px;letter-spacing:2px;}
     .review-text{font-size:14px;line-height:1.8;color:var(--dark);font-style:italic;margin-bottom:22px;}
     .review-author{display:flex;align-items:center;gap:13px;}
-    .review-photo{width:46px;height:46px;border-radius:50%;object-fit:cover;object-position:center top;flex-shrink:0;border:2px solid rgba(196,86,58,.2);}
+    .review-photo{width:46px;height:46px;border-radius:50%;object-fit:cover;object-position:center 15%;flex-shrink:0;border:2px solid rgba(196,86,58,.2);}
     .review-avatar{width:46px;height:46px;border-radius:50%;background:var(--rust);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:18px;flex-shrink:0;}
     .review-name{font-weight:500;font-size:13px;color:var(--dark);}
     .review-niche{font-size:11px;color:var(--wg);text-transform:uppercase;letter-spacing:1.5px;}
@@ -228,13 +231,14 @@
     <p class="hero-desc">I design high-converting Pinterest pins for food, lifestyle, fashion, home décor, DIY & health brands. Every pin crafted to drive clicks, saves, and real traffic.</p>
     <a href="#work" class="hero-cta">View My Work <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     <div class="hero-stats">
-      <div><div class="stat-val">50+</div><div class="stat-label">Pins Created</div></div>
+      <div><div class="stat-val">100+</div><div class="stat-label">Pins Created</div></div>
       <div><div class="stat-val">6+</div><div class="stat-label">Niches</div></div>
       <div><div class="stat-val">100%</div><div class="stat-label">Happy Clients</div></div>
     </div>
   </div>
   <div class="hero-right">
     <div class="slideshow">
+      <!-- Original 7 slides -->
       <div class="slide active"><img src="1773805276758_1.png" alt="Pin 1"/><div class="slide-overlay"></div></div>
       <div class="slide"><img src="1773805276763_2.png" alt="Pin 2"/><div class="slide-overlay"></div></div>
       <div class="slide"><img src="1773805276764_3.png" alt="Pin 3"/><div class="slide-overlay"></div></div>
@@ -242,6 +246,14 @@
       <div class="slide"><img src="1773805276765_5.png" alt="Pin 5"/><div class="slide-overlay"></div></div>
       <div class="slide"><img src="1773805276766_6.png" alt="Pin 6"/><div class="slide-overlay"></div></div>
       <div class="slide"><img src="1773805276766_7.png" alt="Pin 7"/><div class="slide-overlay"></div></div>
+      <!-- New 7 slides -->
+      <div class="slide"><img src="1773811632929_1.png" alt="New Pin 1"/><div class="slide-overlay"></div></div>
+      <div class="slide"><img src="1773811632930_2.png" alt="New Pin 2"/><div class="slide-overlay"></div></div>
+      <div class="slide"><img src="1773811632930_3.png" alt="New Pin 3"/><div class="slide-overlay"></div></div>
+      <div class="slide"><img src="1773811632931_4.png" alt="New Pin 4"/><div class="slide-overlay"></div></div>
+      <div class="slide"><img src="1773811632931_5.png" alt="New Pin 5"/><div class="slide-overlay"></div></div>
+      <div class="slide"><img src="1773811632931_6.png" alt="New Pin 6"/><div class="slide-overlay"></div></div>
+      <div class="slide"><img src="1773811632932_7.png" alt="New Pin 7"/><div class="slide-overlay"></div></div>
     </div>
     <div class="slide-dots" id="slideDots"></div>
     <div class="slide-counter" id="slideCounter">01</div>
@@ -276,6 +288,7 @@
     <h2 class="s-title reveal d1">My <em>Pin</em> Designs</h2>
   </div></div>
   <div class="pin-grid" id="pinGrid">
+    <!-- Original 7 pins -->
     <div class="pin-card reveal" data-index="0"><img src="1773805276758_1.png" alt=""/><div class="pin-overlay"><div class="pin-title">Healthy Breakfast</div><div class="pin-tag">Food • Recipe Blog</div></div><button class="pin-save">View ↗</button></div>
     <div class="pin-card reveal d1" data-index="1"><img src="1773805276763_2.png" alt=""/><div class="pin-overlay"><div class="pin-title">Life Begins After Coffee</div><div class="pin-tag">Lifestyle • Café</div></div><button class="pin-save">View ↗</button></div>
     <div class="pin-card reveal d2" data-index="2"><img src="1773805276764_3.png" alt=""/><div class="pin-overlay"><div class="pin-title">Healthy Breakfast</div><div class="pin-tag">Food • Bold Type</div></div><button class="pin-save">View ↗</button></div>
@@ -283,6 +296,14 @@
     <div class="pin-card reveal" data-index="4"><img src="1773805276765_5.png" alt=""/><div class="pin-overlay"><div class="pin-title">52 Breakfast Ideas</div><div class="pin-tag">Recipe • List Post</div></div><button class="pin-save">View ↗</button></div>
     <div class="pin-card reveal d1" data-index="5"><img src="1773805276766_6.png" alt=""/><div class="pin-overlay"><div class="pin-title">Clean Eating Recipes</div><div class="pin-tag">Health • Bold</div></div><button class="pin-save">View ↗</button></div>
     <div class="pin-card reveal d2" data-index="6"><img src="1773805276766_7.png" alt=""/><div class="pin-overlay"><div class="pin-title">Quick Chicken Recipes</div><div class="pin-tag">Food • Clean Layout</div></div><button class="pin-save">View ↗</button></div>
+    <!-- New 7 pins -->
+    <div class="pin-card reveal d3" data-index="7"><img src="1773811632929_1.png" alt=""/><div class="pin-new-badge">New</div><div class="pin-overlay"><div class="pin-title">Healthy Breakfast</div><div class="pin-tag">Food • Recipe Blog</div></div><button class="pin-save">View ↗</button></div>
+    <div class="pin-card reveal" data-index="8"><img src="1773811632930_2.png" alt=""/><div class="pin-new-badge">New</div><div class="pin-overlay"><div class="pin-title">Life Begins After Coffee</div><div class="pin-tag">Lifestyle • Café</div></div><button class="pin-save">View ↗</button></div>
+    <div class="pin-card reveal d1" data-index="9"><img src="1773811632930_3.png" alt=""/><div class="pin-new-badge">New</div><div class="pin-overlay"><div class="pin-title">Healthy Breakfast</div><div class="pin-tag">Food • Bold Type</div></div><button class="pin-save">View ↗</button></div>
+    <div class="pin-card reveal d2" data-index="10"><img src="1773811632931_4.png" alt=""/><div class="pin-new-badge">New</div><div class="pin-overlay"><div class="pin-title">Easy Healthy Meals</div><div class="pin-tag">Food • Recipe</div></div><button class="pin-save">View ↗</button></div>
+    <div class="pin-card reveal d3" data-index="11"><img src="1773811632931_5.png" alt=""/><div class="pin-new-badge">New</div><div class="pin-overlay"><div class="pin-title">52 Breakfast Ideas</div><div class="pin-tag">Recipe • List Post</div></div><button class="pin-save">View ↗</button></div>
+    <div class="pin-card reveal" data-index="12"><img src="1773811632931_6.png" alt=""/><div class="pin-new-badge">New</div><div class="pin-overlay"><div class="pin-title">Clean Eating Recipes</div><div class="pin-tag">Health • Bold</div></div><button class="pin-save">View ↗</button></div>
+    <div class="pin-card reveal d1" data-index="13"><img src="1773811632932_7.png" alt=""/><div class="pin-new-badge">New</div><div class="pin-overlay"><div class="pin-title">Quick Chicken Recipes</div><div class="pin-tag">Food • Clean Layout</div></div><button class="pin-save">View ↗</button></div>
   </div>
 </section>
 
@@ -326,7 +347,6 @@
     <h2 class="s-title reveal d1">What Clients <em>Say</em></h2>
   </div></div>
   <div class="reviews-grid">
-    <!-- Row 1: real photos -->
     <div class="review-card reveal">
       <div class="review-stars">★★★★★</div>
       <p class="review-text">"My Pinterest traffic literally doubled in the first month! The designs are clean, eye-catching and match my brand perfectly. Absolutely worth it!"</p>
@@ -351,7 +371,6 @@
         <div><div class="review-name">Marcus Reid</div><div class="review-niche">Food Blog • Recipe Creator</div></div>
       </div>
     </div>
-    <!-- Row 2: initials -->
     <div class="review-card reveal">
       <div class="review-stars">★★★★★</div>
       <p class="review-text">"Fashion pins are SO competitive. These designs stood out immediately — my follower count and monthly views grew within weeks of posting!"</p>
@@ -500,8 +519,13 @@
   new Chart(document.getElementById('trafficChart').getContext('2d'),{type:'bar',data:{labels:['M1','M2','M3','M4','M5','M6'],datasets:[{label:'Before',data:[820,860,890,840,870,850],backgroundColor:'#73726c',borderRadius:3},{label:'After',data:[820,1240,1680,2150,2740,3300],backgroundColor:'#C4563A',borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'rgba(253,246,238,0.4)',font:{size:11}},grid:{color:'rgba(255,255,255,0.04)'}},y:{ticks:{color:'rgba(253,246,238,0.4)',font:{size:11}},grid:{color:'rgba(255,255,255,0.06)'}}}}});
   new Chart(document.getElementById('savesChart').getContext('2d'),{type:'line',data:{labels:['M1','M2','M3','M4','M5','M6'],datasets:[{label:'Before',data:[120,130,115,125,130,128],borderColor:'#B89B7A',backgroundColor:'rgba(184,155,122,0.08)',tension:0.4,pointRadius:3,fill:true},{label:'After',data:[120,310,560,890,1240,1680],borderColor:'#E8A87C',backgroundColor:'rgba(232,168,124,0.1)',tension:0.4,pointRadius:3,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'rgba(253,246,238,0.4)',font:{size:11}},grid:{color:'rgba(255,255,255,0.04)'}},y:{ticks:{color:'rgba(253,246,238,0.4)',font:{size:11}},grid:{color:'rgba(255,255,255,0.06)'}}}}});
 
-  /* Lightbox with gallery nav */
-  const pinSrcs=['1773805276758_1.png','1773805276763_2.png','1773805276764_3.png','1773805276764_4.png','1773805276765_5.png','1773805276766_6.png','1773805276766_7.png'];
+  /* Lightbox — now 14 pins total */
+  const pinSrcs=[
+    '1773805276758_1.png','1773805276763_2.png','1773805276764_3.png','1773805276764_4.png',
+    '1773805276765_5.png','1773805276766_6.png','1773805276766_7.png',
+    '1773811632929_1.png','1773811632930_2.png','1773811632930_3.png','1773811632931_4.png',
+    '1773811632931_5.png','1773811632931_6.png','1773811632932_7.png'
+  ];
   let lbIdx=0;
   document.querySelectorAll('.pin-card').forEach(card=>{
     card.addEventListener('click',()=>{lbIdx=parseInt(card.dataset.index);openLightbox(pinSrcs[lbIdx]);});
@@ -532,9 +556,9 @@
     document.getElementById('formSuccess').style.display='block';
   }
 
-  /* Scroll reveal */
+  /* Reveal on scroll */
   const revEls=document.querySelectorAll('.reveal');
-  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.12});
   revEls.forEach(el=>obs.observe(el));
 </script>
 </body>

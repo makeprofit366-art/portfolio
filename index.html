@@ -164,6 +164,11 @@
     .footer-logo{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--cream);}
     .footer-logo span{color:var(--rust);font-style:italic;}
     .footer-copy{font-size:12px;color:rgba(253,246,238,.3);letter-spacing:1px;}
+    /* TABS */
+    .tab-btns{display:flex;gap:12px;margin-top:24px;}
+    .tab-btn{padding:11px 28px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-family:'DM Sans',sans-serif;font-weight:500;border:1.5px solid rgba(196,86,58,.3);background:transparent;color:var(--wg);cursor:pointer;border-radius:2px;transition:all .25s;}
+    .tab-btn.active,.tab-btn:hover{background:var(--rust);color:#fff;border-color:var(--rust);}
+
     .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;}
     .reveal.visible{opacity:1;transform:none;}
     .d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
@@ -223,7 +228,7 @@
 </section>
 
 <div class="marquee-wrap"><div class="marquee-track">
-  <span>FOOD & RECIPES</span><span class="sep">✦</span><span>HOME DECOR</span><span class="sep">✦</span><span>FASHION</span><span class="sep">✦</span><span>HEALTH & WELLNESS</span><span class="sep">✦</span><span>DIY & CRAFTS</span><span class="sep">✦</span><span>BEFORE & AFTER PINS</span><span class="sep">✦</span><span>FOOD & RECIPES</span><span class="sep">✦</span><span>HOME DECOR</span><span class="sep">✦</span><span>FASHION</span><span class="sep">✦</span><span>HEALTH & WELLNESS</span><span class="sep">✦</span><span>DIY & CRAFTS</span><span class="sep">✦</span><span>BEFORE & AFTER PINS</span><span class="sep">✦</span>
+  <span>FOOD & RECIPES</span><span class="sep">✦</span><span>HOME DECOR</span><span class="sep">✦</span><span>FASHION</span><span class="sep">✦</span><span>HEALTH & WELLNESS</span><span class="sep">✦</span><span>DIY & CRAFTS</span><span class="sep">✦</span><span>TRADITIONAL WEAR</span><span class="sep">✦</span><span>FOOD & RECIPES</span><span class="sep">✦</span><span>HOME DECOR</span><span class="sep">✦</span><span>FASHION</span><span class="sep">✦</span><span>HEALTH & WELLNESS</span><span class="sep">✦</span><span>DIY & CRAFTS</span><span class="sep">✦</span><span>TRADITIONAL WEAR</span><span class="sep">✦</span>
 </div></div>
 
 <section id="niches">
@@ -233,11 +238,11 @@
   </div></div>
   <div class="niches-grid">
     <div class="niche-card reveal"><div class="niche-icon">🍽️</div><div class="niche-name">Food & Recipes</div><div class="niche-desc">Meal ideas, recipe cards, breakfast, healthy eating</div></div>
-    <div class="niche-card reveal d1"><div class="niche-icon">🏡</div><div class="niche-name">Home Décor</div><div class="niche-desc">Interior design, room makeovers, decor inspo</div></div>
-    <div class="niche-card reveal d2"><div class="niche-icon">👗</div><div class="niche-name">Fashion</div><div class="niche-desc">Outfit ideas, style guides, seasonal lookbooks</div></div>
-    <div class="niche-card reveal d3"><div class="niche-icon">💪</div><div class="niche-name">Health & Wellness</div><div class="niche-desc">Fitness, self-care, clean eating, mindfulness</div></div>
-    <div class="niche-card reveal"><div class="niche-icon">🔨</div><div class="niche-name">DIY & Crafts</div><div class="niche-desc">Step-by-step tutorials, handmade, upcycling</div></div>
-    <div class="niche-card reveal d1"><div class="niche-icon">🔄</div><div class="niche-name">Before & After</div><div class="niche-desc">Transformations that drive massive saves & clicks</div></div>
+    <div class="niche-card reveal d1"><div class="niche-icon">👗</div><div class="niche-name">Fashion</div><div class="niche-desc">New arrivals, outfit ideas, style guides & lookbooks</div></div>
+    <div class="niche-card reveal d2"><div class="niche-icon">🪷</div><div class="niche-name">Traditional</div><div class="niche-desc">Cultural wear, ethnic fashion, festive collections</div></div>
+    <div class="niche-card reveal d3"><div class="niche-icon">🏡</div><div class="niche-name">Home Décor</div><div class="niche-desc">Interior design, room makeovers, decor inspo</div></div>
+    <div class="niche-card reveal"><div class="niche-icon">💪</div><div class="niche-name">Health & Wellness</div><div class="niche-desc">Fitness, self-care, clean eating, mindfulness</div></div>
+    <div class="niche-card reveal d1"><div class="niche-icon">🔨</div><div class="niche-name">DIY & Crafts</div><div class="niche-desc">Step-by-step tutorials, handmade, upcycling</div></div>
   </div>
 </section>
 
@@ -245,15 +250,32 @@
   <div class="s-head"><div>
     <div class="s-tag reveal">Selected Work</div>
     <h2 class="s-title reveal d1">My <em>Pin</em> Designs</h2>
-  </div></div>
-  <div class="pin-grid" id="pinGrid">
-    <div class="pin-card reveal" data-index="0"><img src="1.png" alt=""/><div class="pin-overlay"><div class="pin-title">Healthy Breakfast</div><div class="pin-tag">Food • Recipe Blog</div></div><button class="pin-save">View ↗</button></div>
-    <div class="pin-card reveal d1" data-index="1"><img src="2.png" alt=""/><div class="pin-overlay"><div class="pin-title">Life Begins After Coffee</div><div class="pin-tag">Lifestyle • Café</div></div><button class="pin-save">View ↗</button></div>
-    <div class="pin-card reveal d2" data-index="2"><img src="3.png" alt=""/><div class="pin-overlay"><div class="pin-title">Healthy Breakfast</div><div class="pin-tag">Food • Bold Type</div></div><button class="pin-save">View ↗</button></div>
-    <div class="pin-card reveal d3" data-index="3"><img src="4.png" alt=""/><div class="pin-overlay"><div class="pin-title">Easy Healthy Meals</div><div class="pin-tag">Food • Recipe</div></div><button class="pin-save">View ↗</button></div>
-    <div class="pin-card reveal" data-index="4"><img src="5.png" alt=""/><div class="pin-overlay"><div class="pin-title">52 Breakfast Ideas</div><div class="pin-tag">Recipe • List Post</div></div><button class="pin-save">View ↗</button></div>
-    <div class="pin-card reveal d1" data-index="5"><img src="6.png" alt=""/><div class="pin-overlay"><div class="pin-title">Clean Eating Recipes</div><div class="pin-tag">Health • Bold</div></div><button class="pin-save">View ↗</button></div>
-    <div class="pin-card reveal d2" data-index="6"><img src="7.png" alt=""/><div class="pin-overlay"><div class="pin-title">Quick Chicken Recipes</div><div class="pin-tag">Food • Clean Layout</div></div><button class="pin-save">View ↗</button></div>
+  </div>
+  <div class="tab-btns reveal d2">
+    <button class="tab-btn active" onclick="switchTab('food',this)">🍽️ Food & Recipes</button>
+    <button class="tab-btn" onclick="switchTab('fashion',this)">👗 Fashion & Traditional</button>
+  </div>
+  </div>
+
+  <!-- FOOD PINS -->
+  <div class="pin-grid" id="tab-food">
+    <div class="pin-card reveal" data-index="0" data-cat="food"><img src="1.png" alt=""/><div class="pin-overlay"><div class="pin-title">Healthy Breakfast</div><div class="pin-tag">Food • Recipe Blog</div></div><button class="pin-save">View ↗</button></div>
+    <div class="pin-card reveal d1" data-index="1" data-cat="food"><img src="2.png" alt=""/><div class="pin-overlay"><div class="pin-title">Life Begins After Coffee</div><div class="pin-tag">Lifestyle • Café</div></div><button class="pin-save">View ↗</button></div>
+    <div class="pin-card reveal d2" data-index="2" data-cat="food"><img src="3.png" alt=""/><div class="pin-overlay"><div class="pin-title">Healthy Breakfast</div><div class="pin-tag">Food • Bold Type</div></div><button class="pin-save">View ↗</button></div>
+    <div class="pin-card reveal d3" data-index="3" data-cat="food"><img src="4.png" alt=""/><div class="pin-overlay"><div class="pin-title">Easy Healthy Meals</div><div class="pin-tag">Food • Recipe</div></div><button class="pin-save">View ↗</button></div>
+    <div class="pin-card reveal" data-index="4" data-cat="food"><img src="5.png" alt=""/><div class="pin-overlay"><div class="pin-title">52 Breakfast Ideas</div><div class="pin-tag">Recipe • List Post</div></div><button class="pin-save">View ↗</button></div>
+    <div class="pin-card reveal d1" data-index="5" data-cat="food"><img src="6.png" alt=""/><div class="pin-overlay"><div class="pin-title">Clean Eating Recipes</div><div class="pin-tag">Health • Bold</div></div><button class="pin-save">View ↗</button></div>
+    <div class="pin-card reveal d2" data-index="6" data-cat="food"><img src="7.png" alt=""/><div class="pin-overlay"><div class="pin-title">Quick Chicken Recipes</div><div class="pin-tag">Food • Clean Layout</div></div><button class="pin-save">View ↗</button></div>
+  </div>
+
+  <!-- FASHION PINS -->
+  <div class="pin-grid" id="tab-fashion" style="display:none">
+    <div class="pin-card reveal" data-index="0" data-cat="fashion"><img src="f1.png" alt=""/><div class="pin-overlay"><div class="pin-title">New Arrivals</div><div class="pin-tag">Fashion • New Styles</div></div><button class="pin-save">View ↗</button></div>
+    <div class="pin-card reveal d1" data-index="1" data-cat="fashion"><img src="f2.png" alt=""/><div class="pin-overlay"><div class="pin-title">New Arrivals</div><div class="pin-tag">Fashion • Collection</div></div><button class="pin-save">View ↗</button></div>
+    <div class="pin-card reveal d2" data-index="2" data-cat="fashion"><img src="f3.png" alt=""/><div class="pin-overlay"><div class="pin-title">New Arrivals</div><div class="pin-tag">Fashion • Style Guide</div></div><button class="pin-save">View ↗</button></div>
+    <div class="pin-card reveal d3" data-index="3" data-cat="fashion"><img src="f4.png" alt=""/><div class="pin-overlay"><div class="pin-title">New Arrivals</div><div class="pin-tag">Fashion • Lookbook</div></div><button class="pin-save">View ↗</button></div>
+    <div class="pin-card reveal" data-index="4" data-cat="fashion"><img src="f5.png" alt=""/><div class="pin-overlay"><div class="pin-title">New Arrivals</div><div class="pin-tag">Fashion • Minimal</div></div><button class="pin-save">View ↗</button></div>
+    <div class="pin-card reveal d1" data-index="5" data-cat="fashion"><img src="f6.png" alt=""/><div class="pin-overlay"><div class="pin-title">New Arrivals</div><div class="pin-tag">Fashion • Beige</div></div><button class="pin-save">View ↗</button></div>
   </div>
 </section>
 
@@ -521,12 +543,24 @@
   },{threshold:0.4});
   document.querySelectorAll('.counter-box').forEach(b=>cObs.observe(b));
 
-  const pinSrcs=['1.png','2.png','3.png','4.png','5.png','6.png','7.png'];
+  const pinSrcs={
+    food:['1.png','2.png','3.png','4.png','5.png','6.png','7.png'],
+    fashion:['f1.png','f2.png','f3.png','f4.png','f5.png','f6.png']
+  };
+  let currentCat='food';
+
+  function switchTab(cat, btn){
+    currentCat=cat;
+    document.getElementById('tab-food').style.display=cat==='food'?'':'none';
+    document.getElementById('tab-fashion').style.display=cat==='fashion'?'':'none';
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  }
   let lbIdx=0;
-  document.querySelectorAll('.pin-card').forEach(card=>{card.addEventListener('click',()=>{lbIdx=parseInt(card.dataset.index);openLightbox(pinSrcs[lbIdx]);});});
+  document.querySelectorAll('.pin-card').forEach(card=>{card.addEventListener('click',()=>{lbIdx=parseInt(card.dataset.index);currentCat=card.dataset.cat||'food';openLightbox(pinSrcs[currentCat][lbIdx]);});});
   function openLightbox(src){document.getElementById('lb-img').src=src;document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';}
   function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
-  function lbNav(dir){lbIdx=(lbIdx+dir+pinSrcs.length)%pinSrcs.length;document.getElementById('lb-img').src=pinSrcs[lbIdx];}
+  function lbNav(dir){const srcs=pinSrcs[currentCat];lbIdx=(lbIdx+dir+srcs.length)%srcs.length;document.getElementById('lb-img').src=srcs[lbIdx];}
   document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===document.getElementById('lightbox'))closeLightbox();});
   document.addEventListener('keydown',e=>{if(document.getElementById('lightbox').classList.contains('open')){if(e.key==='ArrowRight')lbNav(1);if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='Escape')closeLightbox();}});
 

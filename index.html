@@ -164,6 +164,43 @@
     .footer-logo{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--cream);}
     .footer-logo span{color:var(--rust);font-style:italic;}
     .footer-copy{font-size:12px;color:rgba(253,246,238,.3);letter-spacing:1px;}
+    /* PRICING */
+    .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px;}
+    .pricing-card{background:var(--cream);border:1.5px solid rgba(184,155,122,.25);padding:40px 32px;border-radius:8px;transition:transform .25s,box-shadow .25s;position:relative;}
+    .pricing-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(196,86,58,.12);}
+    .pricing-card.popular{background:var(--dark);border-color:var(--rust);transform:scale(1.04);}
+    .pricing-card.popular:hover{transform:scale(1.04) translateY(-6px);}
+    .pricing-popular-tag{background:var(--rust);color:#fff;font-size:10px;letter-spacing:2px;font-weight:700;padding:5px 14px;border-radius:20px;display:inline-block;margin-bottom:16px;}
+    .pricing-badge{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--rust);font-weight:700;margin-bottom:10px;}
+    .pricing-card.popular .pricing-badge{color:var(--accent);}
+    .pricing-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--dark);margin-bottom:8px;}
+    .pricing-card.popular .pricing-name{color:var(--cream);}
+    .pricing-price{font-family:'Bebas Neue',sans-serif;font-size:64px;color:var(--rust);line-height:1;margin-bottom:6px;}
+    .pricing-card.popular .pricing-price{color:var(--accent);}
+    .pricing-desc{font-size:12px;color:var(--wg);margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid rgba(184,155,122,.2);}
+    .pricing-card.popular .pricing-desc{color:rgba(253,246,238,.45);border-bottom-color:rgba(255,255,255,.1);}
+    .pricing-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:32px;}
+    .pricing-features li{font-size:13px;color:var(--wg);display:flex;align-items:center;gap:8px;}
+    .pricing-card.popular .pricing-features li{color:rgba(253,246,238,.65);}
+    .pricing-btn{display:block;text-align:center;background:var(--rust);color:#fff;padding:15px 24px;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:500;border-radius:2px;transition:background .25s,transform .2s;}
+    .pricing-btn:hover{background:var(--dark);transform:translateY(-2px);}
+    .pricing-card.popular .pricing-btn{background:var(--accent);color:var(--dark);}
+    .pricing-card.popular .pricing-btn:hover{background:#fff;}
+    @media(max-width:960px){.pricing-grid{grid-template-columns:1fr;}.pricing-card.popular{transform:scale(1);}}
+    .monthly-banner{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;background:var(--dark);border:1.5px solid var(--rust);border-radius:8px;padding:44px 48px;margin-top:24px;}
+    .monthly-tag{display:inline-block;background:var(--rust);color:#fff;font-size:10px;letter-spacing:2px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:12px;}
+    .monthly-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--cream);margin-bottom:8px;}
+    .monthly-desc{font-size:14px;color:rgba(253,246,238,.5);margin-bottom:20px;}
+    .monthly-features{list-style:none;display:flex;flex-direction:column;gap:8px;}
+    .monthly-features li{font-size:13px;color:rgba(253,246,238,.6);}
+    .monthly-right{text-align:center;min-width:180px;}
+    .monthly-price{font-family:'Bebas Neue',sans-serif;font-size:72px;color:var(--accent);line-height:1;}
+    .monthly-price span{font-size:28px;color:rgba(232,168,124,.6);}
+    .monthly-note{font-size:11px;color:rgba(253,246,238,.35);letter-spacing:1px;margin:8px 0 20px;}
+    .monthly-cta{background:var(--accent);color:var(--dark);}
+    .monthly-cta:hover{background:#fff;color:var(--dark);}
+    @media(max-width:960px){.monthly-banner{grid-template-columns:1fr;gap:28px;padding:32px 24px;}.monthly-right{text-align:left;}}
+
     /* TABS */
     .tab-btns{display:flex;gap:12px;margin-top:24px;}
     .tab-btn{padding:11px 28px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-family:'DM Sans',sans-serif;font-weight:500;border:1.5px solid rgba(196,86,58,.3);background:transparent;color:var(--wg);cursor:pointer;border-radius:2px;transition:all .25s;}
@@ -428,26 +465,86 @@
 <section id="services">
   <div class="s-head"><div>
     <div class="s-tag reveal">What I Offer</div>
-    <h2 class="s-title reveal d1">Pinterest Pin <em>Services</em></h2>
+    <h2 class="s-title reveal d1">Pinterest Pin <em>Packages</em></h2>
   </div></div>
-  <div class="services-grid">
-    <div class="service-card reveal">
-      <div class="service-num">01</div><div class="service-icon">📌</div>
-      <div class="service-name">Single Pin Design</div>
-      <div class="service-desc">One custom Pinterest pin crafted to match your brand and drive saves. Great for testing a new style or promoting a single blog post.</div>
-      <a href="mailto:legeni1431@qvmao.com?subject=Single Pin Design Enquiry" class="service-arrow">Get in Touch →</a>
+
+  <div class="pricing-grid">
+
+    <!-- BASIC -->
+    <div class="pricing-card reveal">
+      <div class="pricing-badge">BASIC</div>
+      <div class="pricing-name">Starter Pack</div>
+      <div class="pricing-price">$20</div>
+      <div class="pricing-desc">5 Professional Pins • 2-Day Delivery</div>
+      <ul class="pricing-features">
+        <li>✓ 5 High-Quality Pin Designs</li>
+        <li>✓ 2-Day Delivery</li>
+        <li>✓ Unlimited Revisions</li>
+        <li>✓ Free Source Files (PSD)</li>
+        <li>✓ Food / Fashion / Any Niche</li>
+        <li>✓ Pinterest Optimized (2:3)</li>
+      </ul>
+      <a href="mailto:legeni1431@qvmao.com?subject=Basic Plan — 5 Pins $20" class="pricing-btn">Order Now →</a>
     </div>
-    <div class="service-card reveal d1">
-      <div class="service-num">02</div><div class="service-icon">🎨</div>
-      <div class="service-name">Pin Pack (5 Pins)</div>
-      <div class="service-desc">Five cohesive pins for one blog post or product. Multiple layouts for A/B testing. Works for food, décor, fashion, DIY, health & more.</div>
-      <a href="mailto:legeni1431@qvmao.com?subject=Pin Pack Enquiry" class="service-arrow">Get in Touch →</a>
+
+    <!-- STANDARD -->
+    <div class="pricing-card popular reveal d1">
+      <div class="pricing-popular-tag">⭐ MOST POPULAR</div>
+      <div class="pricing-badge">STANDARD</div>
+      <div class="pricing-name">Growth Pack</div>
+      <div class="pricing-price">$150</div>
+      <div class="pricing-desc">50 Pins • Delivered in 1.5 Weeks</div>
+      <ul class="pricing-features">
+        <li>✓ 50 Professional Pin Designs</li>
+        <li>✓ Delivered in 10–11 Days</li>
+        <li>✓ Unlimited Revisions</li>
+        <li>✓ Free Source Files (PSD)</li>
+        <li>✓ Multiple Niches Covered</li>
+        <li>✓ Brand Color Matching</li>
+        <li>✓ Pinterest SEO Titles</li>
+      </ul>
+      <a href="mailto:legeni1431@qvmao.com?subject=Standard Plan — 50 Pins $150" class="pricing-btn">Order Now →</a>
     </div>
-    <div class="service-card reveal d2">
-      <div class="service-num">03</div><div class="service-icon">📅</div>
-      <div class="service-name">Monthly Package</div>
-      <div class="service-desc">20–30 pins per month for a consistent Pinterest presence. Ideal for bloggers and brands wanting steady traffic and sales growth.</div>
-      <a href="mailto:legeni1431@qvmao.com?subject=Monthly Package Enquiry" class="service-arrow">Get in Touch →</a>
+
+    <!-- PREMIUM — 2 options -->
+    <div class="pricing-card reveal d2">
+      <div class="pricing-badge">PREMIUM</div>
+      <div class="pricing-name">Power Pack</div>
+      <div class="pricing-price">$200</div>
+      <div class="pricing-desc">100+ Pins • 20-Day Delivery</div>
+      <ul class="pricing-features">
+        <li>✓ 100+ Pin Designs</li>
+        <li>✓ Delivered in 20 Days</li>
+        <li>✓ Unlimited Revisions</li>
+        <li>✓ Free Source Files (PSD)</li>
+        <li>✓ All Niches Covered</li>
+        <li>✓ Full Brand Kit Setup</li>
+        <li>✓ Pinterest SEO Optimization</li>
+        <li>✓ Priority Support</li>
+      </ul>
+      <a href="mailto:legeni1431@qvmao.com?subject=Premium Plan — 100+ Pins $200" class="pricing-btn">Order Now →</a>
+    </div>
+
+  </div>
+
+  <!-- MONTHLY PLAN BANNER -->
+  <div class="monthly-banner reveal">
+    <div class="monthly-left">
+      <div class="monthly-tag">🔥 BEST VALUE</div>
+      <div class="monthly-title">Monthly Subscription</div>
+      <div class="monthly-desc">5 Fresh Pins Every Single Day — All Month Long</div>
+      <ul class="monthly-features">
+        <li>✓ ~150 Pins Per Month</li>
+        <li>✓ 5 Pins Delivered Daily</li>
+        <li>✓ Unlimited Revisions</li>
+        <li>✓ Free PSD Source Files</li>
+        <li>✓ All Niches • Full Brand Kit • Priority Support</li>
+      </ul>
+    </div>
+    <div class="monthly-right">
+      <div class="monthly-price">$250<span>/mo</span></div>
+      <div class="monthly-note">Best for serious bloggers & brands</div>
+      <a href="mailto:legeni1431@qvmao.com?subject=Monthly Plan — 5 Pins Daily $250" class="pricing-btn monthly-cta">Get Started →</a>
     </div>
   </div>
 </section>

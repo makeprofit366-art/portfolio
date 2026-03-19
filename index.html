@@ -13,7 +13,21 @@
     body{background:var(--cream);color:var(--dark);font-family:'DM Sans',sans-serif;overflow-x:hidden;cursor:none;}
     #cursor{width:12px;height:12px;background:var(--rust);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:transform .15s;transform:translate(-50%,-50%);}
     #cursor-ring{width:36px;height:36px;border:1.5px solid var(--rust);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;opacity:.5;transform:translate(-50%,-50%);}
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 48px;}
+    /* URGENCY BAR */
+    .urgency-bar{background:linear-gradient(90deg,var(--dark),#2a1f19,var(--dark));color:rgba(253,246,238,.85);text-align:center;padding:10px 20px;font-size:12px;letter-spacing:.5px;position:relative;z-index:200;}
+    .urgency-bar strong{color:var(--accent);}
+    .urgency-bar a{color:var(--accent);text-decoration:none;font-weight:600;margin-left:8px;}
+    .urgency-bar a:hover{text-decoration:underline;}
+
+    /* NAV CTA */
+    .nav-cta{background:var(--rust);color:#fff !important;padding:10px 22px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;font-weight:600;border-radius:2px;transition:background .2s,transform .2s;white-space:nowrap;}
+    .nav-cta:hover{background:var(--dark);transform:translateY(-1px);}
+
+    /* VERIFIED BADGE */
+    .verified-badge{background:rgba(196,86,58,.12);color:var(--rust);font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px;letter-spacing:.5px;}
+
+    nav{position:fixed;top:auto;bottom:auto;}
+    nav{position:sticky;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 48px;}
     nav::before{content:'';position:absolute;inset:0;background:rgba(253,246,238,.9);backdrop-filter:blur(14px);z-index:-1;border-bottom:1px solid rgba(180,155,122,.2);}
     .nav-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--dark);}
     .nav-logo span{color:var(--rust);font-style:italic;}
@@ -21,7 +35,7 @@
     .nav-links a{text-decoration:none;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--wg);font-weight:500;transition:color .2s;}
     .nav-links a:hover{color:var(--rust);}
     #hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:80px;overflow:hidden;}
-    .hero-left{display:flex;flex-direction:column;justify-content:center;padding:80px 48px 80px 80px;}
+    .hero-left{display:flex;flex-direction:column;justify-content:center;padding:60px 48px 60px 80px;}
     .hero-tag{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rust);font-weight:500;margin-bottom:26px;}
     .hero-tag::before{content:'';width:32px;height:1px;background:var(--rust);}
     .hero-title{font-family:'Playfair Display',serif;font-size:clamp(46px,5.5vw,82px);line-height:1.02;font-weight:900;margin-bottom:26px;}
@@ -228,6 +242,11 @@
 <body>
 <div id="cursor"></div><div id="cursor-ring"></div>
 
+<!-- URGENCY BANNER -->
+<div class="urgency-bar">
+  🔥 Currently accepting only <strong>2 more clients</strong> for March to ensure premium quality — <a href="#contact">Claim Your Spot →</a>
+</div>
+
 <nav>
   <div class="nav-logo">Pin<span>Studio</span></div>
   <ul class="nav-links">
@@ -235,12 +254,13 @@
     <li><a href="#results">Results</a></li><li><a href="#reviews">Reviews</a></li>
     <li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li>
   </ul>
+  <a href="mailto:muralivenkata788@gmail.com?subject=Free Sample Pin Request&body=Hi! I would like a free sample pin. My niche is: " class="nav-cta">✨ Free Sample</a>
 </nav>
 
 <section id="hero">
   <div class="hero-left">
     <div class="hero-tag">Pinterest Pin Designer</div>
-    <h1 class="hero-title">Pins That<br><em>Stop</em><br>The Scroll</h1>
+    <h1 class="hero-title">Pins That <em>Stop</em> The Scroll</h1>
     <p class="hero-desc">I design high-converting Pinterest pins for food, lifestyle, fashion, home décor, DIY & health brands. Every pin crafted to drive clicks, saves, and real traffic.</p>
     <a href="#work" class="hero-cta">View My Work <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     <div class="hero-stats">
@@ -393,7 +413,7 @@
       <div class="review-author">
         <img class="review-photo" src="r1.jpg" alt="Emily Carter"/>
         <div>
-          <div class="review-name">Emily Carter <span class="review-flag">🇺🇸</span></div>
+          <div class="review-name"><strong>Emily Carter</strong> <span class="review-flag">🇺🇸</span> <span class="verified-badge">✓ Verified</span></div>
           <div class="review-niche">Food Blog • New York, USA</div>
         </div>
       </div>

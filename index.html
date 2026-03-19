@@ -635,14 +635,17 @@
       <a href="https://instagram.com" target="_blank" class="contact-link"><div class="contact-link-icon">◉</div>Instagram</a>
     </div>
   </div>
-  <div class="contact-form reveal d1">
-    <div class="form-group"><label class="form-label">Your Name</label><input type="text" id="f-name" class="form-input" placeholder="e.g. Emily Carter"/></div>
-    <div class="form-group"><label class="form-label">Email</label><input type="email" id="f-email" class="form-input" placeholder="you@email.com"/></div>
-    <div class="form-group"><label class="form-label">Your Niche</label><input type="text" id="f-niche" class="form-input" placeholder="Food / Fashion / Traditional / DIY..."/></div>
-    <div class="form-group"><label class="form-label">Tell Me About Your Project</label><textarea id="f-msg" class="form-input" placeholder="What kind of pins do you need?"></textarea></div>
-    <button class="form-submit" onclick="sendMail()">Send Message →</button>
-    <div class="form-success" id="formSuccess">✓ Opening your mail app — see you in the inbox!</div>
-  </div>
+ <form class="contact-form reveal d1" action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value="69130685-f237-4aee-8c6f-26ed4a5bf6c6">
+  <input type="hidden" name="subject" value="New Contact from Clickable Pins Website">
+  <input type="hidden" name="redirect" value="https://clickablepins.online">
+  <div class="form-group"><label class="form-label">Your Name</label><input type="text" name="name" class="form-input" placeholder="e.g. Emily Carter" required/></div>
+  <div class="form-group"><label class="form-label">Email</label><input type="email" name="email" class="form-input" placeholder="you@email.com" required/></div>
+  <div class="form-group"><label class="form-label">Your Niche</label><input type="text" name="niche" class="form-input" placeholder="Food / Fashion / Traditional"/></div>
+  <div class="form-group"><label class="form-label">Tell Me About Your Project</label><textarea name="message" class="form-input" placeholder="What kind of pins do you need?" required></textarea></div>
+  <button type="submit" class="form-submit">Send Message →</button>
+  <div class="form-success" id="formSuccess">✓ Message sent! I'll reply within 24 hours!</div>
+</form>
 </section>
 
 <footer>

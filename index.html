@@ -170,6 +170,48 @@
     .service-arrow{display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-size:11px;letter-spacing:2px;color:var(--rust);text-transform:uppercase;text-decoration:none;font-weight:600;transition:gap .2s;}
     .service-arrow:hover{gap:12px;}
 
+    /* OFFER BANNER */
+    .offer-banner{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;background:linear-gradient(135deg,var(--rust),#a03020);border-radius:8px;padding:36px 40px;margin-bottom:32px;}
+    .offer-tag{font-size:10px;letter-spacing:2px;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;margin-bottom:10px;}
+    .offer-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:#fff;margin-bottom:8px;}
+    .offer-title span{color:var(--accent);font-style:italic;}
+    .offer-desc{font-size:13px;color:rgba(255,255,255,.75);line-height:1.6;max-width:500px;}
+    .offer-btn{background:#fff;color:var(--rust);padding:14px 28px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;font-weight:700;border-radius:2px;white-space:nowrap;transition:all .2s;}
+    .offer-btn:hover{background:var(--accent);color:#fff;}
+
+    /* POPULAR SERVICE CARD */
+    .service-card.popular{background:var(--dark);border-color:var(--rust);position:relative;}
+    .service-card.popular .service-num{color:rgba(196,86,58,.15);}
+    .service-card.popular .service-name{color:var(--cream);}
+    .service-card.popular .service-desc{color:rgba(253,246,238,.5);}
+    .service-card.popular .service-features li{color:rgba(253,246,238,.55);}
+    .service-card.popular .service-features li::before{color:var(--accent);}
+    .service-card.popular .service-arrow{color:var(--accent);}
+    .service-popular-tag{display:inline-block;background:var(--rust);color:#fff;font-size:10px;letter-spacing:1.5px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:12px;text-transform:uppercase;}
+
+    /* EMERGENCY CARD */
+    .emergency-card{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;background:var(--dark);border:1.5px solid rgba(196,86,58,.4);border-radius:8px;padding:40px 44px;margin-top:24px;position:relative;overflow:hidden;}
+    .emergency-card::before{content:'⚡';position:absolute;right:180px;top:50%;transform:translateY(-50%);font-size:120px;opacity:.04;pointer-events:none;}
+    .emergency-tag{font-size:10px;letter-spacing:2px;font-weight:700;color:var(--accent);text-transform:uppercase;margin-bottom:12px;}
+    .emergency-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--cream);margin-bottom:10px;}
+    .emergency-title em{color:var(--rust);font-style:italic;}
+    .emergency-desc{font-size:13px;color:rgba(253,246,238,.5);line-height:1.7;max-width:520px;margin-bottom:16px;}
+    .emergency-features{list-style:none;display:flex;flex-direction:column;gap:8px;}
+    .emergency-features li{font-size:12px;color:rgba(253,246,238,.55);}
+    .emergency-right{text-align:center;min-width:160px;}
+    .emergency-note{font-size:11px;color:rgba(253,246,238,.35);letter-spacing:.5px;margin-bottom:16px;line-height:1.5;}
+    .emergency-btn{display:block;background:var(--rust);color:#fff;padding:14px 24px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;font-weight:700;border-radius:2px;text-align:center;transition:all .2s;}
+    .emergency-btn:hover{background:var(--rust2);transform:translateY(-2px);}
+
+    @media(max-width:768px){
+      .offer-banner{grid-template-columns:1fr;gap:20px;padding:26px 22px;}
+      .offer-title{font-size:20px;}
+      .offer-btn{text-align:center;}
+      .emergency-card{grid-template-columns:1fr;gap:24px;padding:28px 22px;}
+      .emergency-card::before{display:none;}
+      .emergency-right{text-align:left;}
+    }
+
     /* FAQ */
     #faq{padding:86px 60px;background:var(--dark);}
     .faq-list{margin-top:52px;}
@@ -473,9 +515,50 @@
     <div class="s-tag reveal">What I Offer</div>
     <h2 class="s-title reveal d1">Pinterest Pin <em>Services</em></h2>
   </div></div>
+  <!-- OFFER BANNER -->
+  <div class="offer-banner reveal">
+    <div class="offer-left">
+      <div class="offer-tag">🎁 LIMITED TIME OFFER</div>
+      <div class="offer-title">Get Your First 3 Pins <span>FREE</span></div>
+      <div class="offer-desc">Try before you buy — send me your niche and I'll design 3 sample pins at no cost. No commitment needed!</div>
+    </div>
+    <a href="mailto:muralivenkata788@gmail.com?subject=Free 3 Pins Offer&body=Hi! I want to claim the free 3 pins offer. My niche is: " class="offer-btn">Claim Free Pins →</a>
+  </div>
+
   <div class="services-grid">
-    <div class="service-card reveal">
-      <div class="service-num">01</div><div class="service-icon">📌</div>
+    <!-- MONTHLY FIRST -->
+    <div class="service-card popular reveal">
+      <div class="service-popular-tag">🔥 BEST VALUE</div>
+      <div class="service-num">01</div><div class="service-icon">🚀</div>
+      <div class="service-name">Monthly Power</div>
+      <div class="service-desc">Maximum results. Daily pins all month for serious bloggers and brands ready to scale fast.</div>
+      <ul class="service-features">
+        <li>5 Pins Every Single Day</li>
+        <li>~150 Pins Per Month</li>
+        <li>Unlimited Revisions</li>
+        <li>Full Brand Kit Setup</li>
+        <li>Pinterest SEO Optimization</li>
+        <li>Priority Support 24/7</li>
+      </ul>
+      <a href="mailto:muralivenkata788@gmail.com?subject=Monthly Power Enquiry" class="service-arrow">Get in Touch →</a>
+    </div>
+    <!-- WEEKLY SECOND -->
+    <div class="service-card reveal d1">
+      <div class="service-num">02</div><div class="service-icon">📅</div>
+      <div class="service-name">Weekly Growth</div>
+      <div class="service-desc">Consistent daily pins to keep your Pinterest feed active and growing every week.</div>
+      <ul class="service-features">
+        <li>3–5 Pins Per Day</li>
+        <li>Full Week Delivery</li>
+        <li>Unlimited Revisions</li>
+        <li>Brand Color Matching</li>
+        <li>Pinterest SEO Titles</li>
+      </ul>
+      <a href="mailto:muralivenkata788@gmail.com?subject=Weekly Growth Enquiry" class="service-arrow">Get in Touch →</a>
+    </div>
+    <!-- STARTER LAST -->
+    <div class="service-card reveal d2">
+      <div class="service-num">03</div><div class="service-icon">📌</div>
       <div class="service-name">Starter Pack</div>
       <div class="service-desc">Perfect for testing. Get professional pins crafted for your brand and niche.</div>
       <ul class="service-features">
@@ -486,32 +569,24 @@
       </ul>
       <a href="mailto:muralivenkata788@gmail.com?subject=Starter Pack Enquiry" class="service-arrow">Get in Touch →</a>
     </div>
-    <div class="service-card reveal d1">
-      <div class="service-num">02</div><div class="service-icon">📅</div>
-      <div class="service-name">Weekly Growth</div>
-      <div class="service-desc">Consistent daily pins to keep your Pinterest feed active and growing.</div>
-      <ul class="service-features">
-        <li>3–5 Pins Per Day</li>
-        <li>Full Week Delivery</li>
-        <li>Unlimited Revisions</li>
-        <li>Brand Color Matching</li>
-        <li>Pinterest SEO Titles</li>
+  </div>
+
+  <!-- EMERGENCY ORDER -->
+  <div class="emergency-card reveal">
+    <div class="emergency-left">
+      <div class="emergency-tag">⚡ EMERGENCY ORDER</div>
+      <div class="emergency-title">Need Pins <em>Today?</em></div>
+      <div class="emergency-desc">Urgent order needed? I offer same-day & next-day delivery for rush orders. Perfect for product launches, flash sales, or last-minute campaigns!</div>
+      <ul class="emergency-features">
+        <li>⚡ Same-Day Delivery (within 6–8 hours)</li>
+        <li>⚡ Next-Day Delivery (within 24 hours)</li>
+        <li>⚡ Priority over all other orders</li>
+        <li>⚡ Direct WhatsApp/Email communication</li>
       </ul>
-      <a href="mailto:muralivenkata788@gmail.com?subject=Weekly Growth Enquiry" class="service-arrow">Get in Touch →</a>
     </div>
-    <div class="service-card reveal d2">
-      <div class="service-num">03</div><div class="service-icon">🚀</div>
-      <div class="service-name">Monthly Power</div>
-      <div class="service-desc">Maximum results. Daily pins all month for serious bloggers and brands ready to scale.</div>
-      <ul class="service-features">
-        <li>5 Pins Every Single Day</li>
-        <li>~150 Pins Per Month</li>
-        <li>Unlimited Revisions</li>
-        <li>Full Brand Kit Setup</li>
-        <li>Pinterest SEO Optimization</li>
-        <li>Priority Support</li>
-      </ul>
-      <a href="mailto:muralivenkata788@gmail.com?subject=Monthly Power Enquiry" class="service-arrow">Get in Touch →</a>
+    <div class="emergency-right">
+      <div class="emergency-note">Message me directly for rush pricing</div>
+      <a href="mailto:muralivenkata788@gmail.com?subject=URGENT — Emergency Pin Order&body=Hi! I need pins urgently. Details: " class="emergency-btn">⚡ Rush Order Now</a>
     </div>
   </div>
 </section>

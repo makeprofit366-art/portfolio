@@ -170,7 +170,7 @@
     .results-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:36px;}
     .chart-box{background:var(--cream);border:1px solid rgba(184,155,122,.2);padding:26px;border-radius:4px;}
     .chart-lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--wg);margin-bottom:14px;}
-    .chart-wrap{position:relative;width:100%;height:200px;}
+    .chart-wrap{position:relative;width:100%;height:220px;display:block;}
     .chart-legend{display:flex;gap:14px;margin-bottom:12px;font-size:11px;color:var(--wg);}
     .chart-legend span{display:flex;align-items:center;gap:6px;}
     .chart-legend i{width:10px;height:10px;border-radius:2px;display:inline-block;}
@@ -905,25 +905,56 @@ filterBtns.forEach(btn=>{
 });
 
 /* MAIN CHARTS */
-const chartOpts=(c1,c2)=>({type:'bar',data:{labels:['M1','M2','M3','M4','M5','M6'],datasets:[{label:'Before',data:c1,backgroundColor:'rgba(184,155,122,.35)',borderRadius:3},{label:'After',data:c2,backgroundColor:'#C4563A',borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'var(--wg)',font:{size:10}},grid:{color:'rgba(122,110,101,.1)'}},y:{ticks:{color:'var(--wg)',font:{size:10}},grid:{color:'rgba(122,110,101,.1)'}}}}});
-new Chart(document.getElementById('trafficChart').getContext('2d'),chartOpts([820,860,890,840,870,850],[820,1240,1680,2150,2740,3300]));
-const sc=document.getElementById('savesChart').getContext('2d');
-new Chart(sc,{type:'line',data:{labels:['M1','M2','M3','M4','M5','M6'],datasets:[{data:[320,330,310,325,330,320],borderColor:'rgba(184,155,122,.5)',backgroundColor:'transparent',tension:0.4,pointRadius:3,fill:false},{data:[320,580,890,1300,1700,2100],borderColor:'#E8A87C',backgroundColor:'rgba(232,168,124,.1)',tension:0.4,pointRadius:3,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'var(--wg)',font:{size:10}},grid:{color:'rgba(122,110,101,.1)'}},y:{ticks:{color:'var(--wg)',font:{size:10}},grid:{color:'rgba(122,110,101,.1)'}}}}});
-
-/* ANALYTICS CHARTS (dark bg) */
-const anOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}},elements:{point:{radius:0}},scales:{x:{display:false},y:{display:false}}};
-new Chart(document.getElementById('anChart1').getContext('2d'),{type:'line',data:{labels:['J','F','M','A','M','J'],datasets:[{data:[820,900,1800,4200,9100,14200],borderColor:'#C4563A',backgroundColor:'rgba(196,86,58,.15)',tension:0.45,fill:true,borderWidth:2},{data:[820,840,855,845,860,850],borderColor:'rgba(255,255,255,.15)',backgroundColor:'transparent',tension:0.3,fill:false,borderWidth:1,borderDash:[3,3]}]},options:anOpts});
-new Chart(document.getElementById('anChart2').getContext('2d'),{type:'line',data:{labels:['J','F','M','A','M','J'],datasets:[{data:[200,220,1200,4800,9500,14000],borderColor:'#E8A87C',backgroundColor:'rgba(232,168,124,.12)',tension:0.45,fill:true,borderWidth:2},{data:[200,205,210,208,212,205],borderColor:'rgba(255,255,255,.15)',backgroundColor:'transparent',tension:0.3,fill:false,borderWidth:1,borderDash:[3,3]}]},options:anOpts});
+window.addEventListener('load',function(){
+  try{
+    const chartOpts=(c1,c2)=>({type:'bar',data:{labels:['M1','M2','M3','M4','M5','M6'],datasets:[{label:'Before',data:c1,backgroundColor:'rgba(184,155,122,.35)',borderRadius:3},{label:'After',data:c2,backgroundColor:'#C4563A',borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#7A6E65',font:{size:10}},grid:{color:'rgba(122,110,101,.1)'}},y:{ticks:{color:'#7A6E65',font:{size:10}},grid:{color:'rgba(122,110,101,.1)'}}}}});
+    const tc=document.getElementById('trafficChart');
+    if(tc)new Chart(tc.getContext('2d'),chartOpts([820,860,890,840,870,850],[820,1240,1680,2150,2740,3300]));
+    const sc=document.getElementById('savesChart');
+    if(sc)new Chart(sc.getContext('2d'),{type:'line',data:{labels:['M1','M2','M3','M4','M5','M6'],datasets:[{data:[320,330,310,325,330,320],borderColor:'rgba(184,155,122,.5)',backgroundColor:'transparent',tension:0.4,pointRadius:3,fill:false},{data:[320,580,890,1300,1700,2100],borderColor:'#E8A87C',backgroundColor:'rgba(232,168,124,.1)',tension:0.4,pointRadius:3,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#7A6E65',font:{size:10}},grid:{color:'rgba(122,110,101,.1)'}},y:{ticks:{color:'#7A6E65',font:{size:10}},grid:{color:'rgba(122,110,101,.1)'}}}}}});
+  }catch(e){console.log('Chart error:',e);}
+  try{
+    const anOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}},elements:{point:{radius:0}},scales:{x:{display:false},y:{display:false}}};
+    const a1=document.getElementById('anChart1');
+    if(a1)new Chart(a1.getContext('2d'),{type:'line',data:{labels:['J','F','M','A','M','J'],datasets:[{data:[820,900,1800,4200,9100,14200],borderColor:'#C4563A',backgroundColor:'rgba(196,86,58,.15)',tension:0.45,fill:true,borderWidth:2},{data:[820,840,855,845,860,850],borderColor:'rgba(255,255,255,.15)',backgroundColor:'transparent',tension:0.3,fill:false,borderWidth:1}]},options:anOpts});
+    const a2=document.getElementById('anChart2');
+    if(a2)new Chart(a2.getContext('2d'),{type:'line',data:{labels:['J','F','M','A','M','J'],datasets:[{data:[200,220,1200,4800,9500,14000],borderColor:'#E8A87C',backgroundColor:'rgba(232,168,124,.12)',tension:0.45,fill:true,borderWidth:2},{data:[200,205,210,208,212,205],borderColor:'rgba(255,255,255,.15)',backgroundColor:'transparent',tension:0.3,fill:false,borderWidth:1}]},options:anOpts});
+  }catch(e){console.log('Analytics chart error:',e);}
+});
 
 /* REVEAL ANIMATION */
 document.body.classList.add('js-animate');
 const revObs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:0.08});
 document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
 
-/* COUNTERS */
-function animCounter(el){const t=+el.dataset.target,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'';let c=0;const inc=t/(2000/16);const iv=setInterval(()=>{c=Math.min(c+inc,t);el.textContent=pre+Math.floor(c).toLocaleString()+suf;if(c>=t)clearInterval(iv);},16);}
-const cObs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.c-new[data-target]').forEach(animCounter);cObs.unobserve(e.target);}});},{threshold:0.4});
-document.querySelectorAll('.counter-box').forEach(b=>cObs.observe(b));
+/* COUNTERS - fire immediately when visible */
+function animCounter(el){
+  const t=+el.dataset.target,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'';
+  // Set final value immediately as fallback
+  el.textContent=pre+t.toLocaleString()+suf;
+  // Then animate from 0
+  let c=0;
+  const inc=t/60;
+  el.textContent=pre+'0'+suf;
+  const iv=setInterval(()=>{
+    c=Math.min(c+inc,t);
+    el.textContent=pre+Math.floor(c).toLocaleString()+suf;
+    if(c>=t){el.textContent=pre+t.toLocaleString()+suf;clearInterval(iv);}
+  },24);
+}
+// Fire counters as soon as they enter viewport
+const cObs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){
+  e.target.querySelectorAll('.c-new[data-target]').forEach(animCounter);
+  cObs.unobserve(e.target);
+}});},{threshold:0.1});
+document.querySelectorAll('.counter-box').forEach(b=>{
+  // Also set values immediately in case observer never fires
+  b.querySelectorAll('.c-new[data-target]').forEach(el=>{
+    const t=+el.dataset.target,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'';
+    el.textContent=pre+t.toLocaleString()+suf;
+  });
+  cObs.observe(b);
+});
 
 /* LIGHTBOX */
 const pinMeta={

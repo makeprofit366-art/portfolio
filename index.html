@@ -16,7 +16,6 @@
   <meta name="twitter:title" content="Professional Pinterest Pin Design Services | PinStudio">
   <meta name="twitter:description" content="Custom high-CTR Pinterest pins for Food, Fashion, Home Decor and more!">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
   <style>
     :root{--cream:#FDF6EE;--cream2:#F5EDE3;--rust:#C4563A;--rust2:#D4664A;--tan:#B89B7A;--dark:#1C1814;--wg:#7A6E65;--accent:#E8A87C;}
     *{margin:0;padding:0;box-sizing:border-box;}
@@ -158,22 +157,45 @@
     .an-delta::before{content:"▲";font-size:8px;}
     .an-chart{padding:12px 14px;height:90px;position:relative;}
     .an-foot{padding:7px 14px;font-size:9px;color:rgba(253,246,238,.18);letter-spacing:.5px;border-top:1px solid rgba(255,255,255,.05);}
+
+    /* ===== RESULTS SECTION — PHOTO GALLERY ===== */
     #results{padding:86px 60px;background:var(--cream2);}
-    .counters-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px;}
-    .counter-box{background:var(--cream);border:1px solid rgba(184,155,122,.2);padding:28px 18px;border-radius:4px;text-align:center;position:relative;overflow:hidden;}
-    .counter-box::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--rust),var(--accent));}
-    .c-before-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--wg);margin-bottom:6px;}
-    .c-old{font-family:"Bebas Neue",sans-serif;font-size:22px;color:rgba(122,110,101,.35);text-decoration:line-through;margin-bottom:4px;}
-    .c-arrow{font-size:20px;color:var(--rust);margin:4px 0;}
-    .c-new{font-family:"Bebas Neue",sans-serif;font-size:52px;color:var(--rust);line-height:1;}
-    .c-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--wg);margin-top:8px;}
-    .results-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:36px;}
-    .chart-box{background:var(--cream);border:1px solid rgba(184,155,122,.2);padding:26px;border-radius:4px;}
-    .chart-lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--wg);margin-bottom:14px;}
-    .chart-wrap{position:relative;width:100%;height:220px;display:block;}
-    .chart-legend{display:flex;gap:14px;margin-bottom:12px;font-size:11px;color:var(--wg);}
-    .chart-legend span{display:flex;align-items:center;gap:6px;}
-    .chart-legend i{width:10px;height:10px;border-radius:2px;display:inline-block;}
+    .results-intro{margin-bottom:52px;}
+    .results-intro p{font-size:15px;line-height:1.85;color:var(--wg);margin-top:14px;max-width:520px;}
+
+    /* Main mosaic grid */
+    .results-mosaic{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:14px;margin-bottom:14px;}
+
+    /* Card base */
+    .res-card{position:relative;overflow:hidden;border-radius:10px;cursor:pointer;}
+    .res-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.25,.46,.45,.94);}
+    .res-card:hover img{transform:scale(1.06);}
+    .res-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,24,20,.82) 0%,rgba(28,24,20,.1) 55%,transparent 100%);opacity:0;transition:opacity .38s;display:flex;flex-direction:column;justify-content:flex-end;padding:20px 18px;}
+    .res-card:hover .res-card-overlay{opacity:1;}
+    .res-card-tag{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:5px;}
+    .res-card-title{font-family:"Playfair Display",serif;font-size:15px;font-weight:700;color:#fff;line-height:1.25;}
+    .res-card-stat{position:absolute;top:12px;left:12px;background:rgba(28,24,20,.85);backdrop-filter:blur(6px);color:var(--accent);font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;opacity:0;transform:translateY(-5px);transition:opacity .3s,transform .3s;}
+    .res-card:hover .res-card-stat{opacity:1;transform:translateY(0);}
+
+    /* Grid placements — mosaic layout */
+    .res-card:nth-child(1){grid-column:1/6;grid-row:1;height:360px;}
+    .res-card:nth-child(2){grid-column:6/9;grid-row:1;height:360px;}
+    .res-card:nth-child(3){grid-column:9/13;grid-row:1;height:360px;}
+    .res-card:nth-child(4){grid-column:1/5;grid-row:2;height:300px;}
+    .res-card:nth-child(5){grid-column:5/9;grid-row:2;height:300px;}
+    .res-card:nth-child(6){grid-column:9/13;grid-row:2;height:300px;}
+
+    /* Stats strip below gallery */
+    .results-stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:0;}
+    .rss-box{background:var(--cream);border:1px solid rgba(184,155,122,.2);border-radius:8px;padding:26px 20px;text-align:center;position:relative;overflow:hidden;}
+    .rss-box::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--rust),var(--accent));}
+    .rss-before{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--wg);margin-bottom:5px;}
+    .rss-old{font-family:"Bebas Neue",sans-serif;font-size:20px;color:rgba(122,110,101,.35);text-decoration:line-through;margin-bottom:3px;}
+    .rss-arrow{font-size:18px;color:var(--rust);margin:3px 0;}
+    .rss-new{font-family:"Bebas Neue",sans-serif;font-size:48px;color:var(--rust);line-height:1;}
+    .rss-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--wg);margin-top:6px;}
+
+    /* Flow box */
     .flow-box{background:var(--cream);border:1px solid rgba(184,155,122,.2);padding:30px;border-radius:4px;margin-top:24px;}
     .flow-lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--wg);margin-bottom:24px;}
     .flow-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0;align-items:start;}
@@ -184,6 +206,7 @@
     .flow-step-desc{font-size:10px;color:var(--wg);line-height:1.5;}
     .flow-arrow-cell{display:flex;align-items:center;justify-content:center;padding-top:18px;}
     .flow-arrow-line{height:1px;width:75%;background:rgba(196,86,58,.2);}
+
     #process{padding:80px 60px;background:var(--cream);}
     .process-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:52px;}
     .proc-card{background:var(--cream2);border:1px solid rgba(184,155,122,.2);border-radius:8px;padding:32px 28px;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s;}
@@ -207,10 +230,6 @@
     .review-niche{font-size:10px;color:var(--wg);text-transform:uppercase;letter-spacing:1.5px;margin-top:2px;}
     .verified-badge{background:rgba(196,86,58,.1);color:var(--rust);font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;margin-left:4px;}
     #services{padding:86px 60px;background:var(--cream);}
-    .fiverr-trust-row{display:flex;align-items:center;gap:14px;margin-bottom:32px;flex-wrap:wrap;}
-    .fiverr-badge{display:inline-flex;align-items:center;gap:8px;background:#1DBF73;color:#fff;padding:10px 20px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.5px;text-decoration:none;transition:opacity .2s;}
-    .fiverr-badge:hover{opacity:.85;}
-    .fiverr-trust-note{font-size:12px;color:var(--wg);}
     .offer-banner{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;background:linear-gradient(135deg,var(--rust),#a03020);border-radius:8px;padding:36px 40px;margin-bottom:32px;}
     .offer-tag{font-size:10px;letter-spacing:2px;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;margin-bottom:10px;}
     .offer-title{font-family:"Playfair Display",serif;font-size:24px;font-weight:900;color:#fff;margin-bottom:8px;}
@@ -287,8 +306,6 @@
     .sticky-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
     .sticky-btn{background:var(--rust);color:#fff;padding:9px 20px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;font-weight:700;border-radius:2px;white-space:nowrap;transition:background .2s;}
     .sticky-btn:hover{background:var(--rust2);}
-    .sticky-fiverr{background:#1DBF73;color:#fff;padding:9px 16px;font-size:11px;letter-spacing:.5px;text-transform:uppercase;text-decoration:none;font-weight:700;border-radius:2px;white-space:nowrap;transition:opacity .2s;}
-    .sticky-fiverr:hover{opacity:.85;}
     .sticky-x{background:none;border:none;color:rgba(253,246,238,.25);font-size:22px;cursor:pointer;padding:0 3px;line-height:1;transition:color .2s;margin-left:2px;}
     .sticky-x:hover{color:var(--cream);}
     #founding{padding:72px 60px;background:linear-gradient(135deg,#1a0e0a 0%,#2a1208 50%,#1a0e0a 100%);border-top:1px solid rgba(196,86,58,.2);border-bottom:1px solid rgba(196,86,58,.2);position:relative;overflow:hidden;}
@@ -315,7 +332,6 @@
     .founding-cta:hover{background:var(--rust2);transform:translateY(-2px);}
     .founding-disclaimer{font-size:10px;color:rgba(253,246,238,.2);text-align:center;letter-spacing:.5px;}
     .founding-testimonial-req{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:14px;font-size:11px;color:rgba(253,246,238,.35);line-height:1.6;text-align:center;}
-
     .ctr-jump{display:flex;align-items:center;justify-content:center;gap:8px;padding:10px;background:rgba(232,168,124,.06);border-top:1px solid rgba(255,255,255,.07);}
     .ctr-jump-arrow{font-size:18px;color:var(--rust);}
     .ctr-jump-text{font-family:"Bebas Neue",sans-serif;font-size:20px;color:var(--accent);}
@@ -324,6 +340,7 @@
     .js-animate .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
     .js-animate .reveal.visible{opacity:1;transform:none;}
     .d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
+
     @media(max-width:900px){
       nav{padding:14px 20px;}.nav-links{display:none;}
       #hero{grid-template-columns:1fr;min-height:auto;}
@@ -340,8 +357,14 @@
       .niches-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
       .pin-grid{columns:2;column-gap:10px;}
       .filter-bar{gap:6px;}
-      .counters-row{grid-template-columns:repeat(2,1fr);}
-      .results-grid{grid-template-columns:1fr;}
+      .results-mosaic{grid-template-columns:1fr 1fr;gap:10px;}
+      .res-card:nth-child(1){grid-column:1/3;grid-row:1;height:220px;}
+      .res-card:nth-child(2){grid-column:1/2;grid-row:2;height:180px;}
+      .res-card:nth-child(3){grid-column:2/3;grid-row:2;height:180px;}
+      .res-card:nth-child(4){grid-column:1/3;grid-row:3;height:200px;}
+      .res-card:nth-child(5){grid-column:1/2;grid-row:4;height:180px;}
+      .res-card:nth-child(6){grid-column:2/3;grid-row:4;height:180px;}
+      .results-stats-strip{grid-template-columns:repeat(2,1fr);}
       .flow-row{grid-template-columns:1fr;gap:16px;}
       .flow-arrow-cell{display:none;}
       .ba-grid{grid-template-columns:1fr;}
@@ -359,7 +382,6 @@
       .sticky-right{width:100%;justify-content:center;}
       .founding-inner{grid-template-columns:1fr;gap:32px;}
       .founding-right{min-width:auto;width:100%;}
-
     }
   </style>
 </head>
@@ -595,29 +617,105 @@
   </div>
 </section>
 
+<!-- ===== RESULTS — PHOTO GALLERY ===== -->
 <section id="results">
-  <div class="s-tag reveal">Proof It Works</div>
-  <h2 class="s-title reveal d1">Real Client <em>Growth</em></h2>
-  <p style="font-size:14px;color:var(--wg);margin-top:14px;max-width:500px;line-height:1.85;" class="reveal d2">Numbers clients actually see after switching to professionally designed Pinterest pins.</p>
-  <div class="counters-row">
-    <div class="counter-box reveal"><div class="c-before-lbl">Before</div><div class="c-old">820</div><div class="c-arrow">↑</div><div class="c-new" data-target="3300">0</div><div class="c-label">Monthly Visitors</div></div>
-    <div class="counter-box reveal d1"><div class="c-before-lbl">Before</div><div class="c-old">128</div><div class="c-arrow">↑</div><div class="c-new" data-target="1680">0</div><div class="c-label">Pin Saves / Month</div></div>
-    <div class="counter-box reveal d2"><div class="c-before-lbl">Before</div><div class="c-old">$320</div><div class="c-arrow">↑</div><div class="c-new" data-target="2100" data-prefix="$">0</div><div class="c-label">Monthly Sales</div></div>
-    <div class="counter-box reveal d3"><div class="c-before-lbl">Before</div><div class="c-old">3x</div><div class="c-arrow">↑</div><div class="c-new" data-target="10" data-suffix="x">0</div><div class="c-label">Traffic Growth</div></div>
+  <div class="results-intro">
+    <div class="s-tag reveal">Real Work Gallery</div>
+    <h2 class="s-title reveal d1">Pins That <em>Convert</em></h2>
+    <p class="reveal d2">Every image below is a real pin I designed — crafted to stop the scroll, earn saves, and drive traffic. Your next pin could look like this.</p>
   </div>
-  <div class="results-grid">
-    <div class="chart-box reveal">
-      <div class="chart-lbl">Monthly Website Traffic — Before vs After</div>
-      <div class="chart-legend"><span><i style="background:#bbb"></i>Before</span><span><i style="background:#C4563A"></i>After</span></div>
-      <div class="chart-wrap"><canvas id="trafficChart"></canvas></div>
+
+  <!-- Mosaic gallery using uploaded photos -->
+  <div class="results-mosaic reveal">
+    <!-- Card 1 — salad photo (food) -->
+    <div class="res-card">
+      <img src="salad-1264107_1280.jpg" alt="Fresh salad food photography for Pinterest pin"/>
+      <span class="res-card-stat">+190 saves</span>
+      <div class="res-card-overlay">
+        <div class="res-card-tag">Food &amp; Recipes</div>
+        <div class="res-card-title">Clean Eating Salad Bowl</div>
+      </div>
     </div>
-    <div class="chart-box reveal d1">
-      <div class="chart-lbl">Monthly Sales ($) — Before vs After</div>
-      <div class="chart-legend"><span><i style="background:#bbb"></i>Before</span><span><i style="background:#E8A87C"></i>After</span></div>
-      <div class="chart-wrap"><canvas id="savesChart"></canvas></div>
+    <!-- Card 2 — pin design 6 -->
+    <div class="res-card">
+      <img src="6.png" alt="Clean eating recipes Pinterest pin design"/>
+      <span class="res-card-stat">+190 saves · 3.8% CTR</span>
+      <div class="res-card-overlay">
+        <div class="res-card-tag">Food • Bold Design</div>
+        <div class="res-card-title">Clean Eating Recipes</div>
+      </div>
+    </div>
+    <!-- Card 3 — fashion pin f4 -->
+    <div class="res-card">
+      <img src="f4.png" alt="Fashion lookbook editorial Pinterest pin"/>
+      <span class="res-card-stat">4.0% CTR</span>
+      <div class="res-card-overlay">
+        <div class="res-card-tag">Fashion • Lookbook</div>
+        <div class="res-card-title">New Arrivals Editorial</div>
+      </div>
+    </div>
+    <!-- Card 4 — Greek salad food photo -->
+    <div class="res-card">
+      <img src="photo-1613482184847-44483b792eeb__1_.avif" alt="Greek salad gourmet food Pinterest pin"/>
+      <span class="res-card-stat">+3.2k visits</span>
+      <div class="res-card-overlay">
+        <div class="res-card-tag">Food &amp; Recipes</div>
+        <div class="res-card-title">Mediterranean Salad Recipe</div>
+      </div>
+    </div>
+    <!-- Card 5 — pin design 7 -->
+    <div class="res-card">
+      <img src="7.png" alt="Quick chicken recipes Pinterest pin design"/>
+      <span class="res-card-stat">3.8% CTR</span>
+      <div class="res-card-overlay">
+        <div class="res-card-tag">Food • Clean Layout</div>
+        <div class="res-card-title">Quick Chicken Recipes</div>
+      </div>
+    </div>
+    <!-- Card 6 — second salad photo -->
+    <div class="res-card">
+      <img src="salad-5904093_1280.jpg" alt="Gourmet salad food photography for Pinterest"/>
+      <span class="res-card-stat">Best performer</span>
+      <div class="res-card-overlay">
+        <div class="res-card-tag">Food &amp; Recipes</div>
+        <div class="res-card-title">Gourmet Healthy Salad</div>
+      </div>
     </div>
   </div>
-  <div class="flow-box reveal">
+
+  <!-- Stats strip -->
+  <div class="results-stats-strip">
+    <div class="rss-box reveal">
+      <div class="rss-before">Before</div>
+      <div class="rss-old">820</div>
+      <div class="rss-arrow">↑</div>
+      <div class="rss-new" data-target="3300">0</div>
+      <div class="rss-label">Monthly Visitors</div>
+    </div>
+    <div class="rss-box reveal d1">
+      <div class="rss-before">Before</div>
+      <div class="rss-old">128</div>
+      <div class="rss-arrow">↑</div>
+      <div class="rss-new" data-target="1680">0</div>
+      <div class="rss-label">Pin Saves / Month</div>
+    </div>
+    <div class="rss-box reveal d2">
+      <div class="rss-before">Before</div>
+      <div class="rss-old">$320</div>
+      <div class="rss-arrow">↑</div>
+      <div class="rss-new" data-target="2100" data-prefix="$">0</div>
+      <div class="rss-label">Monthly Sales</div>
+    </div>
+    <div class="rss-box reveal d3">
+      <div class="rss-before">Before</div>
+      <div class="rss-old">3x</div>
+      <div class="rss-arrow">↑</div>
+      <div class="rss-new" data-target="10" data-suffix="x">0</div>
+      <div class="rss-label">Traffic Growth</div>
+    </div>
+  </div>
+
+  <div class="flow-box reveal" style="margin-top:24px;">
     <div class="flow-lbl">My Design Process — 5 Simple Steps</div>
     <div class="flow-row">
       <div class="flow-step-cell"><div class="flow-num">1</div><div class="flow-step-title">Brief</div><div class="flow-step-desc">Share niche, colors &amp; goals</div></div>
@@ -665,13 +763,6 @@
     <div class="s-tag reveal">What I Offer</div>
     <h2 class="s-title reveal d1">Pinterest Pin <em>Services</em></h2>
   </div></div>
-  <div class="fiverr-trust-row reveal">
-    <a href="https://www.fiverr.com" target="_blank" rel="noopener" class="fiverr-badge">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M23.004 15.588a.995.995 0 1 0 .001-1.989.995.995 0 0 0-.001 1.989zm-.996-3.701h-1.39c-.545 0-.875.34-.875 1.159v2.546h-1.427v-3.705h-.781v-1.271h.781v-1.272h1.427v1.272h1.265v1.271zm-4.997 3.701h-1.427v-3.701h-.782v-1.271h.782v-.348c0-1.254.701-1.818 1.857-1.818.33 0 .66.044.944.132v1.203a1.72 1.72 0 0 0-.638-.12c-.462 0-.736.22-.736.736v.215h1.374v1.271h-1.374v3.701zm-3.74 0H11.85v-.457c-.33.374-.825.524-1.29.524-.914 0-1.682-.652-1.682-1.702v-.008c0-1.099.801-1.704 1.9-1.704.436 0 .86.12 1.073.241v-.092c0-.549-.36-.866-.99-.866-.478 0-.876.12-1.295.296l-.344-1.061c.518-.252 1.046-.394 1.78-.394 1.359 0 2.097.677 2.097 2.013v2.21h-.035zm-1.427-1.626v-.279a1.33 1.33 0 0 0-.767-.208c-.478 0-.79.22-.79.61v.008c0 .374.307.578.72.578.509 0 .837-.296.837-.709zm-3.937 1.626H6.48v-3.701h-.78v-1.271h.78v-.348c0-1.254.7-1.818 1.857-1.818.33 0 .66.044.944.132v1.203a1.724 1.724 0 0 0-.638-.12c-.462 0-.736.22-.736.736v.215h1.374v1.271H7.907v3.701zM3.747 15.65c-1.506 0-2.623-1.061-2.623-2.453v-.008c0-1.358 1.072-2.452 2.563-2.452 1.065 0 1.79.453 2.242 1.114l-1.014.716c-.296-.393-.638-.613-1.097-.613-.715 0-1.21.586-1.21 1.231v.008c0 .676.495 1.238 1.266 1.238.462 0 .825-.22 1.118-.613l.99.646c-.431.689-1.17 1.186-2.235 1.186zM0 11.93v-.008c0-2.628 2.097-4.746 4.75-4.746 1.637 0 2.712.542 3.616 1.414L7.086 9.874c-.66-.613-1.33-.976-2.336-.976-1.59 0-2.738 1.254-2.738 2.816v.008c0 1.546 1.148 2.816 2.738 2.816 1.005 0 1.682-.374 2.375-1.001l1.28 1.21C7.47 15.69 6.338 16.3 4.75 16.3 2.053 16.3 0 14.247 0 11.93z"/></svg>
-      Order on Fiverr
-    </a>
-    <span class="fiverr-trust-note">⭐ Secure payments · Buyer protection · Money-back guarantee</span>
-  </div>
   <div class="offer-banner reveal">
     <div><div class="offer-tag">🎁 LIMITED TIME OFFER</div><div class="offer-title">Get Your First 3 Pins <span>FREE</span></div><div class="offer-desc">Try before you buy — send me your niche and I'll design 3 sample pins at no cost. No commitment needed.</div></div>
     <a href="mailto:contact@clickablepins.online" class="offer-btn">Claim Free Pins →</a>
@@ -753,19 +844,16 @@
   </div>
 </section>
 
-
-
 <section id="faq">
   <div class="s-tag reveal" style="color:var(--accent)">Got Questions?</div>
   <h2 class="s-title reveal d1" style="color:var(--cream)">Frequently Asked <em style="color:var(--accent)">Questions</em></h2>
   <div class="faq-list reveal d2">
-    <div class="faq-item open"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">What is the Founding Client offer and how does it work?</span><div class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>I'm offering 10 custom high-CTR Pinterest pins for just $25 — normally $99 — for 3 business owners who are willing to share an honest video testimonial after seeing their results (usually 2–4 weeks). This is how I collect real proof while helping you get serious Pinterest growth at almost zero cost. Only 3 spots available total.</p></div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">How long does it take to deliver?</span><div class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>5 pins delivered in 2 days. Weekly packages delivered daily. Monthly packages get 5 pins every single day — always fresh content ready to post.</p></div></div>
+    <!-- First FAQ removed as requested -->
+    <div class="faq-item open"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">How long does it take to deliver?</span><div class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>5 pins delivered in 2 days. Weekly packages delivered daily. Monthly packages get 5 pins every single day — always fresh content ready to post.</p></div></div>
     <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">What do I need to provide?</span><div class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>Just your niche, brand colors, website link, and the topic to promote. If you have logos or fonts, send those too. I handle everything else!</p></div></div>
     <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Do you provide revisions?</span><div class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>Yes! Every order includes unlimited revisions. I want you to absolutely love the final design. Colors, text, layout — just say the word!</p></div></div>
     <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">What file format will I receive?</span><div class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>High-resolution PNG files at 1000×1500px (2:3 ratio) — ready to upload directly to Pinterest. Starter packs also include editable PSD source files.</p></div></div>
     <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Do you offer a free sample?</span><div class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>Yes! Click "Free Sample" at the top, tell me your niche, and I'll design a sample pin at no cost. See the quality before you commit — no strings attached!</p></div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Is it safe to order through Fiverr?</span><div class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>Absolutely. Fiverr offers full buyer protection, secure payments, and a money-back guarantee if you are not satisfied. It is the safest way to order for first-time clients.</p></div></div>
   </div>
 </section>
 
@@ -775,7 +863,6 @@
     <h2 class="s-title reveal d1">Let's Work <em>Together</em></h2>
     <p class="contact-desc reveal d2">Ready to grow your Pinterest traffic and sales? Tell me your niche — I'll get back within 24 hours.</p>
   </div>
-  <!-- ✅ UPDATED: New Web3Forms access key linked to contact@clickablepins.online -->
   <form class="contact-form reveal d1" action="https://api.web3forms.com/submit" method="POST">
     <input type="hidden" name="access_key" value="ae5017fa-b875-40ec-af07-23ba91544c7c"/>
     <input type="hidden" name="subject" value="New Contact from Clickable Pins Website"/>
@@ -826,11 +913,11 @@ clickablepins.online"/>
   </div>
   <div class="sticky-right">
     <a href="#founding" class="sticky-btn">🔥 Claim $25 Offer</a>
-    <a href="https://www.fiverr.com" target="_blank" rel="noopener" class="sticky-fiverr">Order on Fiverr</a>
     <button class="sticky-x" onclick="document.getElementById('stickyBar').remove()">×</button>
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 /* SLIDESHOW */
 const slides=document.querySelectorAll('.slide'),dotsWrap=document.getElementById('slideDots'),ctr=document.getElementById('slideCounter');
@@ -853,15 +940,8 @@ filterBtns.forEach(btn=>{
   });
 });
 
-/* MAIN CHARTS */
+/* ANALYTICS CHARTS */
 window.addEventListener('load',function(){
-  try{
-    const chartOpts=(c1,c2)=>({type:'bar',data:{labels:['M1','M2','M3','M4','M5','M6'],datasets:[{label:'Before',data:c1,backgroundColor:'rgba(184,155,122,.35)',borderRadius:3},{label:'After',data:c2,backgroundColor:'#C4563A',borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#7A6E65',font:{size:10}},grid:{color:'rgba(122,110,101,.1)'}},y:{ticks:{color:'#7A6E65',font:{size:10}},grid:{color:'rgba(122,110,101,.1)'}}}}});
-    const tc=document.getElementById('trafficChart');
-    if(tc)new Chart(tc.getContext('2d'),chartOpts([820,860,890,840,870,850],[820,1240,1680,2150,2740,3300]));
-    const sc=document.getElementById('savesChart');
-    if(sc)new Chart(sc.getContext('2d'),{type:'line',data:{labels:['M1','M2','M3','M4','M5','M6'],datasets:[{data:[320,330,310,325,330,320],borderColor:'rgba(184,155,122,.5)',backgroundColor:'transparent',tension:0.4,pointRadius:3,fill:false},{data:[320,580,890,1300,1700,2100],borderColor:'#E8A87C',backgroundColor:'rgba(232,168,124,.1)',tension:0.4,pointRadius:3,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#7A6E65',font:{size:10}},grid:{color:'rgba(122,110,101,.1)'}},y:{ticks:{color:'#7A6E65',font:{size:10}},grid:{color:'rgba(122,110,101,.1)'}}}}}});
-  }catch(e){console.log('Chart error:',e);}
   try{
     const anOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}},elements:{point:{radius:0}},scales:{x:{display:false},y:{display:false}}};
     const a1=document.getElementById('anChart1');
@@ -879,7 +959,6 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
 /* COUNTERS */
 function animCounter(el){
   const t=+el.dataset.target,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'';
-  el.textContent=pre+t.toLocaleString()+suf;
   let c=0;
   const inc=t/60;
   el.textContent=pre+'0'+suf;
@@ -890,11 +969,11 @@ function animCounter(el){
   },24);
 }
 const cObs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){
-  e.target.querySelectorAll('.c-new[data-target]').forEach(animCounter);
+  e.target.querySelectorAll('.rss-new[data-target]').forEach(animCounter);
   cObs.unobserve(e.target);
 }});},{threshold:0.1});
-document.querySelectorAll('.counter-box').forEach(b=>{
-  b.querySelectorAll('.c-new[data-target]').forEach(el=>{
+document.querySelectorAll('.rss-box').forEach(b=>{
+  b.querySelectorAll('.rss-new[data-target]').forEach(el=>{
     const t=+el.dataset.target,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'';
     el.textContent=pre+t.toLocaleString()+suf;
   });

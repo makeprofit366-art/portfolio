@@ -143,8 +143,6 @@
     .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1.5px solid rgba(255,255,255,.2);color:#fff;width:48px;height:48px;border-radius:50%;font-size:20px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;z-index:10;}
     .lb-nav:hover{background:var(--rust);border-color:var(--rust);}
     #lb-prev{left:24px;}#lb-next{right:24px;}
-
-    /* ===== BEFORE & AFTER ===== */
     #before-after{padding:86px 60px;background:var(--dark);}
     .ba-intro{max-width:580px;margin-bottom:56px;}
     .ba-intro p{font-size:14px;color:rgba(253,246,238,.45);line-height:1.8;margin-top:14px;}
@@ -194,7 +192,6 @@
     .an-delta::before{content:"▲";font-size:8px;}
     .an-chart{padding:12px 14px;height:90px;position:relative;}
     .an-foot{padding:7px 14px;font-size:9px;color:rgba(253,246,238,.18);letter-spacing:.5px;border-top:1px solid rgba(255,255,255,.05);}
-
     #process{padding:86px 60px;background:var(--cream);}
     .process-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:52px;position:relative;}
     .process-steps::before{content:"";position:absolute;top:44px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--rust),var(--accent),var(--rust));opacity:.2;z-index:0;}
@@ -488,63 +485,37 @@
     <p>Same niche. Same content. Completely different results. See exactly what professional pin design changes — and why CTR triples.</p>
   </div>
   <div class="ba-grid">
-
-    <!-- Card 1 -->
     <div class="ba-card reveal">
       <div class="ba-label-row"><div class="ba-label bef">Amateur Pin</div><div class="ba-arrow">→</div><div class="ba-label aft">My Design</div></div>
       <div class="ba-images">
-        <div class="ba-pin bef">
-          <img src="before1.jpg" alt="Before — amateur Pinterest pin"/>
-          <span class="ba-pin-label">Before</span>
-        </div>
-        <div class="ba-pin aft">
-          <img src="after1.png" alt="After — PinStudio professional pin"/>
-          <span class="ba-pin-label">After ✦</span>
-        </div>
+        <div class="ba-pin bef"><img src="before1.jpg" alt="Before — amateur Pinterest pin"/><span class="ba-pin-label">Before</span></div>
+        <div class="ba-pin aft"><img src="after1.png" alt="After — PinStudio professional pin"/><span class="ba-pin-label">After ✦</span></div>
       </div>
       <div class="ba-stats"><div class="ba-st"><div class="ba-sv bad">0.4%</div><div class="ba-sl">Before CTR</div></div><div class="ba-st"><div class="ba-sv good">4.2%</div><div class="ba-sl">After CTR</div></div></div>
       <div class="ctr-jump"><span class="ctr-jump-arrow">↑</span><span class="ctr-jump-text">10× CTR Jump</span><span class="ctr-jump-label">same content, better design</span></div>
       <div class="ba-niche">Food &amp; Recipe Blog</div>
     </div>
-
-    <!-- Card 2 -->
     <div class="ba-card reveal d1">
       <div class="ba-label-row"><div class="ba-label bef">Amateur Pin</div><div class="ba-arrow">→</div><div class="ba-label aft">My Design</div></div>
       <div class="ba-images">
-        <div class="ba-pin bef">
-          <img src="before2.jpg" alt="Before — amateur Pinterest pin"/>
-          <span class="ba-pin-label">Before</span>
-        </div>
-        <div class="ba-pin aft">
-          <img src="after2.png" alt="After — PinStudio professional pin"/>
-          <span class="ba-pin-label">After ✦</span>
-        </div>
+        <div class="ba-pin bef"><img src="before2.jpg" alt="Before — amateur Pinterest pin"/><span class="ba-pin-label">Before</span></div>
+        <div class="ba-pin aft"><img src="after2.png" alt="After — PinStudio professional pin"/><span class="ba-pin-label">After ✦</span></div>
       </div>
       <div class="ba-stats"><div class="ba-st"><div class="ba-sv bad">0.6%</div><div class="ba-sl">Before CTR</div></div><div class="ba-st"><div class="ba-sv good">3.8%</div><div class="ba-sl">After CTR</div></div></div>
       <div class="ctr-jump"><span class="ctr-jump-arrow">↑</span><span class="ctr-jump-text">6× CTR Jump</span><span class="ctr-jump-label">same content, better design</span></div>
       <div class="ba-niche">Fashion &amp; Style Brand</div>
     </div>
-
-    <!-- Card 3 -->
     <div class="ba-card reveal d2">
       <div class="ba-label-row"><div class="ba-label bef">Amateur Pin</div><div class="ba-arrow">→</div><div class="ba-label aft">My Design</div></div>
       <div class="ba-images">
-        <div class="ba-pin bef">
-          <img src="before3.jpg" alt="Before — amateur Pinterest pin"/>
-          <span class="ba-pin-label">Before</span>
-        </div>
-        <div class="ba-pin aft">
-          <img src="after3.png" alt="After — PinStudio professional pin"/>
-          <span class="ba-pin-label">After ✦</span>
-        </div>
+        <div class="ba-pin bef"><img src="before3.jpg" alt="Before — amateur Pinterest pin"/><span class="ba-pin-label">Before</span></div>
+        <div class="ba-pin aft"><img src="after3.png" alt="After — PinStudio professional pin"/><span class="ba-pin-label">After ✦</span></div>
       </div>
       <div class="ba-stats"><div class="ba-st"><div class="ba-sv bad">0.5%</div><div class="ba-sl">Before CTR</div></div><div class="ba-st"><div class="ba-sv good">4.0%</div><div class="ba-sl">After CTR</div></div></div>
       <div class="ctr-jump"><span class="ctr-jump-arrow">↑</span><span class="ctr-jump-text">8× CTR Jump</span><span class="ctr-jump-label">same content, better design</span></div>
       <div class="ba-niche">Health &amp; Wellness</div>
     </div>
-
   </div>
-
   <div class="an-lbl reveal">Pinterest Analytics — Client Growth Snapshots</div>
   <div class="an-grid reveal">
     <div class="an-box">
@@ -577,73 +548,11 @@
     <h2 class="s-title reveal d1">My 5-Step <em>Process</em></h2>
   </div></div>
   <div class="process-steps">
-    <div class="proc-card reveal">
-      <span class="proc-step-num">01</span>
-      <div class="proc-icon-wrap">
-        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="14" cy="14" r="7" stroke="#C4563A" stroke-width="2.2" stroke-linecap="round"/>
-          <path d="M19.5 19.5L26 26" stroke="#C4563A" stroke-width="2.2" stroke-linecap="round"/>
-          <path d="M11 14h6M14 11v6" stroke="#C4563A" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="proc-title">Trend Research</div>
-      <div class="proc-desc">I analyze top-performing pins in your exact niche — studying winning titles, colors, and formats right now.</div>
-      <span class="proc-time">Day 1</span>
-    </div>
-    <div class="proc-card reveal d1">
-      <span class="proc-step-num">02</span>
-      <div class="proc-icon-wrap">
-        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 4C9.37 4 4 9.37 4 16c0 3.86 2.33 6 5.5 6 1.1 0 2-.9 2-2s-.9-2-2-2c-.55 0-1-.45-1-1 0-5.52 4.48-10 10-10s10 4.48 10 10c0 1.1-.9 2-2 2h-3c-1.1 0-2 .9-2 2s.9 2 2 2h3c3.31 0 6-2.69 6-6 0-6.63-5.37-12-12-12z" fill="none" stroke="#3BA8C4" stroke-width="1.8"/>
-          <circle cx="12" cy="12" r="1.5" fill="#3BA8C4"/>
-          <circle cx="20" cy="12" r="1.5" fill="#3BA8C4"/>
-          <circle cx="10" cy="18" r="1.5" fill="#3BA8C4"/>
-        </svg>
-      </div>
-      <div class="proc-title">Brand Alignment</div>
-      <div class="proc-desc">Every pin is built around your colors, fonts, and audience for a cohesive, trustworthy Pinterest presence.</div>
-      <span class="proc-time">Day 1–2</span>
-    </div>
-    <div class="proc-card reveal d2">
-      <span class="proc-step-num">03</span>
-      <div class="proc-icon-wrap">
-        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22 4l6 6-16 16H6v-6L22 4z" stroke="#2ECC71" stroke-width="2" stroke-linejoin="round"/>
-          <path d="M18 8l6 6" stroke="#2ECC71" stroke-width="2" stroke-linecap="round"/>
-          <path d="M4 28h24" stroke="#2ECC71" stroke-width="2" stroke-linecap="round" opacity=".4"/>
-        </svg>
-      </div>
-      <div class="proc-title">Pin Design</div>
-      <div class="proc-desc">I craft scroll-stopping pins with proven layouts, bold typography, and compelling visual hierarchy.</div>
-      <span class="proc-time">Day 2</span>
-    </div>
-    <div class="proc-card reveal d3">
-      <span class="proc-step-num">04</span>
-      <div class="proc-icon-wrap">
-        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M26 16A10 10 0 1 1 16 6h4" stroke="#F1C40F" stroke-width="2.2" stroke-linecap="round"/>
-          <path d="M20 2l4 4-4 4" stroke="#F1C40F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M12 16h8M16 12v8" stroke="#F1C40F" stroke-width="1.8" stroke-linecap="round" opacity=".6"/>
-        </svg>
-      </div>
-      <div class="proc-title">Revisions</div>
-      <div class="proc-desc">Unlimited tweaks until you're 100% happy. Colors, text, layout — just say the word and it's done.</div>
-      <span class="proc-time">Day 2–3</span>
-    </div>
-    <div class="proc-card reveal d4">
-      <span class="proc-step-num">05</span>
-      <div class="proc-icon-wrap">
-        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 4c2 0 8 4 8 12s-4 8-8 8-8-1-8-8S14 4 16 4z" stroke="#9B59B6" stroke-width="2" stroke-linejoin="round"/>
-          <path d="M10 22l-4 4M22 22l4 4" stroke="#9B59B6" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="16" cy="14" r="3" stroke="#9B59B6" stroke-width="1.8"/>
-          <path d="M8 18c-2 0-4-2-4-4h4M24 18c2 0 4-2 4-4h-4" stroke="#9B59B6" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="proc-title">Delivery</div>
-      <div class="proc-desc">PNG files ready to post. Pin them, watch saves climb, and come back when the traffic starts rolling in!</div>
-      <span class="proc-time">Day 3</span>
-    </div>
+    <div class="proc-card reveal"><span class="proc-step-num">01</span><div class="proc-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="7" stroke="#C4563A" stroke-width="2.2" stroke-linecap="round"/><path d="M19.5 19.5L26 26" stroke="#C4563A" stroke-width="2.2" stroke-linecap="round"/><path d="M11 14h6M14 11v6" stroke="#C4563A" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="proc-title">Trend Research</div><div class="proc-desc">I analyze top-performing pins in your exact niche — studying winning titles, colors, and formats right now.</div><span class="proc-time">Day 1</span></div>
+    <div class="proc-card reveal d1"><span class="proc-step-num">02</span><div class="proc-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 4C9.37 4 4 9.37 4 16c0 3.86 2.33 6 5.5 6 1.1 0 2-.9 2-2s-.9-2-2-2c-.55 0-1-.45-1-1 0-5.52 4.48-10 10-10s10 4.48 10 10c0 1.1-.9 2-2 2h-3c-1.1 0-2 .9-2 2s.9 2 2 2h3c3.31 0 6-2.69 6-6 0-6.63-5.37-12-12-12z" fill="none" stroke="#3BA8C4" stroke-width="1.8"/><circle cx="12" cy="12" r="1.5" fill="#3BA8C4"/><circle cx="20" cy="12" r="1.5" fill="#3BA8C4"/><circle cx="10" cy="18" r="1.5" fill="#3BA8C4"/></svg></div><div class="proc-title">Brand Alignment</div><div class="proc-desc">Every pin is built around your colors, fonts, and audience for a cohesive, trustworthy Pinterest presence.</div><span class="proc-time">Day 1–2</span></div>
+    <div class="proc-card reveal d2"><span class="proc-step-num">03</span><div class="proc-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 4l6 6-16 16H6v-6L22 4z" stroke="#2ECC71" stroke-width="2" stroke-linejoin="round"/><path d="M18 8l6 6" stroke="#2ECC71" stroke-width="2" stroke-linecap="round"/><path d="M4 28h24" stroke="#2ECC71" stroke-width="2" stroke-linecap="round" opacity=".4"/></svg></div><div class="proc-title">Pin Design</div><div class="proc-desc">I craft scroll-stopping pins with proven layouts, bold typography, and compelling visual hierarchy.</div><span class="proc-time">Day 2</span></div>
+    <div class="proc-card reveal d3"><span class="proc-step-num">04</span><div class="proc-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26 16A10 10 0 1 1 16 6h4" stroke="#F1C40F" stroke-width="2.2" stroke-linecap="round"/><path d="M20 2l4 4-4 4" stroke="#F1C40F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 16h8M16 12v8" stroke="#F1C40F" stroke-width="1.8" stroke-linecap="round" opacity=".6"/></svg></div><div class="proc-title">Revisions</div><div class="proc-desc">Unlimited tweaks until you're 100% happy. Colors, text, layout — just say the word and it's done.</div><span class="proc-time">Day 2–3</span></div>
+    <div class="proc-card reveal d4"><span class="proc-step-num">05</span><div class="proc-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 4c2 0 8 4 8 12s-4 8-8 8-8-1-8-8S14 4 16 4z" stroke="#9B59B6" stroke-width="2" stroke-linejoin="round"/><path d="M10 22l-4 4M22 22l4 4" stroke="#9B59B6" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="14" r="3" stroke="#9B59B6" stroke-width="1.8"/><path d="M8 18c-2 0-4-2-4-4h4M24 18c2 0 4-2 4-4h-4" stroke="#9B59B6" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="proc-title">Delivery</div><div class="proc-desc">PNG files ready to post. Pin them, watch saves climb, and come back when the traffic starts rolling in!</div><span class="proc-time">Day 3</span></div>
   </div>
 </section>
 
@@ -674,6 +583,8 @@
     <a href="mailto:contact@clickablepins.online" class="offer-btn">Claim Free Pins →</a>
   </div>
   <div class="services-grid">
+
+    <!-- ✅ MONTHLY MANAGEMENT — $150/month -->
     <div class="service-card popular reveal">
       <div class="pinterest-badge"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></div>
       <div class="service-popular-tag">🔥 BEST VALUE</div>
@@ -683,42 +594,71 @@
       <div class="service-highlight">📌 5 Pins Every Day · ~150 Pins/Month</div>
       <div class="service-desc">Maximum results. Daily fresh pins all month for serious bloggers and brands ready to scale their Pinterest fast.</div>
       <ul class="service-features">
-        <li>5 Custom Pin Designs Daily</li><li>~150 High-CTR Pins Per Month</li><li>Full Pinterest Management</li><li>Brand Kit Setup &amp; Colors</li><li>Pinterest SEO Optimization</li><li>Unlimited Revisions Included</li><li>Priority Support 24/7</li><li>Monthly Performance Report</li>
+        <li>5 Custom Pin Designs Daily</li>
+        <li>~150 High-CTR Pins Per Month</li>
+        <li>Full Pinterest Management</li>
+        <li>Brand Kit Setup &amp; Colors</li>
+        <li>Pinterest SEO Optimization</li>
+        <li>Unlimited Revisions Included</li>
+        <li>Priority Support 24/7</li>
+        <li>Monthly Performance Report</li>
       </ul>
       <a href="mailto:contact@clickablepins.online" class="service-arrow">Get Started Today →</a>
     </div>
+
+    <!-- ✅ WEEKLY GROWTH — $50/week -->
     <div class="service-card reveal d1">
       <div class="pinterest-badge"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z" fill="#E60023"/></svg></div>
       <div class="service-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 24l6-6 5 4 7-10 6 4" stroke="#B89B7A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="18" r="2" fill="#B89B7A"/><circle cx="15" cy="22" r="2" fill="#B89B7A"/><circle cx="22" cy="12" r="2" fill="#B89B7A"/><circle cx="28" cy="16" r="2" fill="#B89B7A"/><path d="M4 28h24" stroke="#B89B7A" stroke-width="1.5" stroke-linecap="round" opacity=".4"/></svg></div>
       <div class="service-name">Weekly Growth</div>
-      <div class="service-price-row"><span class="service-price" style="font-size:36px;">Contact</span></div>
+      <div class="service-price-row"><span class="service-price">$50</span><span class="service-price-period">/ week</span></div>
       <div class="service-highlight">📅 3–5 Pins Daily · Full Week</div>
       <div class="service-desc">Consistent daily pins to keep your Pinterest feed active, fresh and growing every week. Perfect for steady growth.</div>
       <ul class="service-features">
-        <li>3–5 Custom Pin Designs Per Day</li><li>21–35 Pins Per Week</li><li>Full Week Delivery Schedule</li><li>Brand Color Matching</li><li>Pinterest SEO Titles</li><li>Unlimited Revisions</li><li>Fast 24hr Turnaround</li>
+        <li>3–5 Custom Pin Designs Per Day</li>
+        <li>21–35 Pins Per Week</li>
+        <li>Full Week Delivery Schedule</li>
+        <li>Brand Color Matching</li>
+        <li>Pinterest SEO Titles</li>
+        <li>Unlimited Revisions</li>
+        <li>Fast 24hr Turnaround</li>
       </ul>
-      <a href="mailto:contact@clickablepins.online" class="service-arrow">Get in Touch →</a>
+      <a href="mailto:contact@clickablepins.online" class="service-arrow">Get Started →</a>
     </div>
+
+    <!-- ✅ STARTER PACK — $15 -->
     <div class="service-card reveal d2">
       <div class="pinterest-badge"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z" fill="#E60023"/></svg></div>
       <div class="service-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 4C11.58 4 8 7.58 8 12c0 4 5.33 11.47 7.25 13.89a.97.97 0 0 0 1.5 0C18.67 23.47 24 16 24 12c0-4.42-3.58-8-8-8z" stroke="#64B4DC" stroke-width="2" stroke-linejoin="round"/><circle cx="16" cy="12" r="3" stroke="#64B4DC" stroke-width="1.8"/></svg></div>
       <div class="service-name">Starter Pack</div>
-      <div class="service-price-row"><span class="service-price" style="font-size:36px;">Contact</span></div>
+      <div class="service-price-row"><span class="service-price">$15</span><span class="service-price-period">/ 5 pins</span></div>
       <div class="service-highlight">📌 5 Pins · 2-Day Delivery</div>
       <div class="service-desc">Perfect for testing the quality. Get 5 professionally designed, high-CTR pins crafted for your exact brand.</div>
       <ul class="service-features">
-        <li>5 High-Quality Pin Designs</li><li>2-Day Delivery</li><li>Unlimited Revisions</li><li>Free PSD Source Files</li><li>Brand-Matched Colors &amp; Fonts</li><li>High-CTR Copywriting</li>
+        <li>5 High-Quality Pin Designs</li>
+        <li>2-Day Delivery</li>
+        <li>Unlimited Revisions</li>
+        <li>Free PSD Source Files</li>
+        <li>Brand-Matched Colors &amp; Fonts</li>
+        <li>High-CTR Copywriting</li>
       </ul>
-      <a href="mailto:contact@clickablepins.online" class="service-arrow">Get in Touch →</a>
+      <a href="mailto:contact@clickablepins.online" class="service-arrow">Order Now →</a>
     </div>
+
   </div>
+
   <div class="emergency-card reveal">
     <div>
       <div class="rush-price">Starting from <strong style="font-size:15px;margin:0 4px;">$15</strong> <span>· same-day delivery</span></div>
       <div class="emergency-tag">⚡ EMERGENCY ORDER</div>
       <div class="emergency-title">Need Pins <em>Today?</em></div>
       <div class="emergency-desc">Urgent order? I offer same-day and next-day delivery for rush orders. Perfect for product launches, flash sales, or last-minute campaigns.</div>
-      <ul class="emergency-features"><li>⚡ Same-Day Delivery (within 6–8 hours)</li><li>⚡ Next-Day Delivery (within 24 hours)</li><li>⚡ Priority over all other orders</li><li>⚡ Direct WhatsApp/Email communication</li></ul>
+      <ul class="emergency-features">
+        <li>⚡ Same-Day Delivery (within 6–8 hours)</li>
+        <li>⚡ Next-Day Delivery (within 24 hours)</li>
+        <li>⚡ Priority over all other orders</li>
+        <li>⚡ Direct WhatsApp/Email communication</li>
+      </ul>
     </div>
     <div class="emergency-right">
       <div class="emergency-note">Message me directly for rush pricing</div>
@@ -770,12 +710,14 @@
   <div class="s-tag reveal" style="color:var(--accent)">Got Questions?</div>
   <h2 class="s-title reveal d1" style="color:var(--cream)">Frequently Asked <em style="color:var(--accent)">Questions</em></h2>
   <div class="faq-list reveal d2">
-    <div class="faq-item open"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">How long does it take to deliver?</span><div class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>5 pins delivered in 2 days. Weekly packages delivered daily. Monthly packages get 5 pins every single day — always fresh content ready to post.</p></div></div>
+    <div class="faq-item open"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">How long does it take to deliver?</span><div class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>Starter Pack (5 pins) delivered in 2 days. Weekly packages delivered daily. Monthly packages get 5 pins every single day — always fresh content ready to post.</p></div></div>
     <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">What do I need to provide?</span><div class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>Just your niche, brand colors, website link, and the topic to promote. If you have logos or fonts, send those too. I handle everything else!</p></div></div>
     <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Do you provide revisions?</span><div class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>Yes! Every order includes unlimited revisions. I want you to absolutely love the final design. Colors, text, layout — just say the word!</p></div></div>
     <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">What file format will I receive?</span><div class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>High-resolution PNG files at 1000×1500px (2:3 ratio) — ready to upload directly to Pinterest. Starter packs also include editable PSD source files.</p></div></div>
     <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Do you offer a free sample?</span><div class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>Yes! Click "Free Sample" at the top, tell me your niche, and I'll design a sample pin at no cost. See the quality before you commit — no strings attached!</p></div></div>
     <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">How much does the Monthly plan cost?</span><div class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>The Monthly Management plan is $150/month — that's 5 custom pins delivered every single day (~150 pins per month), full Pinterest management, SEO optimization, and priority support. Best value for serious growth!</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">What does the Starter Pack cost?</span><div class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>The Starter Pack is $15 for 5 professionally designed, high-CTR pins — delivered in 2 days. Includes unlimited revisions and free PSD source files. Perfect for trying the service risk-free!</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">How much is the Weekly Growth plan?</span><div class="faq-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>The Weekly Growth plan is $50/week — that's 3–5 fresh pins delivered daily for a full week (21–35 pins total). Great for maintaining steady Pinterest momentum without a monthly commitment.</p></div></div>
   </div>
 </section>
 

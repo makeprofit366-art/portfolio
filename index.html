@@ -65,7 +65,6 @@
     .hero-title{font-family:"Playfair Display",serif;font-size:clamp(38px,4.6vw,70px);line-height:1.04;font-weight:900;margin-bottom:20px;animation:fadeInUp .9s .1s ease both;}
     .hero-title em{font-style:italic;color:var(--rust);}
     .hero-result-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(196,86,58,.08);border:1px solid rgba(196,86,58,.2);border-radius:30px;padding:6px 14px;font-size:12px;color:var(--rust);font-weight:600;margin-bottom:18px;animation:fadeInUp .9s .2s ease both;}
-    .hero-result-pill::before{content:"📈";}
     .hero-desc{font-size:15px;line-height:1.85;color:var(--wg);max-width:420px;margin-bottom:28px;animation:fadeInUp .9s .25s ease both;}
     .hero-trust{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--wg);margin-bottom:20px;animation:fadeInUp .9s .3s ease both;}
     .hero-trust-stars{color:var(--rust);letter-spacing:1px;}
@@ -109,16 +108,38 @@
     .niche-ctr{position:absolute;top:10px;right:10px;background:rgba(28,24,20,.8);color:var(--accent);font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;}
     .niche-name{font-family:"Playfair Display",serif;font-size:16px;font-weight:700;color:var(--dark);padding:16px 18px 6px;}
     .niche-desc{font-size:12px;color:var(--wg);line-height:1.6;padding:0 18px 18px;}
+
+    /* ===== PORTFOLIO — 4-column equal grid ===== */
     #work{padding:86px 60px;background:var(--cream);}
     .filter-bar{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap;}
     .filter-btn{padding:8px 18px;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-family:"DM Sans",sans-serif;font-weight:600;border:1.5px solid rgba(184,155,122,.3);background:transparent;color:var(--wg);cursor:pointer;border-radius:20px;transition:all .25s;display:inline-flex;align-items:center;gap:5px;}
     .filter-btn.active,.filter-btn:hover{background:var(--rust);color:#fff;border-color:var(--rust);}
     .filter-count{font-size:9px;background:rgba(196,86,58,.12);color:var(--rust);padding:1px 6px;border-radius:8px;font-weight:700;transition:all .25s;}
     .filter-btn.active .filter-count,.filter-btn:hover .filter-count{background:rgba(255,255,255,.2);color:#fff;}
-    .pin-grid{columns:4;column-gap:14px;margin-top:0;}
-    .pin-card{break-inside:avoid;margin-bottom:14px;position:relative;overflow:hidden;cursor:pointer;border-radius:4px;transition:transform .35s cubic-bezier(.22,.61,.36,1);}
-    .pin-card:hover{transform:scale(1.02);}
-    .pin-card img{width:100%;display:block;transition:transform .6s cubic-bezier(.25,.46,.45,.94);}
+
+    /* 4-column CSS grid, images fixed height, perfectly even */
+    .pin-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin-top:24px;
+    }
+    .pin-card{
+      position:relative;
+      overflow:hidden;
+      cursor:pointer;
+      border-radius:6px;
+      transition:transform .35s cubic-bezier(.22,.61,.36,1),box-shadow .3s;
+      background:var(--cream2);
+    }
+    .pin-card:hover{transform:translateY(-5px) scale(1.01);box-shadow:0 18px 44px rgba(196,86,58,.18);}
+    .pin-card img{
+      width:100%;
+      aspect-ratio:2/3;
+      object-fit:cover;
+      display:block;
+      transition:transform .6s cubic-bezier(.25,.46,.45,.94);
+    }
     .pin-card:hover img{transform:scale(1.06);}
     .pin-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,24,20,.88) 0%,transparent 55%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:18px 14px;}
     .pin-card:hover .pin-overlay{opacity:1;}
@@ -128,6 +149,7 @@
     .pin-card:hover .pin-stat{opacity:1;transform:translateY(0);}
     .pin-save{position:absolute;top:10px;right:10px;background:var(--rust);color:#fff;border:none;border-radius:2px;padding:5px 12px;font-size:10px;font-weight:600;opacity:0;transform:translateY(-6px);transition:opacity .3s,transform .3s;cursor:pointer;}
     .pin-card:hover .pin-save{opacity:1;transform:translateY(0);}
+
     #lightbox{position:fixed;inset:0;background:rgba(28,24,20,.97);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s;}
     #lightbox.open{opacity:1;pointer-events:all;}
     .lb-inner{position:relative;display:flex;align-items:center;justify-content:center;max-width:88vw;max-height:88vh;}
@@ -224,7 +246,6 @@
     .verified-badge{background:rgba(196,86,58,.1);color:var(--rust);font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;margin-left:4px;}
     #services{padding:86px 60px;background:var(--cream);}
     .offer-banner{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;background:linear-gradient(135deg,var(--rust),#a03020);border-radius:8px;padding:36px 40px;margin-bottom:32px;position:relative;overflow:hidden;}
-    .offer-banner::after{content:"✦";position:absolute;right:220px;top:50%;transform:translateY(-50%);font-size:120px;color:rgba(255,255,255,.04);pointer-events:none;}
     .offer-tag{font-size:10px;letter-spacing:2px;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;margin-bottom:10px;}
     .offer-title{font-family:"Playfair Display",serif;font-size:24px;font-weight:900;color:#fff;margin-bottom:8px;}
     .offer-title span{color:var(--accent);font-style:italic;}
@@ -256,7 +277,7 @@
     .service-card.popular .service-highlight{background:rgba(232,168,124,.12);border-color:rgba(232,168,124,.25);color:var(--accent);}
     .service-features{list-style:none;display:flex;flex-direction:column;gap:8px;}
     .service-features li{font-size:12px;color:var(--wg);display:flex;align-items:center;gap:8px;line-height:1.5;}
-    .service-features li::before{content:"✦";color:var(--rust);font-size:9px;flex-shrink:0;}
+    .service-features li::before{content:"—";color:var(--rust);font-size:11px;flex-shrink:0;}
     .service-card.popular .service-features li{color:rgba(253,246,238,.55);}
     .service-card.popular .service-features li::before{color:var(--accent);}
     .service-arrow{display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-size:11px;letter-spacing:2px;color:var(--rust);text-transform:uppercase;text-decoration:none;font-weight:600;transition:gap .2s;cursor:pointer;background:none;border:none;font-family:"DM Sans",sans-serif;padding:0;}
@@ -265,7 +286,6 @@
     .pinterest-badge{position:absolute;top:16px;right:16px;width:28px;height:28px;background:#E60023;border-radius:50%;display:flex;align-items:center;justify-content:center;}
     .pinterest-badge svg{width:16px;height:16px;fill:#fff;}
     .emergency-card{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;background:var(--dark);border:1.5px solid rgba(196,86,58,.35);border-radius:8px;padding:38px 42px;margin-top:22px;position:relative;overflow:hidden;}
-    .emergency-card::before{content:"⚡";position:absolute;right:200px;top:50%;transform:translateY(-50%);font-size:110px;opacity:.04;pointer-events:none;}
     .emergency-tag{font-size:10px;letter-spacing:2px;font-weight:700;color:var(--accent);text-transform:uppercase;margin-bottom:10px;}
     .rush-price{display:inline-flex;align-items:center;gap:6px;background:rgba(232,168,124,.1);border:1px solid rgba(232,168,124,.2);border-radius:4px;padding:5px 12px;font-size:12px;color:var(--accent);font-weight:700;margin-bottom:12px;}
     .rush-price span{color:rgba(253,246,238,.4);font-weight:400;font-size:11px;}
@@ -305,7 +325,6 @@
     #founding::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(196,86,58,.12) 0%,transparent 70%);pointer-events:none;}
     .founding-inner{display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center;position:relative;}
     .founding-tag{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:3px;font-weight:700;color:var(--accent);text-transform:uppercase;margin-bottom:14px;}
-    .founding-tag::before{content:"🔥";}
     .founding-title{font-family:"Playfair Display",serif;font-size:clamp(26px,3vw,42px);font-weight:900;color:var(--cream);line-height:1.1;margin-bottom:12px;}
     .founding-title em{color:var(--rust);font-style:italic;}
     .founding-desc{font-size:14px;color:rgba(253,246,238,.55);line-height:1.75;max-width:520px;margin-bottom:20px;}
@@ -340,9 +359,11 @@
     .sticky-btn:hover{background:var(--rust2);}
     .sticky-x{background:none;border:none;color:rgba(253,246,238,.25);font-size:22px;cursor:pointer;padding:0 3px;line-height:1;transition:color .2s;margin-left:2px;}
     .sticky-x:hover{color:var(--cream);}
-    /* Smooth scroll to contact highlight */
     @keyframes contactHighlight{0%,100%{box-shadow:none}50%{box-shadow:0 0 0 4px rgba(196,86,58,.4)}}
     .contact-highlight{animation:contactHighlight 1s ease 3;}
+    @media(max-width:1100px){
+      .pin-grid{grid-template-columns:repeat(3,1fr);}
+    }
     @media(max-width:900px){
       nav{padding:14px 20px;}.nav-links{display:none;}
       #hero{grid-template-columns:1fr;min-height:auto;}
@@ -357,7 +378,7 @@
       #contact{padding:52px 20px;grid-template-columns:1fr;gap:40px;}
       footer{flex-direction:column;gap:10px;text-align:center;padding:22px 20px;}
       .niches-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
-      .pin-grid{columns:2;column-gap:10px;}
+      .pin-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
       .filter-bar{gap:6px;}
       .ba-grid{grid-template-columns:1fr;}
       .an-grid{grid-template-columns:1fr;}
@@ -368,7 +389,6 @@
       .s-head{flex-direction:column;align-items:flex-start;gap:14px;margin-bottom:36px;}
       .offer-banner{grid-template-columns:1fr;gap:18px;padding:24px 20px;}
       .emergency-card{grid-template-columns:1fr;gap:22px;padding:28px 20px;}
-      .emergency-card::before{display:none;}
       .emergency-right{text-align:left;}
       .sticky-bar{padding:10px 14px;flex-wrap:wrap;}
       .sticky-left{display:none;}
@@ -378,12 +398,13 @@
     }
     @media(max-width:600px){
       .process-steps{grid-template-columns:1fr;}
+      .pin-grid{grid-template-columns:repeat(2,1fr);}
     }
   </style>
 </head>
 <body>
 
-<div class="urgency-bar">🚀 <strong>Founding Client Offer:</strong> 10 custom pins for $25 — <a href="#founding">3 spots only · Claim Yours →</a></div>
+<div class="urgency-bar"><strong>Founding Client Offer:</strong> 10 custom pins for $25 — <a href="#founding">3 spots only · Claim Yours →</a></div>
 
 <nav id="mainNav">
   <div class="nav-logo">Pin<span>Studio</span></div>
@@ -392,12 +413,12 @@
     <li><a href="#work">Work</a></li>
     <li><a href="#before-after">Results</a></li>
     <li><a href="#reviews">Reviews</a></li>
-    <li><a href="#founding" style="color:var(--rust);font-weight:700;">🔥 $25 Offer</a></li>
+    <li><a href="#founding" style="color:var(--rust);font-weight:700;">$25 Offer</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">✨ Free Sample</a>
+  <a href="#contact" class="nav-cta">Free Sample</a>
 </nav>
 
 <!-- ===== HERO ===== -->
@@ -407,7 +428,7 @@
     <h1 class="hero-title">Pins That <em>Drive Massive Traffic</em> to Your Brand</h1>
     <div class="hero-result-pill">Average client sees 3–4× more traffic in 30 days</div>
     <p class="hero-desc">I design high-CTR Pinterest pins for food, fashion, lifestyle and traditional brands — crafted to stop the scroll, win saves, and send real buyers to your site.</p>
-    <div class="hero-trust"><span class="hero-trust-stars">★★★★★</span><span>Trusted by creators in 🇺🇸 USA · 🇬🇧 UK · 🇫🇷 France · 🇩🇪 Germany · 🇦🇺 Australia</span></div>
+    <div class="hero-trust"><span class="hero-trust-stars">★★★★★</span><span>Trusted by creators in USA · UK · France · Germany · Australia</span></div>
     <div class="hero-btns">
       <a href="#services" class="hero-cta">View My Packages →</a>
       <a href="#contact" class="hero-cta2">Get Free Sample</a>
@@ -434,7 +455,7 @@
   </div>
 </section>
 
-<div class="marquee-wrap"><div class="marquee-track"><span>FOOD &amp; RECIPES</span><span class="sep">✦</span><span>FASHION</span><span class="sep">✦</span><span>TRADITIONAL WEAR</span><span class="sep">✦</span><span>HOME DECOR</span><span class="sep">✦</span><span>HEALTH &amp; WELLNESS</span><span class="sep">✦</span><span>DIY &amp; CRAFTS</span><span class="sep">✦</span><span>FOOD &amp; RECIPES</span><span class="sep">✦</span><span>FASHION</span><span class="sep">✦</span><span>TRADITIONAL WEAR</span><span class="sep">✦</span><span>HOME DECOR</span><span class="sep">✦</span><span>HEALTH &amp; WELLNESS</span><span class="sep">✦</span><span>DIY &amp; CRAFTS</span><span class="sep">✦</span></div></div>
+<div class="marquee-wrap"><div class="marquee-track"><span>FOOD &amp; RECIPES</span><span class="sep">·</span><span>FASHION</span><span class="sep">·</span><span>TRADITIONAL WEAR</span><span class="sep">·</span><span>HOME DECOR</span><span class="sep">·</span><span>HEALTH &amp; WELLNESS</span><span class="sep">·</span><span>DIY &amp; CRAFTS</span><span class="sep">·</span><span>FOOD &amp; RECIPES</span><span class="sep">·</span><span>FASHION</span><span class="sep">·</span><span>TRADITIONAL WEAR</span><span class="sep">·</span><span>HOME DECOR</span><span class="sep">·</span><span>HEALTH &amp; WELLNESS</span><span class="sep">·</span><span>DIY &amp; CRAFTS</span><span class="sep">·</span></div></div>
 
 <!-- ===== NICHES ===== -->
 <section id="niches">
@@ -460,23 +481,23 @@
   </div></div>
   <div class="filter-bar reveal d2">
     <button class="filter-btn active" data-filter="all">All <span class="filter-count">13</span></button>
-    <button class="filter-btn" data-filter="food">🍽️ Food &amp; Recipes <span class="filter-count">7</span></button>
-    <button class="filter-btn" data-filter="fashion">👗 Fashion &amp; Traditional <span class="filter-count">6</span></button>
+    <button class="filter-btn" data-filter="food">Food &amp; Recipes <span class="filter-count">7</span></button>
+    <button class="filter-btn" data-filter="fashion">Fashion &amp; Traditional <span class="filter-count">6</span></button>
   </div>
-  <div class="pin-grid" id="pinGrid" style="margin-top:24px;">
-    <div class="pin-card reveal" data-index="0" data-cat="food"><img src="1.png" alt="Healthy breakfast recipe Pinterest pin design — food blog"/><span class="pin-stat">47 saves in 24hrs</span><div class="pin-overlay"><div class="pin-title">Healthy Breakfast</div><div class="pin-tag">Food • Recipe Blog</div></div><button class="pin-save">View ↗</button></div>
-    <div class="pin-card reveal d1" data-index="1" data-cat="food"><img src="2.png" alt="Life begins after coffee lifestyle Pinterest pin"/><span class="pin-stat">+820 impressions</span><div class="pin-overlay"><div class="pin-title">Life Begins After Coffee</div><div class="pin-tag">Lifestyle • Café</div></div><button class="pin-save">View ↗</button></div>
-    <div class="pin-card reveal d2" data-index="2" data-cat="food"><img src="3.png" alt="Bold typography healthy breakfast Pinterest pin design"/><span class="pin-stat">4.2% CTR</span><div class="pin-overlay"><div class="pin-title">Healthy Breakfast Bold</div><div class="pin-tag">Food • Bold Type</div></div><button class="pin-save">View ↗</button></div>
-    <div class="pin-card reveal d3" data-index="3" data-cat="food"><img src="4.png" alt="Easy healthy meals recipe Pinterest pin"/><span class="pin-stat">+3.2k visits</span><div class="pin-overlay"><div class="pin-title">Easy Healthy Meals</div><div class="pin-tag">Food • Recipe</div></div><button class="pin-save">View ↗</button></div>
-    <div class="pin-card reveal" data-index="4" data-cat="food"><img src="5.png" alt="52 breakfast ideas list post Pinterest pin"/><span class="pin-stat">Best performer</span><div class="pin-overlay"><div class="pin-title">52 Breakfast Ideas</div><div class="pin-tag">Recipe • List Post</div></div><button class="pin-save">View ↗</button></div>
-    <div class="pin-card reveal d1" data-index="5" data-cat="food"><img src="6.png" alt="Clean eating recipes bold Pinterest pin design"/><span class="pin-stat">+190 saves</span><div class="pin-overlay"><div class="pin-title">Clean Eating Recipes</div><div class="pin-tag">Health • Bold</div></div><button class="pin-save">View ↗</button></div>
-    <div class="pin-card reveal d2" data-index="6" data-cat="food"><img src="7.png" alt="Quick chicken recipes clean layout Pinterest pin"/><span class="pin-stat">3.8% CTR</span><div class="pin-overlay"><div class="pin-title">Quick Chicken Recipes</div><div class="pin-tag">Food • Clean Layout</div></div><button class="pin-save">View ↗</button></div>
-    <div class="pin-card reveal" data-index="0" data-cat="fashion"><img src="f1.png" alt="New arrivals fashion collection Pinterest pin design"/><span class="pin-stat">+2.1k saves</span><div class="pin-overlay"><div class="pin-title">New Arrivals</div><div class="pin-tag">Fashion • New Styles</div></div><button class="pin-save">View ↗</button></div>
-    <div class="pin-card reveal d1" data-index="1" data-cat="fashion"><img src="f2.png" alt="Fashion collection lookbook Pinterest pin"/><span class="pin-stat">3.5% CTR</span><div class="pin-overlay"><div class="pin-title">New Arrivals</div><div class="pin-tag">Fashion • Collection</div></div><button class="pin-save">View ↗</button></div>
-    <div class="pin-card reveal d2" data-index="2" data-cat="fashion"><img src="f3.png" alt="Style guide fashion Pinterest pin design"/><span class="pin-stat">+340 saves</span><div class="pin-overlay"><div class="pin-title">New Arrivals</div><div class="pin-tag">Fashion • Style Guide</div></div><button class="pin-save">View ↗</button></div>
-    <div class="pin-card reveal d3" data-index="3" data-cat="fashion"><img src="f4.png" alt="Fashion lookbook editorial Pinterest pin"/><span class="pin-stat">4.0% CTR</span><div class="pin-overlay"><div class="pin-title">New Arrivals</div><div class="pin-tag">Fashion • Lookbook</div></div><button class="pin-save">View ↗</button></div>
-    <div class="pin-card reveal" data-index="4" data-cat="fashion"><img src="f5.png" alt="Minimal clean fashion Pinterest pin design"/><span class="pin-stat">+1.8k impressions</span><div class="pin-overlay"><div class="pin-title">New Arrivals</div><div class="pin-tag">Fashion • Minimal</div></div><button class="pin-save">View ↗</button></div>
-    <div class="pin-card reveal d1" data-index="5" data-cat="fashion"><img src="f6.png" alt="Beige neutral palette fashion Pinterest pin"/><span class="pin-stat">Best seller</span><div class="pin-overlay"><div class="pin-title">New Arrivals</div><div class="pin-tag">Fashion • Beige</div></div><button class="pin-save">View ↗</button></div>
+  <div class="pin-grid" id="pinGrid">
+    <div class="pin-card reveal" data-index="0" data-cat="food"><img src="1.png" alt="Healthy breakfast recipe Pinterest pin design — food blog"/><span class="pin-stat">47 saves in 24hrs</span><div class="pin-overlay"><div class="pin-title">Healthy Breakfast</div><div class="pin-tag">Food · Recipe Blog</div></div><button class="pin-save">View</button></div>
+    <div class="pin-card reveal d1" data-index="1" data-cat="food"><img src="2.png" alt="Life begins after coffee lifestyle Pinterest pin"/><span class="pin-stat">+820 impressions</span><div class="pin-overlay"><div class="pin-title">Life Begins After Coffee</div><div class="pin-tag">Lifestyle · Café</div></div><button class="pin-save">View</button></div>
+    <div class="pin-card reveal d2" data-index="2" data-cat="food"><img src="3.png" alt="Bold typography healthy breakfast Pinterest pin design"/><span class="pin-stat">4.2% CTR</span><div class="pin-overlay"><div class="pin-title">Healthy Breakfast Bold</div><div class="pin-tag">Food · Bold Type</div></div><button class="pin-save">View</button></div>
+    <div class="pin-card reveal d3" data-index="3" data-cat="food"><img src="4.png" alt="Easy healthy meals recipe Pinterest pin"/><span class="pin-stat">+3.2k visits</span><div class="pin-overlay"><div class="pin-title">Easy Healthy Meals</div><div class="pin-tag">Food · Recipe</div></div><button class="pin-save">View</button></div>
+    <div class="pin-card reveal" data-index="4" data-cat="food"><img src="5.png" alt="52 breakfast ideas list post Pinterest pin"/><span class="pin-stat">Best performer</span><div class="pin-overlay"><div class="pin-title">52 Breakfast Ideas</div><div class="pin-tag">Recipe · List Post</div></div><button class="pin-save">View</button></div>
+    <div class="pin-card reveal d1" data-index="5" data-cat="food"><img src="6.png" alt="Clean eating recipes bold Pinterest pin design"/><span class="pin-stat">+190 saves</span><div class="pin-overlay"><div class="pin-title">Clean Eating Recipes</div><div class="pin-tag">Health · Bold</div></div><button class="pin-save">View</button></div>
+    <div class="pin-card reveal d2" data-index="6" data-cat="food"><img src="7.png" alt="Quick chicken recipes clean layout Pinterest pin"/><span class="pin-stat">3.8% CTR</span><div class="pin-overlay"><div class="pin-title">Quick Chicken Recipes</div><div class="pin-tag">Food · Clean Layout</div></div><button class="pin-save">View</button></div>
+    <div class="pin-card reveal" data-index="0" data-cat="fashion"><img src="f1.png" alt="New arrivals fashion collection Pinterest pin design"/><span class="pin-stat">+2.1k saves</span><div class="pin-overlay"><div class="pin-title">New Arrivals</div><div class="pin-tag">Fashion · New Styles</div></div><button class="pin-save">View</button></div>
+    <div class="pin-card reveal d1" data-index="1" data-cat="fashion"><img src="f2.png" alt="Fashion collection lookbook Pinterest pin"/><span class="pin-stat">3.5% CTR</span><div class="pin-overlay"><div class="pin-title">New Arrivals</div><div class="pin-tag">Fashion · Collection</div></div><button class="pin-save">View</button></div>
+    <div class="pin-card reveal d2" data-index="2" data-cat="fashion"><img src="f3.png" alt="Style guide fashion Pinterest pin design"/><span class="pin-stat">+340 saves</span><div class="pin-overlay"><div class="pin-title">New Arrivals</div><div class="pin-tag">Fashion · Style Guide</div></div><button class="pin-save">View</button></div>
+    <div class="pin-card reveal d3" data-index="3" data-cat="fashion"><img src="f4.png" alt="Fashion lookbook editorial Pinterest pin"/><span class="pin-stat">4.0% CTR</span><div class="pin-overlay"><div class="pin-title">New Arrivals</div><div class="pin-tag">Fashion · Lookbook</div></div><button class="pin-save">View</button></div>
+    <div class="pin-card reveal" data-index="4" data-cat="fashion"><img src="f5.png" alt="Minimal clean fashion Pinterest pin design"/><span class="pin-stat">+1.8k impressions</span><div class="pin-overlay"><div class="pin-title">New Arrivals</div><div class="pin-tag">Fashion · Minimal</div></div><button class="pin-save">View</button></div>
+    <div class="pin-card reveal d1" data-index="5" data-cat="fashion"><img src="f6.png" alt="Beige neutral palette fashion Pinterest pin"/><span class="pin-stat">Best seller</span><div class="pin-overlay"><div class="pin-title">New Arrivals</div><div class="pin-tag">Fashion · Beige</div></div><button class="pin-save">View</button></div>
   </div>
 </section>
 
@@ -492,7 +513,7 @@
       <div class="ba-label-row"><div class="ba-label bef">Amateur Pin</div><div class="ba-arrow">→</div><div class="ba-label aft">My Design</div></div>
       <div class="ba-images">
         <div class="ba-pin bef"><img src="before1.jpg" alt="Before — amateur Pinterest pin"/><span class="ba-pin-label">Before</span></div>
-        <div class="ba-pin aft"><img src="after1.png" alt="After — PinStudio professional pin"/><span class="ba-pin-label">After ✦</span></div>
+        <div class="ba-pin aft"><img src="after1.png" alt="After — PinStudio professional pin"/><span class="ba-pin-label">After</span></div>
       </div>
       <div class="ba-stats"><div class="ba-st"><div class="ba-sv bad">0.4%</div><div class="ba-sl">Before CTR</div></div><div class="ba-st"><div class="ba-sv good">4.2%</div><div class="ba-sl">After CTR</div></div></div>
       <div class="ctr-jump"><span class="ctr-jump-arrow">↑</span><span class="ctr-jump-text">10× CTR Jump</span><span class="ctr-jump-label">same content, better design</span></div>
@@ -502,7 +523,7 @@
       <div class="ba-label-row"><div class="ba-label bef">Amateur Pin</div><div class="ba-arrow">→</div><div class="ba-label aft">My Design</div></div>
       <div class="ba-images">
         <div class="ba-pin bef"><img src="before2.jpg" alt="Before — amateur Pinterest pin"/><span class="ba-pin-label">Before</span></div>
-        <div class="ba-pin aft"><img src="after2.png" alt="After — PinStudio professional pin"/><span class="ba-pin-label">After ✦</span></div>
+        <div class="ba-pin aft"><img src="after2.png" alt="After — PinStudio professional pin"/><span class="ba-pin-label">After</span></div>
       </div>
       <div class="ba-stats"><div class="ba-st"><div class="ba-sv bad">0.6%</div><div class="ba-sl">Before CTR</div></div><div class="ba-st"><div class="ba-sv good">3.8%</div><div class="ba-sl">After CTR</div></div></div>
       <div class="ctr-jump"><span class="ctr-jump-arrow">↑</span><span class="ctr-jump-text">6× CTR Jump</span><span class="ctr-jump-label">same content, better design</span></div>
@@ -512,7 +533,7 @@
       <div class="ba-label-row"><div class="ba-label bef">Amateur Pin</div><div class="ba-arrow">→</div><div class="ba-label aft">My Design</div></div>
       <div class="ba-images">
         <div class="ba-pin bef"><img src="before3.jpg" alt="Before — amateur Pinterest pin"/><span class="ba-pin-label">Before</span></div>
-        <div class="ba-pin aft"><img src="after3.png" alt="After — PinStudio professional pin"/><span class="ba-pin-label">After ✦</span></div>
+        <div class="ba-pin aft"><img src="after3.png" alt="After — PinStudio professional pin"/><span class="ba-pin-label">After</span></div>
       </div>
       <div class="ba-stats"><div class="ba-st"><div class="ba-sv bad">0.5%</div><div class="ba-sl">Before CTR</div></div><div class="ba-st"><div class="ba-sv good">4.0%</div><div class="ba-sl">After CTR</div></div></div>
       <div class="ctr-jump"><span class="ctr-jump-arrow">↑</span><span class="ctr-jump-text">8× CTR Jump</span><span class="ctr-jump-label">same content, better design</span></div>
@@ -566,12 +587,12 @@
     <h2 class="s-title reveal d1">What Clients <em>Say</em></h2>
   </div></div>
   <div class="reviews-grid">
-    <div class="review-card reveal"><div class="review-result">📈 +300% traffic <span>in 5 weeks</span></div><div class="review-stars">★★★★★</div><p class="review-text">"Honestly didn't expect results this fast. My food blog went from 800 visits/month to 3,200 in just 5 weeks. The pins look SO professional, exactly my brand vibe!"</p><div class="review-author"><img class="review-photo" src="r1.jpg" alt="Emily Carter food blogger USA"/><div><div class="review-name"><strong>Emily Carter</strong> 🇺🇸 <span class="verified-badge">✓ Verified</span></div><div class="review-niche">Food Blog • New York, USA</div></div></div></div>
-    <div class="review-card reveal d1"><div class="review-result">💸 Sales doubled <span>in 1 month</span></div><div class="review-stars">★★★★★</div><p class="review-text">"J'ai commandé 5 pins et mes ventes ont doublé en un mois! Very professional, fast delivery. My Etsy shop finally gets real traffic from Pinterest 🙌"</p><div class="review-author"><img class="review-photo" src="r2.jpg" alt="Sophie Laurent home decor France"/><div><div class="review-name">Sophie Laurent 🇫🇷</div><div class="review-niche">Home Décor • Paris, France</div></div></div></div>
-    <div class="review-card reveal d2"><div class="review-result">👁️ 200 → 14,000 <span>monthly views</span></div><div class="review-stars">★★★★★</div><p class="review-text">"Ordered the monthly package — Pinterest went from 200 to 14,000 monthly views. Designs are clean, trendy and scroll-stopping!"</p><div class="review-author"><img class="review-photo" src="r3.jpg" alt="Hannah Becker wellness blogger Germany"/><div><div class="review-name">Hannah Becker 🇩🇪</div><div class="review-niche">Wellness Blog • Berlin, Germany</div></div></div></div>
-    <div class="review-card reveal"><div class="review-result">📌 47 saves <span>on first pin, 24hrs</span></div><div class="review-stars">★★★★★</div><p class="review-text">"Ordered 5 pins — got 47 saves on the first pin within 24 hours! Never had that before. Quality is insane 🔥"</p><div class="review-author"><img class="review-photo" src="r4.png" alt="Jason Williams recipe creator USA"/><div><div class="review-name">Jason Williams 🇺🇸</div><div class="review-niche">Recipe Creator • Texas, USA</div></div></div></div>
-    <div class="review-card reveal d1"><div class="review-result">🖱️ CTR doubled <span>after switch</span></div><div class="review-stars">★★★★★</div><p class="review-text">"Ich bin total begeistert! My fashion pins now actually get clicks. Ordered twice already — super schnelle Lieferung, sehr empfehlenswert!"</p><div class="review-author"><img class="review-photo" src="r5.png" alt="Lena Muller fashion creator Germany"/><div><div class="review-name">Lena Müller 🇩🇪</div><div class="review-niche">Fashion Creator • Munich, Germany</div></div></div></div>
-    <div class="review-card reveal d2"><div class="review-result">💰 $0 → $1,800/mo <span>in 6 weeks</span></div><div class="review-stars">★★★★★</div><p class="review-text">"Les designs sont magnifiques! Went from 0 Pinterest sales to $1,800/month after 6 weeks. Best decision for my business. Merci! 💕"</p><div class="review-author"><img class="review-photo" src="r6.png" alt="Camille Moreau lifestyle DIY France"/><div><div class="review-name">Camille Moreau 🇫🇷</div><div class="review-niche">Lifestyle &amp; DIY • Lyon, France</div></div></div></div>
+    <div class="review-card reveal"><div class="review-result">+300% traffic <span>in 5 weeks</span></div><div class="review-stars">★★★★★</div><p class="review-text">"Honestly didn't expect results this fast. My food blog went from 800 visits/month to 3,200 in just 5 weeks. The pins look SO professional, exactly my brand vibe!"</p><div class="review-author"><img class="review-photo" src="r1.jpg" alt="Emily Carter food blogger USA"/><div><div class="review-name"><strong>Emily Carter</strong> <span class="verified-badge">Verified</span></div><div class="review-niche">Food Blog · New York, USA</div></div></div></div>
+    <div class="review-card reveal d1"><div class="review-result">Sales doubled <span>in 1 month</span></div><div class="review-stars">★★★★★</div><p class="review-text">"J'ai commandé 5 pins et mes ventes ont doublé en un mois! Very professional, fast delivery. My Etsy shop finally gets real traffic from Pinterest."</p><div class="review-author"><img class="review-photo" src="r2.jpg" alt="Sophie Laurent home decor France"/><div><div class="review-name">Sophie Laurent</div><div class="review-niche">Home Décor · Paris, France</div></div></div></div>
+    <div class="review-card reveal d2"><div class="review-result">200 → 14,000 <span>monthly views</span></div><div class="review-stars">★★★★★</div><p class="review-text">"Ordered the monthly package — Pinterest went from 200 to 14,000 monthly views. Designs are clean, trendy and scroll-stopping!"</p><div class="review-author"><img class="review-photo" src="r3.jpg" alt="Hannah Becker wellness blogger Germany"/><div><div class="review-name">Hannah Becker</div><div class="review-niche">Wellness Blog · Berlin, Germany</div></div></div></div>
+    <div class="review-card reveal"><div class="review-result">47 saves <span>on first pin, 24hrs</span></div><div class="review-stars">★★★★★</div><p class="review-text">"Ordered 5 pins — got 47 saves on the first pin within 24 hours! Never had that before. Quality is insane."</p><div class="review-author"><img class="review-photo" src="r4.png" alt="Jason Williams recipe creator USA"/><div><div class="review-name">Jason Williams</div><div class="review-niche">Recipe Creator · Texas, USA</div></div></div></div>
+    <div class="review-card reveal d1"><div class="review-result">CTR doubled <span>after switch</span></div><div class="review-stars">★★★★★</div><p class="review-text">"Ich bin total begeistert! My fashion pins now actually get clicks. Ordered twice already — super schnelle Lieferung, sehr empfehlenswert!"</p><div class="review-author"><img class="review-photo" src="r5.png" alt="Lena Muller fashion creator Germany"/><div><div class="review-name">Lena Müller</div><div class="review-niche">Fashion Creator · Munich, Germany</div></div></div></div>
+    <div class="review-card reveal d2"><div class="review-result">$0 → $1,800/mo <span>in 6 weeks</span></div><div class="review-stars">★★★★★</div><p class="review-text">"Les designs sont magnifiques! Went from 0 Pinterest sales to $1,800/month after 6 weeks. Best decision for my business. Merci!"</p><div class="review-author"><img class="review-photo" src="r6.png" alt="Camille Moreau lifestyle DIY France"/><div><div class="review-name">Camille Moreau</div><div class="review-niche">Lifestyle &amp; DIY · Lyon, France</div></div></div></div>
   </div>
 </section>
 
@@ -582,7 +603,7 @@
     <h2 class="s-title reveal d1">Pinterest Pin <em>Services</em></h2>
   </div></div>
   <div class="offer-banner reveal">
-    <div><div class="offer-tag">🎁 LIMITED TIME OFFER</div><div class="offer-title">Get Your First 3 Pins <span>FREE</span></div><div class="offer-desc">Try before you buy — send me your niche and I'll design 3 sample pins at no cost. No commitment needed.</div></div>
+    <div><div class="offer-tag">LIMITED TIME OFFER</div><div class="offer-title">Get Your First 3 Pins <span>FREE</span></div><div class="offer-desc">Try before you buy — send me your niche and I'll design 3 sample pins at no cost. No commitment needed.</div></div>
     <a href="#contact" class="offer-btn" onclick="scrollToContact(event)">Claim Free Pins →</a>
   </div>
   <div class="services-grid">
@@ -590,11 +611,11 @@
     <!-- MONTHLY MANAGEMENT -->
     <div class="service-card popular reveal">
       <div class="pinterest-badge"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></div>
-      <div class="service-popular-tag">🔥 BEST VALUE</div>
+      <div class="service-popular-tag">BEST VALUE</div>
       <div class="service-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="6" width="24" height="22" rx="3" stroke="#E8A87C" stroke-width="2"/><path d="M4 12h24" stroke="#E8A87C" stroke-width="2" stroke-linecap="round"/><path d="M10 4v4M22 4v4" stroke="#E8A87C" stroke-width="2" stroke-linecap="round"/><circle cx="10" cy="19" r="1.5" fill="#E8A87C"/><circle cx="16" cy="19" r="1.5" fill="#E8A87C"/><circle cx="22" cy="19" r="1.5" fill="#E8A87C"/><circle cx="10" cy="24" r="1.5" fill="#E8A87C"/><circle cx="16" cy="24" r="1.5" fill="#E8A87C"/></svg></div>
       <div class="service-name">Monthly Management</div>
       <div class="service-price-row"><span class="service-price">$150</span><span class="service-price-period">/ month</span></div>
-      <div class="service-highlight">📌 5 Pins Every Day · ~150 Pins/Month</div>
+      <div class="service-highlight">5 Pins Every Day · ~150 Pins/Month</div>
       <div class="service-desc">Maximum results. Daily fresh pins all month for serious bloggers and brands ready to scale their Pinterest fast.</div>
       <ul class="service-features">
         <li>5 Custom Pin Designs Daily</li>
@@ -615,7 +636,7 @@
       <div class="service-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 24l6-6 5 4 7-10 6 4" stroke="#B89B7A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="18" r="2" fill="#B89B7A"/><circle cx="15" cy="22" r="2" fill="#B89B7A"/><circle cx="22" cy="12" r="2" fill="#B89B7A"/><circle cx="28" cy="16" r="2" fill="#B89B7A"/><path d="M4 28h24" stroke="#B89B7A" stroke-width="1.5" stroke-linecap="round" opacity=".4"/></svg></div>
       <div class="service-name">Weekly Growth</div>
       <div class="service-price-row"><span class="service-price">$50</span><span class="service-price-period">/ week</span></div>
-      <div class="service-highlight">📅 3–5 Pins Daily · Full Week</div>
+      <div class="service-highlight">3–5 Pins Daily · Full Week</div>
       <div class="service-desc">Consistent daily pins to keep your Pinterest feed active, fresh and growing every week. Perfect for steady growth.</div>
       <ul class="service-features">
         <li>3–5 Custom Pin Designs Per Day</li>
@@ -635,7 +656,7 @@
       <div class="service-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 4C11.58 4 8 7.58 8 12c0 4 5.33 11.47 7.25 13.89a.97.97 0 0 0 1.5 0C18.67 23.47 24 16 24 12c0-4.42-3.58-8-8-8z" stroke="#64B4DC" stroke-width="2" stroke-linejoin="round"/><circle cx="16" cy="12" r="3" stroke="#64B4DC" stroke-width="1.8"/></svg></div>
       <div class="service-name">Starter Pack</div>
       <div class="service-price-row"><span class="service-price">$15</span><span class="service-price-period">/ 5 pins</span></div>
-      <div class="service-highlight">📌 5 Pins · 2-Day Delivery</div>
+      <div class="service-highlight">5 Pins · 2-Day Delivery</div>
       <div class="service-desc">Perfect for testing the quality. Get 5 professionally designed, high-CTR pins crafted for your exact brand.</div>
       <ul class="service-features">
         <li>5 High-Quality Pin Designs</li>
@@ -653,19 +674,19 @@
   <div class="emergency-card reveal">
     <div>
       <div class="rush-price">Starting from <strong style="font-size:15px;margin:0 4px;">$15</strong> <span>· same-day delivery</span></div>
-      <div class="emergency-tag">⚡ EMERGENCY ORDER</div>
+      <div class="emergency-tag">EMERGENCY ORDER</div>
       <div class="emergency-title">Need Pins <em>Today?</em></div>
       <div class="emergency-desc">Urgent order? I offer same-day and next-day delivery for rush orders. Perfect for product launches, flash sales, or last-minute campaigns.</div>
       <ul class="emergency-features">
-        <li>⚡ Same-Day Delivery (within 6–8 hours)</li>
-        <li>⚡ Next-Day Delivery (within 24 hours)</li>
-        <li>⚡ Priority over all other orders</li>
-        <li>⚡ Direct WhatsApp/Email communication</li>
+        <li>Same-Day Delivery (within 6–8 hours)</li>
+        <li>Next-Day Delivery (within 24 hours)</li>
+        <li>Priority over all other orders</li>
+        <li>Direct WhatsApp/Email communication</li>
       </ul>
     </div>
     <div class="emergency-right">
       <div class="emergency-note">Message me directly for rush pricing</div>
-      <a href="#contact" class="emergency-btn" onclick="scrollToContact(event)">⚡ Rush Order Now</a>
+      <a href="#contact" class="emergency-btn" onclick="scrollToContact(event)">Rush Order Now</a>
     </div>
   </div>
 </section>
@@ -678,12 +699,12 @@
       <h2 class="founding-title">10 Custom Pins for <em>$25</em><br>In Exchange for a Video Testimonial</h2>
       <p class="founding-desc">I'm looking for <strong style="color:var(--cream)">3 business owners</strong> who want to seriously grow their Pinterest traffic. You get 10 professionally designed, high-CTR pins at a deeply discounted price — and I ask only for an honest video testimonial once you see the results.</p>
       <div class="founding-features">
-        <span class="founding-feat">✦ 10 Custom Pin Designs</span>
-        <span class="founding-feat">✦ 3-Day Delivery</span>
-        <span class="founding-feat">✦ Unlimited Revisions</span>
-        <span class="founding-feat">✦ Your Branding &amp; Colors</span>
-        <span class="founding-feat">✦ High-CTR Copywriting</span>
-        <span class="founding-feat">✦ PNG Files Ready to Post</span>
+        <span class="founding-feat">10 Custom Pin Designs</span>
+        <span class="founding-feat">3-Day Delivery</span>
+        <span class="founding-feat">Unlimited Revisions</span>
+        <span class="founding-feat">Your Branding &amp; Colors</span>
+        <span class="founding-feat">High-CTR Copywriting</span>
+        <span class="founding-feat">PNG Files Ready to Post</span>
       </div>
       <div class="founding-spots">
         <span>Spots taken:</span>
@@ -702,7 +723,7 @@
         <div class="founding-now-sub">for 10 pins</div>
       </div>
       <a href="#contact" class="founding-cta" onclick="scrollToContact(event)">Claim Your Spot →</a>
-      <div class="founding-testimonial-req">📹 In return: 1–2 min video<br>sharing your results after 2–4 weeks</div>
+      <div class="founding-testimonial-req">In return: 1–2 min video<br>sharing your results after 2–4 weeks</div>
       <div class="founding-disclaimer">Only available until 3 spots are filled</div>
     </div>
   </div>
@@ -765,10 +786,10 @@
 <div class="sticky-bar" id="stickyBar">
   <div class="sticky-left">
     <span class="sticky-stars">★★★★★</span>
-    <span class="sticky-text">🔥 <strong>Founding Client Deal:</strong> 10 pins · $25 · 2 spots left</span>
+    <span class="sticky-text"><strong>Founding Client Deal:</strong> 10 pins · $25 · 2 spots left</span>
   </div>
   <div class="sticky-right">
-    <a href="#founding" class="sticky-btn">🔥 Claim $25 Offer</a>
+    <a href="#founding" class="sticky-btn">Claim $25 Offer</a>
     <button class="sticky-x" onclick="document.getElementById('stickyBar').remove()">×</button>
   </div>
 </div>
@@ -781,14 +802,12 @@ function scrollToContact(e) {
   const contact = document.getElementById('contact');
   if (contact) {
     contact.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    // Highlight the form briefly
     const form = contact.querySelector('.contact-form');
     if (form) {
       form.style.transition = 'box-shadow 0.3s';
       form.style.boxShadow = '0 0 0 3px rgba(196,86,58,0.4)';
       setTimeout(() => { form.style.boxShadow = ''; }, 1800);
     }
-    // Focus on name field
     setTimeout(() => {
       const nameInput = contact.querySelector('input[name="name"]');
       if (nameInput) nameInput.focus();

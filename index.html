@@ -34,33 +34,45 @@ nav{position:sticky;top:0;z-index:300;background:rgba(253,250,246,.96);backdrop-
 nav.scrolled{box-shadow:0 2px 28px rgba(26,20,16,.08);}
 
 /* ANIMATED LOGO */
-.logo{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0;}
-.logo-icon{width:38px;height:38px;position:relative;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
-.logo-icon svg{width:38px;height:38px;animation:pinEntry 0.7s cubic-bezier(.34,1.56,.64,1) both;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+.logo-icon{width:32px;height:32px;position:relative;flex-shrink:0;cursor:pointer;}
+.logo-icon svg{width:32px;height:32px;display:block;animation:bmDrop .65s cubic-bezier(.34,1.56,.64,1) both;}
 .logo-text{font-family:"DM Serif Display",serif;font-size:21px;color:var(--ink);letter-spacing:.3px;line-height:1;}
 .logo-text em{font-style:italic;color:var(--rust);}
+.bm-outline{transition:opacity .2s;}
+.bm-fill{transform-origin:50% 100%;transform:scaleY(0);transition:transform .4s cubic-bezier(.34,1.56,.64,1);}
+.bm-tick{stroke-dasharray:20;stroke-dashoffset:20;transition:stroke-dashoffset .3s .25s ease;}
+.logo-icon.saved .bm-outline{opacity:0;}
+.logo-icon.saved .bm-fill{transform:scaleY(1);}
+.logo-icon.saved .bm-tick{stroke-dashoffset:0;}
+.logo:hover .logo-icon:not(.saved) svg{animation:bmPulse .3s ease;}
+@keyframes bmDrop{0%{opacity:0;transform:translateY(-12px) scale(.6);}100%{opacity:1;transform:none;}}
+@keyframes bmPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.15);}}
 
-/* Thumbtack pin SVG animations */
-.tack-body{transform-origin:28px 10px;animation:tackSpin 0.6s .1s cubic-bezier(.34,1.56,.64,1) both;}
-.tack-needle{stroke-dasharray:28;stroke-dashoffset:28;animation:drawNeedle .4s .65s ease forwards;}
-.tack-shadow{opacity:0;animation:shadowFade .3s .9s ease forwards;}
-.logo:hover .logo-icon svg{animation:tackWiggle .4s ease;}
-@keyframes pinEntry{0%{opacity:0;transform:scale(0) rotate(-45deg);}100%{opacity:1;transform:scale(1) rotate(0deg);}}
-@keyframes tackSpin{0%{opacity:0;transform:rotate(-180deg) scale(0);}100%{opacity:1;transform:rotate(0deg) scale(1);}}
-@keyframes drawNeedle{to{stroke-dashoffset:0;}}
-@keyframes shadowFade{to{opacity:1;}}
-@keyframes tackWiggle{0%,100%{transform:rotate(0deg);}25%{transform:rotate(-15deg);}75%{transform:rotate(10deg);}}
+/* NAV SAVE BUTTON */
+.nav-save-btn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:1.8px solid rgba(192,66,30,.45);color:var(--rust);padding:8px 17px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:20px;transition:all .25s;font-family:"DM Sans",sans-serif;position:relative;overflow:hidden;white-space:nowrap;}
+.nav-save-btn .nbv-bm{width:13px;height:13px;flex-shrink:0;}
+.nav-save-btn .nbv-fill{transform-origin:50% 100%;transform:scaleY(0);transition:transform .38s cubic-bezier(.34,1.56,.64,1);}
+.nav-save-btn .nbv-out{transition:opacity .18s;}
+.nav-save-btn:hover{background:rgba(192,66,30,.07);}
+.nav-save-btn.saved{background:var(--rust);border-color:var(--rust);color:#fff;}
+.nav-save-btn.saved .nbv-fill{transform:scaleY(1);}
+.nav-save-btn.saved .nbv-out{opacity:0;}
 
-/* SAVE / SAVED BUTTON */
-.save-btn{display:inline-flex;align-items:center;gap:8px;background:var(--rust);color:#fff;border:none;padding:9px 20px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:var(--r);transition:all .25s;font-family:"DM Sans",sans-serif;position:relative;overflow:hidden;white-space:nowrap;}
-.save-btn .sb-icon{font-size:13px;transition:transform .3s;}
-.save-btn .sb-text{transition:opacity .2s,transform .2s;}
-.save-btn.saved{background:#2e7d32;}
-.save-btn.saved .sb-icon{transform:scale(1.3);}
-.save-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(192,66,30,.35);}
-.save-btn.saved:hover{box-shadow:0 6px 20px rgba(46,125,50,.35);}
-.save-ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.35);transform:scale(0);animation:ripple .5s ease-out forwards;pointer-events:none;}
-@keyframes ripple{to{transform:scale(4);opacity:0;}}
+/* HERO SAVE BUTTON */
+.hero-save-btn{display:inline-flex;align-items:center;gap:10px;background:var(--rust);color:#fff;border:none;padding:15px 32px;font-size:11.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:var(--r);transition:all .25s;font-family:"DM Sans",sans-serif;position:relative;overflow:hidden;box-shadow:0 8px 28px rgba(192,66,30,.3);}
+.hero-save-btn .hbv-bm{width:16px;height:16px;flex-shrink:0;transition:transform .35s cubic-bezier(.34,1.56,.64,1);}
+.hero-save-btn .hbv-fill{transform-origin:50% 100%;transform:scaleY(0);transition:transform .42s cubic-bezier(.34,1.56,.64,1);}
+.hero-save-btn .hbv-out{transition:opacity .18s;}
+.hero-save-btn:hover{background:var(--ink);transform:translateY(-2px);box-shadow:0 12px 36px rgba(26,20,16,.2);}
+.hero-save-btn.saved{background:#1e6b1e;}
+.hero-save-btn.saved .hbv-fill{transform:scaleY(1);}
+.hero-save-btn.saved .hbv-out{opacity:0;}
+.hero-save-btn.saved .hbv-bm{transform:scale(1.2) translateY(-1px);}
+
+/* Ripple shared */
+.nb-ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.28);width:60px;height:60px;margin-left:-30px;margin-top:-30px;transform:scale(0);animation:nbRipple .55s ease-out forwards;pointer-events:none;}
+@keyframes nbRipple{to{transform:scale(6);opacity:0;}}
 
 .nav-links{list-style:none;display:flex;gap:24px;}
 .nav-links a{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;color:var(--muted);text-decoration:none;transition:color .2s;}
@@ -359,24 +371,16 @@ footer{background:var(--ink);padding:44px 7%;display:grid;grid-template-columns:
 <div class="topbar"><strong>🎁 Free Offer:</strong> Get 5 Pinterest Pins Designed at Zero Cost — <a href="#offer">No commitment needed →</a></div>
 
 <nav id="mainNav">
-  <!-- ANIMATED THUMBTACK LOGO -->
-  <a href="#" class="logo">
-    <div class="logo-icon">
-      <!-- Thumbtack / pushpin SVG matching the uploaded icon -->
-      <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Pin head (round flat top) -->
-        <g class="tack-body">
-          <ellipse cx="20" cy="11" rx="9" ry="4.5" fill="#C0421E" opacity=".95"/>
-          <ellipse cx="20" cy="9.5" rx="9" ry="4" fill="#D96540"/>
-          <!-- Shaft going diagonally down-left -->
-          <rect x="16" y="13" width="5" height="9" rx="1.5" fill="#C0421E" transform="rotate(-45 18.5 17.5)"/>
-          <!-- Shine on head -->
-          <ellipse cx="17" cy="8.5" rx="3.5" ry="1.5" fill="rgba(255,255,255,.3)" transform="rotate(-10 17 8.5)"/>
-        </g>
-        <!-- Needle tip drawing in -->
-        <line class="tack-needle" x1="10" y1="28" x2="23" y2="15" stroke="#8B3010" stroke-width="2" stroke-linecap="round"/>
-        <!-- Drop shadow -->
-        <ellipse class="tack-shadow" cx="12" cy="29" rx="5" ry="2" fill="rgba(26,20,16,.15)"/>
+  <!-- INSTAGRAM-STYLE BOOKMARK LOGO -->
+  <a href="#" class="logo" onclick="logoSave(event)">
+    <div class="logo-icon" id="logoIcon">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outline bookmark (visible before save) -->
+        <path class="bm-outline" d="M7 4h18a1 1 0 011 1v22l-10-6-10 6V5a1 1 0 011-1z" stroke="#C0421E" stroke-width="2" stroke-linejoin="round" fill="none"/>
+        <!-- Fill bookmark (animates in on save) -->
+        <path class="bm-fill" d="M7 4h18a1 1 0 011 1v22l-10-6-10 6V5a1 1 0 011-1z" fill="#C0421E"/>
+        <!-- Tick checkmark inside -->
+        <path class="bm-tick" d="M12 14l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
     <div class="logo-text">Pin<em>Studio</em></div>
@@ -389,9 +393,12 @@ footer{background:var(--ink);padding:44px 7%;display:grid;grid-template-columns:
     <li><a href="#services">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
-  <button class="save-btn" id="navSaveBtn" onclick="handleSave(this,event)">
-    <span class="sb-icon">📌</span>
-    <span class="sb-text">Save My Free Pins</span>
+  <button class="nav-save-btn" id="navSaveBtn" onclick="handleNavSave(this,event)">
+    <svg class="nbv-bm" viewBox="0 0 16 16" fill="none">
+      <path class="nbv-out" d="M3 2h10a.5.5 0 01.5.5v11l-5.5-3-5.5 3V2.5A.5.5 0 013 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+      <path class="nbv-fill" d="M3 2h10a.5.5 0 01.5.5v11l-5.5-3-5.5 3V2.5A.5.5 0 013 2z" fill="currentColor"/>
+    </svg>
+    <span class="nbv-text">Save Free Pins</span>
   </button>
   <div class="nav-burger" id="burger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
@@ -425,9 +432,12 @@ footer{background:var(--ink);padding:44px 7%;display:grid;grid-template-columns:
       </div>
     </div>
     <div class="hero-btns">
-      <button class="btn-primary save-btn" id="heroSaveBtn" onclick="handleSave(this,event);scrollToContact()">
-        <span class="sb-icon">📌</span>
-        <span class="sb-text">Save My Free Pins →</span>
+      <button class="hero-save-btn" id="heroSaveBtn" onclick="handleHeroSave(this,event)">
+        <svg class="hbv-bm" viewBox="0 0 18 18" fill="none">
+          <path class="hbv-out" d="M3.5 2.5h11a.5.5 0 01.5.5v12.5l-6-3.5-6 3.5V3a.5.5 0 01.5-.5z" stroke="white" stroke-width="1.6" stroke-linejoin="round"/>
+          <path class="hbv-fill" d="M3.5 2.5h11a.5.5 0 01.5.5v12.5l-6-3.5-6 3.5V3a.5.5 0 01.5-.5z" fill="white"/>
+        </svg>
+        <span class="hbv-text">Save My Free Pins →</span>
       </button>
       <a href="#work" class="btn-ghost">See My Work</a>
     </div>
@@ -899,28 +909,38 @@ footer{background:var(--ink);padding:44px 7%;display:grid;grid-template-columns:
 </div>
 
 <script>
-function handleSave(btn, e){
-  if(btn.classList.contains('saved')) return;
-  // Ripple effect
-  const r = document.createElement('span');
-  r.className = 'save-ripple';
-  const rect = btn.getBoundingClientRect();
-  const size = Math.max(rect.width, rect.height);
-  r.style.cssText = `width:${size}px;height:${size}px;left:${(e?e.clientX-rect.left:rect.width/2)-size/2}px;top:${(e?e.clientY-rect.top:rect.height/2)-size/2}px`;
+/* ── INSTAGRAM BOOKMARK SAVE ── */
+function addRipple(btn, e){
+  const r=document.createElement('span');
+  r.className='nb-ripple';
+  const rect=btn.getBoundingClientRect();
+  r.style.left=(e.clientX-rect.left)+'px';
+  r.style.top=(e.clientY-rect.top)+'px';
   btn.appendChild(r);
-  setTimeout(()=>r.remove(), 600);
-  // Icon spin + text swap
+  setTimeout(()=>r.remove(),600);
+}
+function logoSave(e){
+  e.preventDefault();
+  const icon=document.getElementById('logoIcon');
+  if(icon.classList.contains('saved')) return;
+  icon.classList.add('saved');
+  setTimeout(()=>icon.classList.remove('saved'),3500);
+}
+function handleNavSave(btn,e){
+  if(btn.classList.contains('saved')){btn.classList.remove('saved');btn.querySelector('.nbv-text').textContent='Save Free Pins';return;}
+  addRipple(btn,e);
   btn.classList.add('saved');
-  const icon = btn.querySelector('.sb-icon');
-  const text = btn.querySelector('.sb-text');
-  icon.textContent = '✓';
-  text.textContent = 'Saved!';
-  // Reset after 3s
-  setTimeout(()=>{
-    btn.classList.remove('saved');
-    icon.textContent = '📌';
-    text.textContent = btn.id==='navSaveBtn' ? 'Save My Free Pins' : 'Save My Free Pins →';
-  }, 3000);
+  btn.querySelector('.nbv-text').textContent='Saved ✓';
+  scrollToContact();
+  setTimeout(()=>{btn.classList.remove('saved');btn.querySelector('.nbv-text').textContent='Save Free Pins';},3500);
+}
+function handleHeroSave(btn,e){
+  if(btn.classList.contains('saved')) return;
+  addRipple(btn,e);
+  btn.classList.add('saved');
+  btn.querySelector('.hbv-text').textContent='Saved! ✓';
+  scrollToContact();
+  setTimeout(()=>{btn.classList.remove('saved');btn.querySelector('.hbv-text').textContent='Save My Free Pins →';},3500);
 }
   if(e)e.preventDefault();
   const el=document.getElementById('contact');

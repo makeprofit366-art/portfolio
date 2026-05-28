@@ -301,10 +301,12 @@
       #hero{grid-template-columns:1fr;min-height:auto;}
       .hero-left{padding:48px 24px 36px;}
       .hero-left::after{display:none;}
-      .hero-right{height:85vw;max-height:500px;}
-      .hero-mosaic{grid-template-rows:1fr 1fr;}
-      .hm-pin:nth-child(1){grid-row:auto;}
-      .hm-pin:nth-child(4){grid-row:auto;}
+      .hero-right{height:auto;}
+      .hero-mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:150px 150px;gap:4px;padding:4px;}
+      .hm-pin{grid-row:auto!important;}
+      .hm-pin:nth-child(1){grid-row:auto!important;}
+      .hm-pin:nth-child(4){grid-row:auto!important;}
+      .hm-pin:nth-child(5){display:none;}
       .who-grid{grid-template-columns:1fr;gap:36px;}
       .how-steps{grid-template-columns:1fr 1fr;gap:20px;}
       .how-steps::before{display:none;}

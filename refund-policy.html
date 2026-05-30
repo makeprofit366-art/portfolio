@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Refund & Cancellation Policy — PinStudio</title>
+  <meta name="description" content="Refund and Cancellation Policy for PinStudio Pinterest Pin Design Services.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--red:#E01919;--red-dark:#B51212;--red-pale:#FFF0F0;--white:#FFFFFF;--off-white:#FFF8F8;--ink:#1A0505;--muted:#6B3333;--border:rgba(224,25,25,.15);--green:#0F7A3C;--green-pale:#E8F9EF;}
+    *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+    body{background:var(--white);color:var(--ink);font-family:"DM Sans",sans-serif;overflow-x:hidden;}
+    nav{background:rgba(255,255,255,.97);border-bottom:1px solid var(--border);padding:0 60px;display:flex;align-items:center;justify-content:space-between;height:70px;}
+    .logo{text-decoration:none;display:flex;align-items:center;gap:10px;}
+    .logo-top{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:2px;color:var(--ink);}
+    .logo-top span{color:var(--red);}
+    .logo-sub{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);font-weight:500;}
+    .nav-back{background:var(--red);color:#fff;padding:10px 22px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;text-decoration:none;border-radius:3px;}
+    .hero{background:var(--ink);padding:60px 70px;text-align:center;}
+    .hero-eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px;}
+    .hero h1{font-family:"Playfair Display",serif;font-size:clamp(32px,4vw,56px);font-weight:900;color:#fff;line-height:1.05;}
+    .hero h1 em{font-style:italic;color:var(--red);}
+    .hero-meta{margin-top:16px;font-size:13px;color:rgba(255,255,255,.35);letter-spacing:.5px;}
+    .content{max-width:800px;margin:0 auto;padding:60px 24px 80px;}
+    .section{margin-bottom:48px;}
+    .section h2{font-family:"Playfair Display",serif;font-size:22px;font-weight:700;color:var(--ink);margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--red-pale);}
+    .section h3{font-family:"Playfair Display",serif;font-size:17px;font-weight:700;color:var(--ink);margin:18px 0 8px;}
+    .section p{font-size:15px;line-height:1.9;color:var(--muted);margin-bottom:12px;}
+    .section ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin:12px 0 16px;}
+    .section ul li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--muted);line-height:1.7;}
+    .section ul li::before{content:"→";color:var(--red);font-weight:700;flex-shrink:0;margin-top:3px;}
+    .highlight-box{background:var(--red-pale);border:1.5px solid rgba(224,25,25,.2);border-radius:10px;padding:20px 24px;margin:20px 0;}
+    .highlight-box p{font-size:14px;color:var(--ink);margin:0;line-height:1.8;}
+    .green-box{background:var(--green-pale);border:1.5px solid rgba(15,122,60,.2);border-radius:10px;padding:20px 24px;margin:20px 0;}
+    .green-box p{font-size:14px;color:#0a5a2c;margin:0;line-height:1.8;}
+    .timeline{display:flex;flex-direction:column;gap:0;margin:20px 0;}
+    .tl-item{display:flex;gap:20px;position:relative;}
+    .tl-item::before{content:"";position:absolute;left:19px;top:40px;bottom:0;width:2px;background:var(--border);}
+    .tl-item:last-child::before{display:none;}
+    .tl-dot{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;margin-top:2px;}
+    .tl-dot.green{background:var(--green);}
+    .tl-dot.red{background:var(--red);}
+    .tl-dot.orange{background:#E07A19;}
+    .tl-content{padding:4px 0 28px;}
+    .tl-title{font-family:"Playfair Display",serif;font-size:16px;font-weight:700;color:var(--ink);margin-bottom:4px;}
+    .tl-desc{font-size:13px;color:var(--muted);line-height:1.7;}
+    .contact-box{background:var(--ink);border-radius:12px;padding:32px;text-align:center;margin-top:48px;}
+    .contact-box h3{font-family:"Playfair Display",serif;font-size:22px;color:#fff;margin-bottom:10px;}
+    .contact-box p{color:rgba(255,255,255,.5);font-size:14px;margin-bottom:18px;}
+    .contact-box a{color:var(--red);text-decoration:none;font-weight:600;}
+    .refund-btn{display:inline-block;background:var(--red);color:#fff;padding:14px 32px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-decoration:none;border-radius:3px;margin-top:8px;}
+    footer{background:var(--ink);padding:28px 70px;display:flex;align-items:center;justify-content:space-between;border-top:2px solid rgba(224,25,25,.3);}
+    .footer-logo{font-family:"Bebas Neue",sans-serif;font-size:20px;color:#fff;letter-spacing:2px;}
+    .footer-logo span{color:var(--red);}
+    .footer-links{display:flex;gap:20px;}
+    .footer-links a{font-size:11px;color:rgba(255,255,255,.3);text-decoration:none;letter-spacing:1px;text-transform:uppercase;}
+    .footer-links a:hover{color:var(--red);}
+    .footer-copy{font-size:11px;color:rgba(255,255,255,.2);}
+    @media(max-width:768px){nav{padding:0 20px;}.hero{padding:40px 24px;}footer{flex-direction:column;gap:12px;text-align:center;padding:24px;}.footer-links{display:none;}}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">
+    <div>
+      <div class="logo-top">PIN<span>STUDIO</span></div>
+      <div class="logo-sub">Pinterest Design</div>
+    </div>
+  </a>
+  <a href="/" class="nav-back">← Back to Home</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">Legal Document</div>
+  <h1>Refund &amp; Cancellation <em>Policy</em></h1>
+  <div class="hero-meta">Last updated: June 2025 &nbsp;·&nbsp; Effective immediately</div>
+</div>
+
+<div class="content">
+
+  <div class="green-box">
+    <p>✓ &nbsp;We stand behind every pin we design. If you're not satisfied, we offer unlimited revisions and a fair refund process. Our goal is always your 100% satisfaction.</p>
+  </div>
+
+  <div class="section">
+    <h2>1. Refund Eligibility by Timeline</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot green">✓</div>
+        <div class="tl-content">
+          <div class="tl-title">Within 48 hours of payment — Full refund available</div>
+          <div class="tl-desc">If work has not yet started, you are entitled to a full refund, no questions asked. Email us at support@clickablepins.online with your order details.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot orange">~</div>
+        <div class="tl-content">
+          <div class="tl-title">After work begins — Revision first, then partial refund</div>
+          <div class="tl-desc">If work has started and you're unhappy with the designs, we will first offer unlimited revisions to make them right. If after revisions you remain unsatisfied, a partial refund may be issued based on the work completed.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot red">✗</div>
+        <div class="tl-content">
+          <div class="tl-title">After delivery and approval — No refund</div>
+          <div class="tl-desc">Once pins have been delivered and approved (or revision requests completed), no refund is available. Digital design files are non-returnable after delivery and use.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>2. Non-Refundable Situations</h2>
+    <p>Refunds are not available in the following situations:</p>
+    <ul>
+      <li>Free sample pins (the 2 free pins offer has no monetary value)</li>
+      <li>Change of mind after design has been delivered and approved</li>
+      <li>Pinterest account performance issues (we design pins but cannot control the Pinterest algorithm)</li>
+      <li>Monthly plan — refunds are only available for unused future months, not the current billing period</li>
+      <li>Orders cancelled after revision requests have been satisfied</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>3. Cancellations</h2>
+    <h3>3.1 One-Time Orders (Starter &amp; Growth Plans)</h3>
+    <p>You may cancel your order at any time before work begins for a full refund. Once design work has started, cancellations are subject to a partial refund based on the percentage of work completed.</p>
+    <h3>3.2 Monthly Plan</h3>
+    <p>You may cancel your monthly subscription at any time by emailing <a href="mailto:support@clickablepins.online" style="color:var(--red);font-weight:600;">support@clickablepins.online</a>. Cancellation takes effect at the end of your current billing period. We do not offer pro-rata refunds for unused days within a billing period.</p>
+    <h3>3.3 Cancellation by PinStudio</h3>
+    <p>We reserve the right to cancel an order if the requested content violates our Terms &amp; Conditions. In this case, a full refund will be issued.</p>
+  </div>
+
+  <div class="section">
+    <h2>4. How to Request a Refund</h2>
+    <p>To request a refund or cancellation:</p>
+    <ul>
+      <li>Email us at <a href="mailto:support@clickablepins.online" style="color:var(--red);font-weight:600;">support@clickablepins.online</a></li>
+      <li>Include your name, order date, and the email address used to pay</li>
+      <li>Describe the reason for your refund request</li>
+    </ul>
+    <p>We will respond within 1–2 business days and process approved refunds within 5–10 business days. Refunds are returned to the original payment method (Razorpay or Stripe). Bank processing times may add 3–7 additional business days depending on your bank or card issuer.</p>
+  </div>
+
+  <div class="section">
+    <h2>5. International Payments</h2>
+    <p>For international customers paying via Stripe (USD/EUR/GBP etc.):</p>
+    <ul>
+      <li>Refunds are processed in the same currency as the original payment</li>
+      <li>Currency fluctuations between payment and refund date are not our responsibility</li>
+      <li>Stripe processing fees (typically 2.9% + $0.30) may not be refunded for partial refunds</li>
+      <li>Refund timeline via Stripe: typically 5–10 business days to your card or account</li>
+    </ul>
+    <p>For Indian customers paying via Razorpay (INR):</p>
+    <ul>
+      <li>Refunds via Razorpay typically process within 5–7 business days</li>
+      <li>UPI refunds: 1–3 business days</li>
+      <li>Net Banking refunds: 3–5 business days</li>
+      <li>Card refunds: 5–10 business days</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>6. Disputes</h2>
+    <p>If you are unhappy with our response to a refund request, please email <a href="mailto:support@clickablepins.online" style="color:var(--red);">support@clickablepins.online</a> with "DISPUTE" in the subject line. We will escalate the matter to senior review within 48 hours. We always prefer to resolve disputes directly rather than through payment processor chargebacks.</p>
+    <div class="highlight-box">
+      <p>⚠️ &nbsp;Please contact us before filing a chargeback with your bank or card issuer. Chargebacks create unnecessary complications for both parties. We are always willing to find a fair resolution directly.</p>
+    </div>
+  </div>
+
+  <div class="contact-box">
+    <h3>Need a Refund or Have a Question?</h3>
+    <p>Email us and we'll sort it out quickly. We want you to be happy.</p>
+    <a href="mailto:support@clickablepins.online" class="refund-btn">Email Us Now →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">PIN<span>STUDIO</span></div>
+  <div class="footer-links">
+    <a href="/terms.html">Terms</a>
+    <a href="/privacy-policy.html">Privacy</a>
+    <a href="/refund-policy.html">Refunds</a>
+    <a href="/">Home</a>
+  </div>
+  <div class="footer-copy">© 2025 PinStudio</div>
+</footer>
+</body>
+</html>

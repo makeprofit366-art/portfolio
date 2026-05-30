@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Checkout — PinStudio</title>
+  <meta name="description" content="Secure checkout for PinStudio Pinterest pin design plans.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+  <!-- Razorpay SDK -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <!-- Stripe SDK -->
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+    :root{--red:#E01919;--red-dark:#B51212;--red-light:#FF3B3B;--red-pale:#FFF0F0;--white:#FFFFFF;--off-white:#FFF8F8;--ink:#1A0505;--muted:#6B3333;--border:rgba(224,25,25,.15);}
+    *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+    body{background:var(--off-white);color:var(--ink);font-family:"DM Sans",sans-serif;min-height:100vh;}
+    nav{background:rgba(255,255,255,.97);border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:64px;}
+    .logo{text-decoration:none;display:flex;align-items:center;gap:10px;}
+    .logo-top{font-family:"Bebas Neue",sans-serif;font-size:20px;letter-spacing:2px;color:var(--ink);}
+    .logo-top span{color:var(--red);}
+    .secure-badge{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);}
+    .secure-badge::before{content:"🔒";font-size:14px;}
+    .page-wrap{max-width:960px;margin:0 auto;padding:40px 24px 80px;display:grid;grid-template-columns:1fr 380px;gap:32px;align-items:start;}
+    
+    /* LEFT — FORM */
+    .checkout-form{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:36px;}
+    .form-title{font-family:"Playfair Display",serif;font-size:24px;font-weight:900;color:var(--ink);margin-bottom:6px;}
+    .form-sub{font-size:13px;color:var(--muted);margin-bottom:28px;}
+    .fg{display:flex;flex-direction:column;gap:7px;margin-bottom:18px;}
+    .fl{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:var(--muted);}
+    .fi{background:var(--off-white);border:1.5px solid var(--border);border-radius:6px;padding:13px 16px;font-size:14px;font-family:"DM Sans",sans-serif;color:var(--ink);outline:none;transition:border-color .2s;width:100%;}
+    .fi:focus{border-color:var(--red);background:#fff;}
+    .fi::placeholder{color:rgba(107,51,51,.3);}
+    select.fi{-webkit-appearance:none;appearance:none;cursor:pointer;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    
+    /* REGION SELECTOR */
+    .region-tabs{display:flex;gap:0;border:1.5px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:24px;}
+    .rtab{flex:1;padding:12px;font-size:12px;letter-spacing:1px;text-transform:uppercase;font-weight:700;background:transparent;border:none;cursor:pointer;font-family:"DM Sans",sans-serif;color:var(--muted);transition:all .2s;text-align:center;}
+    .rtab.active{background:var(--ink);color:#fff;}
+    .rtab:first-child{border-right:1.5px solid var(--border);}
+    
+    /* PAYMENT SECTIONS */
+    .pay-section{display:none;}
+    .pay-section.active{display:block;}
+    
+    /* Razorpay */
+    .rzp-info{background:var(--red-pale);border:1.5px solid rgba(224,25,25,.2);border-radius:8px;padding:16px;font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.7;}
+    .rzp-info strong{color:var(--ink);}
+    
+    /* Stripe card element */
+    .stripe-info{background:#f0f7ff;border:1.5px solid rgba(24,95,165,.2);border-radius:8px;padding:16px;font-size:13px;color:#185fa5;margin-bottom:20px;line-height:1.7;}
+    #card-element{background:var(--off-white);border:1.5px solid var(--border);border-radius:6px;padding:14px 16px;font-size:14px;transition:border-color .2s;}
+    #card-element.StripeElement--focus{border-color:var(--red);background:#fff;}
+    #card-errors{color:var(--red);font-size:12px;margin-top:6px;min-height:18px;}
+    
+    .pay-btn{width:100%;background:var(--red);color:#fff;border:none;padding:18px 24px;font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:"DM Sans",sans-serif;transition:all .22s;border-radius:3px;box-shadow:0 6px 22px rgba(224,25,25,.3);margin-top:20px;display:flex;align-items:center;justify-content:center;gap:10px;}
+    .pay-btn:hover:not(:disabled){background:var(--red-dark);transform:translateY(-1px);box-shadow:0 10px 28px rgba(224,25,25,.4);}
+    .pay-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+    .pay-note{font-size:11px;color:var(--muted);text-align:center;margin-top:12px;line-height:1.6;}
+    .pay-note a{color:var(--red);text-decoration:none;}
+    .powered-by{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;color:rgba(107,51,51,.4);margin-top:16px;}
+    
+    /* RIGHT — ORDER SUMMARY */
+    .order-summary{position:sticky;top:24px;}
+    .summary-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;overflow:hidden;}
+    .summary-header{background:var(--ink);padding:20px 24px;}
+    .summary-plan-name{font-family:"Playfair Display",serif;font-size:22px;font-weight:900;color:#fff;}
+    .summary-plan-badge{display:inline-block;background:var(--red);color:#fff;font-size:9px;font-weight:700;padding:3px 10px;border-radius:100px;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase;}
+    .summary-body{padding:20px 24px;}
+    .summary-line{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--muted);padding:9px 0;border-bottom:1px solid var(--border);}
+    .summary-line:last-of-type{border:none;}
+    .summary-line.total{font-size:16px;font-weight:700;color:var(--ink);padding-top:14px;border-top:2px solid var(--border);}
+    .summary-line .val{font-weight:600;color:var(--ink);}
+    .summary-feats{list-style:none;padding:16px 24px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:8px;}
+    .summary-feats li{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:9px;}
+    .summary-feats li::before{content:"✓";color:var(--red);font-weight:700;flex-shrink:0;}
+    .change-plan{display:block;text-align:center;padding:14px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:var(--red);text-decoration:none;border-top:1px solid var(--border);}
+    .change-plan:hover{background:var(--red-pale);}
+    
+    /* TRUST ICONS */
+    .trust-row{display:flex;gap:10px;margin-top:16px;}
+    .trust-item{background:#fff;border:1px solid var(--border);border-radius:8px;padding:12px;flex:1;text-align:center;}
+    .trust-item-icon{font-size:20px;margin-bottom:4px;}
+    .trust-item-text{font-size:10px;letter-spacing:.5px;color:var(--muted);line-height:1.4;}
+    
+    /* SUCCESS STATE */
+    .success-screen{display:none;text-align:center;padding:48px 24px;}
+    .success-screen.show{display:block;}
+    .success-icon{font-size:64px;margin-bottom:16px;}
+    .success-screen h2{font-family:"Playfair Display",serif;font-size:32px;font-weight:900;color:var(--ink);margin-bottom:12px;}
+    .success-screen h2 em{font-style:italic;color:var(--red);}
+    .success-screen p{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:24px;}
+    .success-btn{display:inline-block;background:var(--red);color:#fff;padding:14px 32px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-decoration:none;border-radius:3px;}
+    
+    @media(max-width:768px){.page-wrap{grid-template-columns:1fr;}.order-summary{position:static;}.form-row{grid-template-columns:1fr;}nav{padding:0 20px;}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <div>
+      <div class="logo-top">PIN<span>STUDIO</span></div>
+    </div>
+  </a>
+  <div class="secure-badge">Secure Checkout</div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- FORM COLUMN -->
+  <div>
+    <div class="checkout-form" id="checkoutForm">
+      <div class="form-title">Complete Your Order</div>
+      <div class="form-sub">Fill in your details and choose your payment method below.</div>
+
+      <div class="form-row">
+        <div class="fg">
+          <label class="fl">First Name</label>
+          <input type="text" id="fname" class="fi" placeholder="Emily" required/>
+        </div>
+        <div class="fg">
+          <label class="fl">Last Name</label>
+          <input type="text" id="lname" class="fi" placeholder="Carter" required/>
+        </div>
+      </div>
+
+      <div class="fg">
+        <label class="fl">Email Address</label>
+        <input type="email" id="email" class="fi" placeholder="you@email.com" required/>
+      </div>
+
+      <div class="fg">
+        <label class="fl">Phone (optional)</label>
+        <input type="tel" id="phone" class="fi" placeholder="+1 234 567 8900"/>
+      </div>
+
+      <div class="fg">
+        <label class="fl">Your Store / Blog Link</label>
+        <input type="url" id="storelink" class="fi" placeholder="https://yourstore.etsy.com"/>
+      </div>
+
+      <!-- REGION TABS -->
+      <div class="fl" style="margin-bottom:10px;margin-top:8px;">Select Your Region &amp; Payment Method</div>
+      <div class="region-tabs">
+        <button class="rtab" id="tabIN" onclick="switchRegion('IN')">🇮🇳 India (₹ INR)</button>
+        <button class="rtab active" id="tabINTL" onclick="switchRegion('INTL')">🌍 International ($ USD)</button>
+      </div>
+
+      <!-- INDIA — RAZORPAY -->
+      <div class="pay-section" id="secIN">
+        <div class="rzp-info">
+          <strong>Paying from India?</strong> We accept UPI, Net Banking, Credit/Debit Cards, and Wallets via <strong>Razorpay</strong>. Price shown in INR at current exchange rate.
+        </div>
+        <button class="pay-btn" id="rzpBtn" onclick="payRazorpay()">
+          <span>Pay with Razorpay</span>
+        </button>
+      </div>
+
+      <!-- INTERNATIONAL — STRIPE -->
+      <div class="pay-section active" id="secINTL">
+        <div class="stripe-info">
+          <strong>International Payment</strong> — Secure card payment via Stripe. Accepted: Visa, Mastercard, American Express, and more. Charged in USD.
+        </div>
+        <div class="fg">
+          <label class="fl">Card Details</label>
+          <div id="card-element"></div>
+          <div id="card-errors" role="alert"></div>
+        </div>
+        <button class="pay-btn" id="stripeBtn" onclick="payStripe()">
+          <span id="stripeBtnText">Pay Securely with Stripe</span>
+        </button>
+      </div>
+
+      <div class="pay-note">
+        By completing your purchase you agree to our 
+        <a href="/terms.html">Terms &amp; Conditions</a>, 
+        <a href="/privacy-policy.html">Privacy Policy</a> and 
+        <a href="/refund-policy.html">Refund Policy</a>.
+      </div>
+      <div class="powered-by">🔒 SSL Encrypted · PCI-DSS Compliant · 256-bit Secure</div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">🎉</div>
+      <h2>Payment <em>Successful!</em></h2>
+      <p>Thank you for your order. We've received your payment and will start working on your pins shortly. You'll receive a confirmation email at <strong id="successEmail"></strong> within a few minutes.</p>
+      <p style="margin-bottom:28px;">Expected delivery: <strong id="deliveryTime"></strong></p>
+      <a href="/" class="success-btn">Back to Home →</a>
+    </div>
+  </div>
+
+  <!-- ORDER SUMMARY COLUMN -->
+  <div class="order-summary">
+    <div class="summary-card">
+      <div class="summary-header">
+        <div class="summary-plan-badge" id="summaryBadge">BEST VALUE</div>
+        <div class="summary-plan-name" id="summaryPlan">Growth Plan</div>
+      </div>
+      <div class="summary-body">
+        <div class="summary-line"><span>Plan</span><span class="val" id="sumPlan">Growth</span></div>
+        <div class="summary-line"><span>Pins</span><span class="val" id="sumPins">50 custom pins</span></div>
+        <div class="summary-line"><span>Delivery</span><span class="val" id="sumDelivery">2 business days</span></div>
+        <div class="summary-line"><span>Revisions</span><span class="val">Unlimited</span></div>
+        <div class="summary-line total"><span>Total</span><span class="val" id="sumTotal" style="color:var(--red);font-family:'Bebas Neue',sans-serif;font-size:24px;">$99</span></div>
+      </div>
+      <ul class="summary-feats" id="sumFeats">
+        <li>50 custom pin designs</li>
+        <li>Advanced Pinterest SEO</li>
+        <li>Keyword title suggestions</li>
+        <li>Brand kit matching</li>
+        <li>PNG + PSD source files</li>
+      </ul>
+      <a href="/#services" class="change-plan">← Change Plan</a>
+    </div>
+
+    <div class="trust-row">
+      <div class="trust-item">
+        <div class="trust-item-icon">🔒</div>
+        <div class="trust-item-text">SSL Secure Payment</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item-icon">↩️</div>
+        <div class="trust-item-text">48hr Refund Policy</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item-icon">✏️</div>
+        <div class="trust-item-text">Unlimited Revisions</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   CONFIGURATION — update these values
+═══════════════════════════════════════════════════ */
+const CONFIG = {
+  // Your Razorpay Key ID (starts with rzp_live_ or rzp_test_)
+  razorpayKeyId: 'YOUR_RAZORPAY_KEY_ID',
+  
+  // Your Stripe Publishable Key (starts with pk_live_ or pk_test_)
+  stripePublishableKey: 'YOUR_STRIPE_PUBLISHABLE_KEY',
+  
+  // Your backend URL for creating Stripe Payment Intent
+  // You need a small backend for Stripe (see setup guide below)
+  stripeBackendUrl: 'https://YOUR_BACKEND/create-payment-intent',
+  
+  // Business name shown on Razorpay checkout
+  businessName: 'PinStudio',
+  businessLogo: 'https://clickablepins.online/logo.png',
+  supportEmail: 'support@clickablepins.online',
+};
+
+/* ═══════════════════════════════════════════════════
+   PLAN DATA
+═══════════════════════════════════════════════════ */
+const PLANS = {
+  starter: {
+    name: 'Starter', badge: '', priceUSD: 49, priceINR: 4099,
+    pins: '15 custom pins', delivery: '1 business day',
+    feats: ['15 custom pin designs','1-day delivery','Basic keyword research','Brand colors & fonts','PNG files ready to post'],
+    razorpayDesc: '15 Custom Pinterest Pins — Starter Plan'
+  },
+  growth: {
+    name: 'Growth', badge: 'BEST VALUE', priceUSD: 99, priceINR: 8249,
+    pins: '50 custom pins', delivery: '2 business days',
+    feats: ['50 custom pin designs','Advanced Pinterest SEO','Keyword title suggestions','Brand kit matching','PNG + PSD source files'],
+    razorpayDesc: '50 Custom Pinterest Pins — Growth Plan'
+  },
+  monthly: {
+    name: 'Monthly', badge: '', priceUSD: 249, priceINR: 20749,
+    pins: '5 pins daily', delivery: 'Daily throughout month',
+    feats: ['5 custom pins daily','Full Pinterest management','Monthly SEO keyword refresh','Board optimization','Performance report monthly'],
+    razorpayDesc: 'Monthly Pinterest Pin Management'
+  }
+};
+
+// Read plan from URL param: ?plan=starter / ?plan=growth / ?plan=monthly
+const urlParams = new URLSearchParams(window.location.search);
+const planKey = urlParams.get('plan') || 'growth';
+const plan = PLANS[planKey] || PLANS.growth;
+
+// Populate summary
+document.getElementById('summaryPlan').textContent = plan.name + ' Plan';
+document.getElementById('summaryBadge').textContent = plan.badge || 'PIN DESIGN';
+document.getElementById('summaryBadge').style.display = plan.badge ? '' : 'none';
+document.getElementById('sumPlan').textContent = plan.name;
+document.getElementById('sumPins').textContent = plan.pins;
+document.getElementById('sumDelivery').textContent = plan.delivery;
+document.getElementById('sumTotal').textContent = '$' + plan.priceUSD;
+const featsEl = document.getElementById('sumFeats');
+featsEl.innerHTML = plan.feats.map(f => `<li>${f}</li>`).join('');
+
+/* ═══════════════════════════════════════════════════
+   REGION SWITCH
+═══════════════════════════════════════════════════ */
+function switchRegion(region) {
+  document.getElementById('tabIN').classList.toggle('active', region === 'IN');
+  document.getElementById('tabINTL').classList.toggle('active', region === 'INTL');
+  document.getElementById('secIN').classList.toggle('active', region === 'IN');
+  document.getElementById('secINTL').classList.toggle('active', region === 'INTL');
+  // Update price in summary
+  document.getElementById('sumTotal').textContent = region === 'IN'
+    ? '₹' + plan.priceINR.toLocaleString('en-IN')
+    : '$' + plan.priceUSD;
+}
+
+function getFormData() {
+  const fname = document.getElementById('fname').value.trim();
+  const lname = document.getElementById('lname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  if (!fname || !email) { alert('Please enter your name and email.'); return null; }
+  if (!email.includes('@')) { alert('Please enter a valid email address.'); return null; }
+  return { name: `${fname} ${lname}`, email, phone };
+}
+
+/* ═══════════════════════════════════════════════════
+   RAZORPAY PAYMENT (India — INR)
+═══════════════════════════════════════════════════ */
+function payRazorpay() {
+  const user = getFormData();
+  if (!user) return;
+
+  const options = {
+    key: CONFIG.razorpayKeyId,
+    amount: plan.priceINR * 100, // in paise
+    currency: 'INR',
+    name: CONFIG.businessName,
+    description: plan.razorpayDesc,
+    image: CONFIG.businessLogo,
+    prefill: {
+      name: user.name,
+      email: user.email,
+      contact: user.phone || ''
+    },
+    theme: { color: '#E01919' },
+    modal: { backdropclose: false },
+    handler: function(response) {
+      // Payment success
+      showSuccess(user.email, plan.delivery, response.razorpay_payment_id);
+    },
+    notes: {
+      store_link: document.getElementById('storelink').value,
+      plan: plan.name
+    }
+  };
+
+  if (CONFIG.razorpayKeyId === 'YOUR_RAZORPAY_KEY_ID') {
+    alert('⚠️ Razorpay is not configured yet.\n\nTo enable payments:\n1. Log in to your Razorpay dashboard\n2. Copy your API Key ID (Settings → API Keys)\n3. Replace YOUR_RAZORPAY_KEY_ID in this file\n\nSee the setup guide included with your files.');
+    return;
+  }
+
+  const rzp = new Razorpay(options);
+  rzp.on('payment.failed', function(response) {
+    alert('Payment failed: ' + response.error.description + '\nPlease try again or contact support@clickablepins.online');
+  });
+  rzp.open();
+}
+
+/* ═══════════════════════════════════════════════════
+   STRIPE PAYMENT (International — USD)
+═══════════════════════════════════════════════════ */
+let stripe, cardElement;
+
+function initStripe() {
+  if (CONFIG.stripePublishableKey === 'YOUR_STRIPE_PUBLISHABLE_KEY') return;
+  stripe = Stripe(CONFIG.stripePublishableKey);
+  const elements = stripe.elements();
+  cardElement = elements.create('card', {
+    style: {
+      base: {
+        fontSize: '15px',
+        fontFamily: '"DM Sans", sans-serif',
+        color: '#1A0505',
+        '::placeholder': { color: 'rgba(107,51,51,0.4)' }
+      },
+      invalid: { color: '#E01919', iconColor: '#E01919' }
+    }
+  });
+  cardElement.mount('#card-element');
+  cardElement.on('change', function(event) {
+    const displayError = document.getElementById('card-errors');
+    displayError.textContent = event.error ? event.error.message : '';
+  });
+}
+
+async function payStripe() {
+  const user = getFormData();
+  if (!user) return;
+
+  if (CONFIG.stripePublishableKey === 'YOUR_STRIPE_PUBLISHABLE_KEY') {
+    alert('⚠️ Stripe is not configured yet.\n\nTo enable international payments:\n1. Create a Stripe account at stripe.com\n2. Get your Publishable Key from Dashboard → Developers → API Keys\n3. Set up the backend (Node.js/PHP) to create Payment Intents\n4. Replace the placeholder keys in this file\n\nSee the setup guide included with your files.');
+    return;
+  }
+
+  const btn = document.getElementById('stripeBtn');
+  const btnText = document.getElementById('stripeBtnText');
+  btn.disabled = true;
+  btnText.textContent = 'Processing...';
+
+  try {
+    // Step 1: Create payment intent on your backend
+    const res = await fetch(CONFIG.stripeBackendUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        amount: plan.priceUSD * 100, // in cents
+        currency: 'usd',
+        plan: plan.name,
+        customer_email: user.email,
+        customer_name: user.name
+      })
+    });
+    const { clientSecret } = await res.json();
+
+    // Step 2: Confirm payment with Stripe.js
+    const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: cardElement,
+        billing_details: { name: user.name, email: user.email }
+      }
+    });
+
+    if (error) {
+      document.getElementById('card-errors').textContent = error.message;
+      btn.disabled = false;
+      btnText.textContent = 'Pay Securely with Stripe';
+    } else if (paymentIntent.status === 'succeeded') {
+      showSuccess(user.email, plan.delivery, paymentIntent.id);
+    }
+  } catch (err) {
+    document.getElementById('card-errors').textContent = 'Payment failed. Please try again or contact support@clickablepins.online';
+    btn.disabled = false;
+    btnText.textContent = 'Pay Securely with Stripe';
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   SUCCESS SCREEN
+═══════════════════════════════════════════════════ */
+function showSuccess(email, delivery, paymentId) {
+  document.getElementById('checkoutForm').style.display = 'none';
+  document.getElementById('successEmail').textContent = email;
+  document.getElementById('deliveryTime').textContent = delivery;
+  document.getElementById('successScreen').classList.add('show');
+  // Optionally send notification to yourself
+  console.log('Payment successful:', paymentId, email);
+}
+
+/* ═══════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════ */
+// Start on International tab by default
+switchRegion('INTL');
+// Init Stripe elements
+window.addEventListener('load', initStripe);
+</script>
+</body>
+</html>

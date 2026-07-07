@@ -1,308 +1,397 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>PinStudio — Pinterest Pin Design for Etsy & Shopify Sellers</title>
-  <meta name="description" content="I help Etsy & Shopify store owners get consistent Pinterest traffic using SEO-based pin designs. Get 2 FREE pins  no risk, no commitment.">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet"/>
-  <style>
-    :root{
-      --red:#E01919;
-      --red-dark:#B51212;
-      --red-light:#FF3B3B;
-      --red-pale:#FFF0F0;
-      --white:#FFFFFF;
-      --off-white:#FFF8F8;
-      --light:#F9F0F0;
-      --ink:#1A0505;
-      --muted:#6B3333;
-      --border:rgba(224,25,25,.15);
-    }
-    *{margin:0;padding:0;box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
-    body{background:var(--white);color:var(--ink);font-family:"DM Sans",sans-serif;overflow-x:hidden;}
-    .serif{font-family:"Playfair Display",serif;}
-    .eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:600;color:var(--red);display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;}
-    .eyebrow::before{content:"";width:24px;height:2px;background:var(--red);}
-    .reveal{opacity:0;transform:translateY(28px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1);}
-    .reveal.visible{opacity:1;transform:none;}
-    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.32s}.d4{transition-delay:.44s}
-    .topbar{background:var(--red);color:rgba(255,255,255,.9);text-align:center;padding:10px 20px;font-size:12px;letter-spacing:.3px;font-weight:500;}
-    .topbar strong{color:#fff;font-weight:700;}
-    .topbar a{color:#FFD0D0;text-decoration:none;font-weight:700;margin-left:8px;border-bottom:1px solid rgba(255,255,255,.4);}
-    nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 60px;display:flex;align-items:center;justify-content:space-between;height:70px;transition:box-shadow .3s;}
-    nav.scrolled{box-shadow:0 4px 30px rgba(224,25,25,.08);}
-    .logo{text-decoration:none;display:flex;align-items:center;gap:10px;}
-    .logo-icon{width:38px;height:38px;position:relative;flex-shrink:0;}
-    .logo-icon svg{position:absolute;inset:0;width:100%;height:100%;}
-    .logo-pin-bg{animation:logoPulse 3s ease-in-out infinite;}
-    .logo-pin-needle{animation:logoSway 3s ease-in-out infinite;}
-    .logo-text-wrap{display:flex;flex-direction:column;line-height:1;}
-    .logo-top{font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:2px;color:var(--ink);line-height:1;}
-    .logo-top span{color:var(--red);}
-    .logo-sub{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);font-weight:500;margin-top:1px;}
-    @keyframes logoPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
-    @keyframes logoSway{0%,100%{transform:rotate(-5deg);}50%{transform:rotate(5deg);}}
-    .nav-links{list-style:none;display:flex;gap:28px;}
-    .nav-links a{font-size:12px;letter-spacing:1px;text-transform:uppercase;font-weight:600;color:var(--muted);text-decoration:none;transition:color .2s;padding:4px 0;position:relative;}
-    .nav-links a::after{content:"";position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--red);transition:width .25s;}
-    .nav-links a:hover{color:var(--red);}
-    .nav-links a:hover::after{width:100%;}
-    .nav-cta{background:var(--red);color:#fff;padding:11px 24px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;text-decoration:none;border-radius:3px;transition:all .25s;box-shadow:0 4px 18px rgba(224,25,25,.3);}
-    .nav-cta:hover{background:var(--red-dark);transform:translateY(-1px);box-shadow:0 6px 22px rgba(224,25,25,.4);}
-    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
-    .hamburger span{display:block;width:24px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s;}
-    .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
-    .hamburger.open span:nth-child(2){opacity:0;}
-    .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
-    .mobile-menu{display:none;position:fixed;inset:70px 0 0 0;background:#fff;z-index:199;padding:30px 24px;flex-direction:column;gap:6px;border-top:2px solid var(--red);}
-    .mobile-menu.open{display:flex;}
-    .mobile-menu a{font-size:16px;font-weight:600;color:var(--ink);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border);}
-    .mobile-menu a:last-child{border:none;background:var(--red);color:#fff;text-align:center;border-radius:3px;padding:16px;margin-top:10px;letter-spacing:1px;text-transform:uppercase;font-size:13px;}
-    #hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:stretch;}
-    .hero-left{display:flex;flex-direction:column;justify-content:center;padding:80px 56px 80px 70px;position:relative;}
-    .hero-left::after{content:"";position:absolute;top:0;right:0;width:1px;height:100%;background:linear-gradient(180deg,transparent,var(--red) 50%,transparent);}
-    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--red-pale);border:1px solid rgba(224,25,25,.2);border-radius:100px;padding:7px 16px;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);margin-bottom:28px;animation:fadeInDown .8s ease both;}
-    .hero-badge::before{content:"●";font-size:8px;animation:blink 1.4s infinite;}
-    @keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
-    @keyframes fadeInDown{from{opacity:0;transform:translateY(-16px);}to{opacity:1;transform:none;}}
-    .hero-h1{font-family:"Playfair Display",serif;font-size:clamp(40px,4.8vw,72px);line-height:1.04;font-weight:900;margin-bottom:22px;animation:fadeInUp .9s .1s ease both;}
-    .hero-h1 em{font-style:italic;color:var(--red);}
-    .hero-sub{font-size:16px;line-height:1.85;color:var(--muted);max-width:420px;margin-bottom:32px;font-weight:400;animation:fadeInUp .9s .2s ease both;}
-    .hero-free-box{background:var(--red-pale);border:2px solid rgba(224,25,25,.2);border-radius:12px;padding:22px 26px;margin-bottom:32px;animation:fadeInUp .9s .28s ease both;max-width:420px;}
-    .hero-free-title{font-family:"Playfair Display",serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:10px;}
-    .hero-free-steps{display:flex;flex-direction:column;gap:7px;}
-    .hero-free-step{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);}
-    .hfs-num{width:22px;height:22px;background:var(--red);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
-    .hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeInUp .9s .34s ease both;}
-    .btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:#fff;padding:18px 38px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-decoration:none;border-radius:3px;transition:all .25s;box-shadow:0 8px 30px rgba(224,25,25,.35);}
-    .btn-primary:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:0 12px 36px rgba(224,25,25,.45);}
-    .btn-ghost{display:inline-flex;align-items:center;gap:10px;border:2px solid rgba(224,25,25,.3);color:var(--red);padding:18px 30px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-decoration:none;border-radius:3px;transition:all .2s;}
-    .btn-ghost:hover{background:var(--red);color:#fff;border-color:var(--red);}
-    .hero-trust{font-size:12px;color:var(--muted);margin-top:22px;animation:fadeInUp .9s .42s ease both;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-    .hero-trust-stars{color:var(--red);letter-spacing:2px;}
-    .hero-right{background:var(--ink);position:relative;overflow:hidden;}
-    .hero-mosaic{width:100%;height:100%;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr 1fr;gap:4px;padding:4px;}
-    .hm-pin{overflow:hidden;position:relative;}
-    .hm-pin img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;display:block;}
-    .hm-pin:hover img{transform:scale(1.07);}
-    .hm-pin:nth-child(1){grid-row:1/3;}
-    .hm-pin:nth-child(4){grid-row:2/4;}
-    .hero-overlay-badge{position:absolute;bottom:28px;left:24px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border:2px solid var(--red);border-radius:10px;padding:16px 20px;animation:floatY 4s ease-in-out infinite;}
-    .hob-val{font-family:"Bebas Neue",sans-serif;font-size:32px;color:var(--red);line-height:1;}
-    .hob-lbl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:3px;font-weight:600;}
-    .marquee-wrap{background:var(--red);padding:14px 0;overflow:hidden;}
-    .marquee-track{display:inline-block;white-space:nowrap;animation:marquee 26s linear infinite;}
-    .marquee-track span{font-family:"Bebas Neue",sans-serif;font-size:14px;letter-spacing:4px;color:rgba(255,255,255,.8);padding:0 18px;}
-    .marquee-track span.dot{color:rgba(255,255,255,.35);padding:0 4px;}
-    section{padding:90px 70px;}
-    @media(max-width:900px){section{padding:60px 24px;}}
-    #who{background:var(--off-white);}
-    .who-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:50px;}
-    .who-copy h2{font-family:"Playfair Display",serif;font-size:clamp(30px,3.2vw,48px);font-weight:900;line-height:1.1;margin-bottom:18px;}
-    .who-copy h2 em{font-style:italic;color:var(--red);}
-    .who-copy p{font-size:15px;line-height:1.9;color:var(--muted);margin-bottom:22px;}
-    .who-list{list-style:none;display:flex;flex-direction:column;gap:12px;}
-    .who-list li{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--ink);line-height:1.6;}
-    .who-list li::before{content:"→";color:var(--red);font-weight:700;flex-shrink:0;margin-top:2px;}
-    .who-cards{display:flex;flex-direction:column;gap:14px;}
-    .who-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:22px 24px;transition:all .3s;cursor:default;}
-    .who-card:hover{transform:translateX(6px);border-color:var(--red);box-shadow:0 6px 24px rgba(224,25,25,.1);}
-    .who-card-icon{font-size:24px;margin-bottom:9px;}
-    .who-card-title{font-family:"Playfair Display",serif;font-size:17px;font-weight:700;margin-bottom:5px;}
-    .who-card-desc{font-size:13px;color:var(--muted);line-height:1.75;}
-    #how{background:#fff;}
-    .how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:52px;position:relative;}
-    .how-steps::before{content:"";position:absolute;top:44px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,var(--red),rgba(224,25,25,.2),var(--red));opacity:.3;z-index:0;}
-    .step{padding:28px 20px;position:relative;z-index:1;text-align:center;}
-    .step-num{font-family:"Bebas Neue",sans-serif;font-size:56px;color:rgba(224,25,25,.07);line-height:1;position:absolute;top:0;left:50%;transform:translateX(-50%);}
-    .step-icon{width:72px;height:72px;background:var(--red-pale);border:2px solid rgba(224,25,25,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:22px auto 18px;font-size:26px;transition:all .3s;}
-    .step:hover .step-icon{transform:scale(1.12);background:var(--red);border-color:var(--red);}
-    .step-title{font-family:"Playfair Display",serif;font-size:17px;font-weight:700;margin-bottom:9px;}
-    .step-desc{font-size:13px;color:var(--muted);line-height:1.75;}
-    #work{background:var(--off-white);}
-    .section-head h2{font-family:"Playfair Display",serif;font-size:clamp(28px,3.2vw,50px);font-weight:900;line-height:1.08;margin-top:8px;}
-    .section-head h2 em{font-style:italic;color:var(--red);}
-    .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;}
-    .fbtn{padding:9px 20px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-family:"DM Sans",sans-serif;font-weight:600;border:2px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;border-radius:100px;transition:all .22s;}
-    .fbtn.active,.fbtn:hover{background:var(--red);color:#fff;border-color:var(--red);}
-    .pin-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
-    .pin-card{position:relative;overflow:hidden;border-radius:8px;cursor:pointer;background:#fff;transition:transform .35s cubic-bezier(.22,.61,.36,1),box-shadow .3s;}
-    .pin-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(224,25,25,.15);}
-    .pin-card img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block;transition:transform .6s ease;}
-    .pin-card:hover img{transform:scale(1.05);}
-    .pin-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,5,5,.92) 0%,transparent 55%);opacity:0;transition:opacity .35s;display:flex;flex-direction:column;justify-content:flex-end;padding:16px 14px;}
-    .pin-card:hover .pin-overlay{opacity:1;}
-    .pin-title{font-family:"Playfair Display",serif;font-size:13px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:4px;}
-    .pin-kw{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,200,200,.7);}
-    .pin-badge{position:absolute;top:8px;left:8px;background:var(--red);color:#fff;font-size:9px;font-weight:700;padding:3px 9px;border-radius:100px;opacity:0;transition:opacity .3s;letter-spacing:.5px;}
-    .pin-card:hover .pin-badge{opacity:1;}
-    #offer{background:var(--red);position:relative;overflow:hidden;}
-    #offer::before{content:"";position:absolute;top:-100px;right:-80px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);}
-    #offer::after{content:"";position:absolute;bottom:-80px;left:-60px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(0,0,0,.12) 0%,transparent 70%);}
-    .offer-inner{display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center;position:relative;z-index:1;}
-    .offer-tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.6);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
-    .offer-tag::before{content:"";width:24px;height:2px;background:rgba(255,255,255,.4);}
-    .offer-h2{font-family:"Playfair Display",serif;font-size:clamp(32px,3.8vw,58px);font-weight:900;line-height:1.05;color:#fff;margin-bottom:16px;}
-    .offer-h2 em{font-style:italic;opacity:.85;}
-    .offer-desc{font-size:15px;line-height:1.85;color:rgba(255,255,255,.65);max-width:500px;margin-bottom:28px;}
-    .offer-steps{display:flex;flex-direction:column;gap:12px;margin-bottom:30px;}
-    .offer-step{display:flex;align-items:flex-start;gap:14px;font-size:14px;color:rgba(255,255,255,.6);}
-    .offer-step-num{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;}
-    .offer-card{background:#fff;border-radius:16px;padding:36px 32px;min-width:250px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.2);}
-    .offer-was{font-size:13px;color:rgba(26,5,5,.3);text-decoration:line-through;margin-bottom:4px;}
-    .offer-price{font-family:"Bebas Neue",sans-serif;font-size:80px;color:var(--red);line-height:1;}
-    .offer-price-lbl{font-size:12px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:-4px;margin-bottom:18px;font-weight:600;}
-    .offer-feats{list-style:none;text-align:left;display:flex;flex-direction:column;gap:9px;margin-bottom:24px;}
-    .offer-feats li{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:9px;}
-    .offer-feats li::before{content:"✓";color:var(--red);font-weight:700;flex-shrink:0;}
-    .btn-offer{display:block;background:var(--red);color:#fff;padding:16px 24px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-decoration:none;border-radius:3px;text-align:center;transition:all .22s;box-shadow:0 6px 24px rgba(224,25,25,.35);}
-    .btn-offer:hover{background:var(--red-dark);transform:translateY(-2px);}
-    .offer-note{font-size:11px;color:rgba(26,5,5,.3);text-align:center;margin-top:10px;letter-spacing:.5px;}
-    .btn-white{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--red);padding:18px 36px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-decoration:none;border-radius:3px;transition:all .25s;box-shadow:0 8px 28px rgba(0,0,0,.15);}
-    .btn-white:hover{background:var(--red-pale);transform:translateY(-2px);}
-    #services{background:#fff;}
-    .plans-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:50px;}
-    .plan{background:var(--off-white);border:2px solid var(--border);border-radius:12px;padding:34px 24px;position:relative;transition:all .3s;}
-    .plan:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(224,25,25,.1);border-color:var(--red);}
-    .plan.featured{background:var(--ink);border-color:var(--red);}
-    .plan-badge{display:inline-block;font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:700;background:var(--red);color:#fff;padding:4px 12px;border-radius:100px;margin-bottom:16px;}
-    .plan-name{font-family:"Playfair Display",serif;font-size:24px;font-weight:900;margin-bottom:6px;color:var(--ink);}
-    .plan.featured .plan-name{color:#fff;}
-    .plan-price{font-family:"Bebas Neue",sans-serif;font-size:58px;color:var(--red);line-height:1;margin-bottom:2px;}
-    .plan-period{font-size:12px;color:var(--muted);letter-spacing:1px;margin-bottom:10px;font-weight:600;}
-    .plan.featured .plan-period{color:rgba(255,255,255,.35);}
-    .plan-highlight{font-size:11px;font-weight:700;color:var(--red);background:rgba(224,25,25,.08);border:1.5px solid rgba(224,25,25,.15);border-radius:100px;padding:4px 12px;display:inline-block;margin-bottom:18px;}
-    .plan.featured .plan-highlight{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:rgba(255,200,200,.9);}
-    .plan-desc{font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:18px;}
-    .plan.featured .plan-desc{color:rgba(255,255,255,.4);}
-    .plan-feats{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:26px;}
-    .plan-feats li{font-size:13px;color:var(--muted);display:flex;align-items:flex-start;gap:9px;line-height:1.55;}
-    .plan-feats li::before{content:"—";color:var(--red);font-size:11px;flex-shrink:0;margin-top:2px;}
-    .plan.featured .plan-feats li{color:rgba(255,255,255,.4);}
-    .plan.featured .plan-feats li::before{color:rgba(255,200,200,.7);}
-    .plan-btn{display:block;text-align:center;padding:14px 20px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;text-decoration:none;border-radius:3px;transition:all .22s;cursor:pointer;background:none;border:2px solid var(--border);color:var(--muted);font-family:"DM Sans",sans-serif;width:100%;}
-    .plan-btn:hover{background:var(--red);color:#fff;border-color:var(--red);}
-    .plan.featured .plan-btn{background:var(--red);color:#fff;border-color:var(--red);}
-    .plan.featured .plan-btn:hover{background:var(--red-light);}
-    #seo-sample{background:var(--off-white);}
-    .seo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px;}
-    .seo-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;overflow:hidden;transition:all .3s;}
-    .seo-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(224,25,25,.1);border-color:var(--red);}
-    .seo-pin{width:100%;height:220px;object-fit:cover;display:block;}
-    .seo-info{padding:20px 22px;}
-    .seo-title{font-family:"Playfair Display",serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.4;}
-    .seo-kw-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;font-weight:600;}
-    .seo-kw{font-size:13px;color:var(--red);font-weight:600;}
-    #contact{background:#fff;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
-    .contact-intro h2{font-family:"Playfair Display",serif;font-size:clamp(28px,3.2vw,48px);font-weight:900;line-height:1.08;margin-top:10px;margin-bottom:18px;}
-    .contact-intro h2 em{font-style:italic;color:var(--red);}
-    .contact-intro p{font-size:15px;line-height:1.9;color:var(--muted);margin-bottom:28px;}
-    .contact-reassure{display:flex;flex-direction:column;gap:12px;}
-    .reassure-item{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);}
-    .reassure-icon{width:22px;height:22px;background:var(--red-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--red);font-size:11px;flex-shrink:0;font-weight:700;}
-    .contact-form{display:flex;flex-direction:column;gap:20px;background:var(--off-white);border:1.5px solid var(--border);border-radius:14px;padding:36px;}
-    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-    .fg{display:flex;flex-direction:column;gap:7px;}
-    .fl{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:var(--muted);}
-    .fi{background:#fff;border:1.5px solid var(--border);border-radius:6px;padding:13px 16px;font-size:14px;font-family:"DM Sans",sans-serif;color:var(--ink);outline:none;transition:border-color .2s;width:100%;}
-    .fi:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(224,25,25,.07);}
-    .fi::placeholder{color:rgba(107,51,51,.3);}
-    select.fi{-webkit-appearance:none;appearance:none;cursor:pointer;}
-    textarea.fi{resize:none;height:90px;}
-    .form-submit{background:var(--red);color:#fff;border:none;padding:17px 36px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:"DM Sans",sans-serif;transition:all .22s;align-self:flex-start;border-radius:3px;box-shadow:0 6px 22px rgba(224,25,25,.3);}
-    .form-submit:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:0 10px 28px rgba(224,25,25,.4);}
-    .form-legal{font-size:11px;color:var(--muted);line-height:1.6;margin-top:-8px;}
-    .form-legal a{color:var(--red);text-decoration:none;}
-    .form-legal a:hover{text-decoration:underline;}
-    #faq{background:var(--off-white);}
-    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 60px;margin-top:50px;}
-    .faq-item{border-bottom:1.5px solid var(--border);}
-    .faq-q{display:flex;align-items:center;justify-content:space-between;padding:20px 0;cursor:pointer;gap:20px;}
-    .faq-q-text{font-family:"Playfair Display",serif;font-size:17px;font-weight:700;color:var(--ink);line-height:1.3;}
-    .faq-icon{width:30px;height:30px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s;}
-    .faq-icon svg{stroke:var(--muted);transition:transform .3s;}
-    .faq-item.open .faq-icon{background:var(--red);border-color:var(--red);}
-    .faq-item.open .faq-icon svg{stroke:#fff;transform:rotate(45deg);}
-    .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;}
-    .faq-item.open .faq-a{max-height:200px;}
-    .faq-a p{font-size:14px;line-height:1.85;color:var(--muted);padding-bottom:20px;}
-    footer{background:var(--ink);padding:38px 70px;border-top:2px solid rgba(224,25,25,.3);}
-    .footer-main{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
-    .footer-logo-wrap{display:flex;align-items:center;gap:10px;}
-    .footer-logo-icon{width:32px;height:32px;}
-    .footer-logo-text{font-family:"Bebas Neue",sans-serif;font-size:22px;color:#fff;letter-spacing:2px;}
-    .footer-logo-text span{color:var(--red);}
-    .footer-nav{display:flex;gap:24px;flex-wrap:wrap;}
-    .footer-nav a{font-size:12px;color:rgba(255,255,255,.3);text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color .2s;}
-    .footer-nav a:hover{color:var(--red);}
-    .footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:18px;border-top:1px solid rgba(255,255,255,.06);flex-wrap:wrap;gap:10px;}
-    .footer-copy{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.5px;}
-    .footer-legal{display:flex;gap:16px;}
-    .footer-legal a{font-size:11px;color:rgba(255,255,255,.2);text-decoration:none;letter-spacing:.5px;transition:color .2s;}
-    .footer-legal a:hover{color:rgba(255,255,255,.5);}
-    .sticky{position:fixed;bottom:0;left:0;right:0;z-index:500;background:rgba(26,5,5,.97);backdrop-filter:blur(16px);border-top:2px solid var(--red);padding:14px 48px;display:flex;align-items:center;justify-content:space-between;gap:14px;transform:translateY(100%);transition:transform .4s cubic-bezier(.25,.46,.45,.94);box-shadow:0 -4px 32px rgba(0,0,0,.4);}
-    .sticky.show{transform:translateY(0);}
-    .sticky-left{display:flex;align-items:center;gap:12px;}
-    .sticky-stars{color:var(--red-light);letter-spacing:1px;font-size:13px;}
-    .sticky-text{font-size:13px;color:rgba(255,255,255,.5);}
-    .sticky-text strong{color:#fff;}
-    .sticky-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
-    .sticky-btn{background:var(--red);color:#fff;padding:10px 22px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;text-decoration:none;border-radius:3px;transition:background .2s;white-space:nowrap;}
-    .sticky-btn:hover{background:var(--red-light);}
-    .sticky-x{background:none;border:none;color:rgba(255,255,255,.25);font-size:24px;cursor:pointer;line-height:1;transition:color .2s;}
-    .sticky-x:hover{color:#fff;}
-    @keyframes fadeInUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-    @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-    @media(max-width:1100px){.pin-grid{grid-template-columns:repeat(4,1fr);}.plans-grid{grid-template-columns:repeat(2,1fr);}}
-    @media(max-width:900px){
-      nav{padding:0 20px;}.nav-links,.nav-cta{display:none;}.hamburger{display:flex;}
-      #hero{grid-template-columns:1fr;min-height:auto;}.hero-left{padding:48px 24px 36px;}.hero-left::after{display:none;}
-      .hero-right{height:auto;}.hero-mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:150px 150px;gap:4px;padding:4px;}
-      .hm-pin{grid-row:auto!important;}.hm-pin:nth-child(1){grid-row:auto!important;}.hm-pin:nth-child(4){grid-row:auto!important;}.hm-pin:nth-child(5){display:none;}
-      .who-grid{grid-template-columns:1fr;gap:36px;}.how-steps{grid-template-columns:1fr 1fr;gap:20px;}.how-steps::before{display:none;}
-      .pin-grid{grid-template-columns:repeat(3,1fr);}.plans-grid{grid-template-columns:1fr;}.seo-grid{grid-template-columns:1fr 1fr;}
-      .faq-grid{grid-template-columns:1fr;}.offer-inner{grid-template-columns:1fr;gap:36px;}
-      #contact{grid-template-columns:1fr;gap:40px;}.form-row{grid-template-columns:1fr;}
-      footer{padding:28px 24px;}.footer-main{flex-direction:column;gap:16px;text-align:center;}.footer-nav{justify-content:center;}
-      .footer-bottom{flex-direction:column;text-align:center;}.sticky{padding:10px 16px;}.sticky-left{display:none;}.sticky-right{width:100%;justify-content:center;}
-    }
-    @media(max-width:600px){.pin-grid{grid-template-columns:repeat(2,1fr);}.seo-grid{grid-template-columns:1fr;}.hero-btns{flex-direction:column;}.offer-card{min-width:unset;width:100%;}.contact-form{padding:24px 18px;}}
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>PinStudio — Pinterest Pin Design for Etsy & Shopify Sellers</title>
+<meta name="description" content="I help Etsy & Shopify store owners get consistent Pinterest traffic using SEO-based pin designs. Get 2 free pins — no risk, no commitment."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,600&family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --red:#D6301F;
+  --red-dark:#A82415;
+  --red-light:#F2472F;
+  --red-pale:#FDF0EE;
+  --white:#FFFFFF;
+  --off-white:#FBF7F5;
+  --paper:#F6EFEC;
+  --ink:#1F1210;
+  --muted:#7A5A54;
+  --muted-dark:#5C413C;
+  --border:rgba(31,18,16,.10);
+  --border-red:rgba(214,48,31,.22);
+  --shadow-sm:0 2px 10px rgba(31,18,16,.06);
+  --shadow-md:0 12px 32px rgba(31,18,16,.10);
+  --shadow-lg:0 24px 60px rgba(31,18,16,.16);
+  --r-sm:6px;--r-md:12px;--r-lg:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--white);color:var(--ink);font-family:"Inter",sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+.display{font-family:"Fraunces",serif;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+button{font-family:inherit;}
+:focus-visible{outline:2.5px solid var(--red);outline-offset:3px;border-radius:4px;}
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-0.14em;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.icon.filled{fill:currentColor;stroke:none;}
+.eyebrow{font-size:11.5px;letter-spacing:2.6px;text-transform:uppercase;font-weight:700;color:var(--red);display:inline-flex;align-items:center;gap:8px;margin-bottom:12px;}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--red);border-radius:2px;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
+.reveal.visible{opacity:1;transform:none;}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.26s}.d4{transition-delay:.36s}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important;}
+  .reveal{opacity:1;transform:none;}
+}
+
+/* topbar */
+.topbar{background:var(--ink);color:rgba(255,255,255,.82);text-align:center;padding:10px 20px;font-size:12.5px;letter-spacing:.2px;font-weight:500;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;}
+.topbar .icon{color:var(--red-light);}
+.topbar strong{color:#fff;font-weight:700;}
+.topbar a{color:#fff;text-decoration:none;font-weight:700;margin-left:6px;border-bottom:1px solid rgba(255,255,255,.45);display:inline-flex;align-items:center;gap:5px;}
+.topbar a:hover{border-color:#fff;}
+
+/* nav */
+nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 60px;display:flex;align-items:center;justify-content:space-between;height:72px;transition:box-shadow .3s;}
+nav.scrolled{box-shadow:0 4px 24px rgba(31,18,16,.08);}
+.logo{text-decoration:none;display:flex;align-items:center;gap:11px;}
+.logo-icon{width:36px;height:36px;position:relative;flex-shrink:0;}
+.logo-icon svg{position:absolute;inset:0;width:100%;height:100%;}
+.logo-pin-bg{transform-origin:center;animation:logoPulse 3.2s ease-in-out infinite;}
+@keyframes logoPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.06);}}
+.logo-text-wrap{display:flex;flex-direction:column;line-height:1;}
+.logo-top{font-family:"Bebas Neue",sans-serif;font-size:21px;letter-spacing:2px;color:var(--ink);line-height:1;}
+.logo-top span{color:var(--red);}
+.logo-sub{font-size:9px;letter-spacing:2.2px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:2px;}
+.nav-links{list-style:none;display:flex;gap:30px;}
+.nav-links a{font-size:12.5px;letter-spacing:.3px;font-weight:600;color:var(--muted-dark);text-decoration:none;transition:color .2s;padding:4px 0;position:relative;}
+.nav-links a::after{content:"";position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--red);border-radius:2px;transition:width .25s;}
+.nav-links a:hover{color:var(--red);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;padding:11px 22px;font-size:12px;letter-spacing:.3px;font-weight:700;text-decoration:none;border-radius:100px;transition:all .25s;box-shadow:0 6px 18px rgba(214,48,31,.28);}
+.nav-cta:hover{background:var(--red-dark);transform:translateY(-1px);box-shadow:0 8px 22px rgba(214,48,31,.36);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+.mobile-menu{display:none;position:fixed;inset:72px 0 0 0;background:#fff;z-index:199;padding:28px 24px;flex-direction:column;gap:4px;border-top:1px solid var(--border);overflow-y:auto;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-size:16px;font-weight:600;color:var(--ink);text-decoration:none;padding:16px 4px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.mobile-menu a:last-child{border:none;background:var(--red);color:#fff;justify-content:center;gap:8px;border-radius:100px;padding:16px;margin-top:14px;font-size:13.5px;letter-spacing:.3px;}
+
+/* hero */
+#hero{min-height:100vh;display:grid;grid-template-columns:1.05fr 1fr;align-items:stretch;}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:64px 60px 64px 70px;position:relative;background:var(--off-white);}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--red-pale);border:1px solid var(--border-red);border-radius:100px;padding:7px 16px 7px 12px;font-size:11.5px;font-weight:700;letter-spacing:.5px;color:var(--red);margin-bottom:26px;animation:fadeInDown .8s ease both;}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-14px);}to{opacity:1;transform:none;}}
+.hero-h1{font-family:"Fraunces",serif;font-size:clamp(38px,4.4vw,66px);line-height:1.05;font-weight:600;letter-spacing:-.01em;margin-bottom:20px;animation:fadeInUp .9s .1s ease both;}
+.hero-h1 em{font-style:italic;color:var(--red);font-weight:600;}
+.hero-sub{font-size:16px;line-height:1.8;color:var(--muted-dark);max-width:440px;margin-bottom:28px;font-weight:400;animation:fadeInUp .9s .2s ease both;}
+.hero-free-box{background:#fff;border:1.5px solid var(--border-red);border-radius:var(--r-lg);padding:22px 24px;margin-bottom:28px;animation:fadeInUp .9s .28s ease both;max-width:440px;box-shadow:var(--shadow-sm);}
+.hero-free-title{display:flex;align-items:center;gap:10px;font-family:"Fraunces",serif;font-size:18px;font-weight:600;color:var(--ink);margin-bottom:14px;}
+.hero-free-title .icon-badge{width:30px;height:30px;background:var(--red-pale);color:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.hero-free-steps{display:flex;flex-direction:column;gap:9px;}
+.hero-free-step{display:flex;align-items:center;gap:11px;font-size:13.5px;color:var(--muted-dark);}
+.hfs-num{width:21px;height:21px;background:var(--ink);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeInUp .9s .34s ease both;}
+.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--red);color:#fff;padding:17px 32px;font-size:13px;letter-spacing:.3px;font-weight:700;text-decoration:none;border-radius:100px;transition:all .25s;box-shadow:0 10px 28px rgba(214,48,31,.3);}
+.btn-primary:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:0 14px 32px rgba(214,48,31,.4);}
+.btn-primary .icon{transition:transform .25s;}
+.btn-primary:hover .icon{transform:translateX(3px);}
+.btn-ghost{display:inline-flex;align-items:center;gap:9px;border:1.5px solid var(--border);color:var(--ink);padding:17px 28px;font-size:13px;letter-spacing:.3px;font-weight:700;text-decoration:none;border-radius:100px;transition:all .2s;}
+.btn-ghost:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+.hero-trust{font-size:12.5px;color:var(--muted);margin-top:24px;animation:fadeInUp .9s .42s ease both;display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+.star-row{display:inline-flex;gap:2px;color:var(--red);}
+.star-row .icon{width:13px;height:13px;}
+.hero-right{background:var(--ink);position:relative;overflow:hidden;}
+.hero-mosaic{width:100%;height:100%;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr 1fr;gap:3px;padding:3px;}
+.hm-pin{overflow:hidden;position:relative;}
+.hm-pin img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;display:block;}
+.hm-pin:hover img{transform:scale(1.06);}
+.hm-pin:nth-child(1){grid-row:1/3;}
+.hm-pin:nth-child(4){grid-row:2/4;}
+.hero-overlay-badge{position:absolute;bottom:26px;left:22px;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-radius:var(--r-md);padding:14px 18px;display:flex;align-items:center;gap:12px;animation:floatY 4.5s ease-in-out infinite;box-shadow:var(--shadow-md);}
+.hob-icon{width:36px;height:36px;border-radius:50%;background:var(--red-pale);color:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px;}
+.hob-val{font-family:"Fraunces",serif;font-size:19px;font-weight:700;color:var(--ink);line-height:1.15;}
+.hob-lbl{font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin-top:1px;font-weight:600;}
+
+.marquee-wrap{background:var(--ink);padding:15px 0;overflow:hidden;}
+.marquee-track{display:inline-flex;white-space:nowrap;animation:marquee 28s linear infinite;align-items:center;}
+.marquee-track span{font-family:"Bebas Neue",sans-serif;font-size:14px;letter-spacing:3.5px;color:rgba(255,255,255,.72);padding:0 18px;}
+.marquee-track span.dot{color:var(--red-light);padding:0 4px;font-size:8px;}
+
+section{padding:100px 70px;}
+@media(max-width:900px){section{padding:64px 24px;}}
+#who{background:var(--off-white);}
+.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:52px;}
+.who-copy h2{font-family:"Fraunces",serif;font-size:clamp(28px,3vw,44px);font-weight:600;line-height:1.14;margin-bottom:20px;letter-spacing:-.01em;}
+.who-copy h2 em{font-style:italic;color:var(--red);}
+.who-copy p{font-size:15px;line-height:1.9;color:var(--muted-dark);margin-bottom:20px;}
+.who-list{list-style:none;display:flex;flex-direction:column;gap:14px;}
+.who-list li{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--ink);line-height:1.65;}
+.who-list li .icon{color:var(--red);margin-top:2px;}
+.who-cards{display:flex;flex-direction:column;gap:14px;}
+.who-card{background:#fff;border:1px solid var(--border);border-radius:var(--r-md);padding:22px 24px;transition:all .3s;cursor:default;display:flex;align-items:center;gap:16px;}
+.who-card:hover{transform:translateX(6px);border-color:var(--border-red);box-shadow:var(--shadow-sm);}
+.who-card-icon-wrap{width:60px;height:60px;border-radius:var(--r-sm);object-fit:cover;flex-shrink:0;}
+.who-card-title{font-family:"Fraunces",serif;font-size:16.5px;font-weight:600;margin-bottom:5px;}
+.who-card-desc{font-size:13px;color:var(--muted-dark);line-height:1.7;}
+
+#how{background:#fff;}
+.how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;position:relative;}
+.how-steps::before{content:"";position:absolute;top:36px;left:12.5%;right:12.5%;height:1px;background:var(--border);z-index:0;}
+.step{padding:0 20px;position:relative;z-index:1;text-align:center;}
+.step-icon{width:72px;height:72px;border-radius:50%;margin:0 auto 20px;overflow:hidden;box-shadow:var(--shadow-sm);border:3px solid #fff;outline:1px solid var(--border);}
+.step-icon img{width:100%;height:100%;object-fit:cover;}
+.step-tag{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;background:var(--red);color:#fff;border-radius:50%;font-size:11px;font-weight:700;margin-bottom:14px;}
+.step-title{font-family:"Fraunces",serif;font-size:17px;font-weight:600;margin-bottom:10px;}
+.step-desc{font-size:13px;color:var(--muted-dark);line-height:1.75;}
+
+#work{background:var(--off-white);}
+.section-head h2{font-family:"Fraunces",serif;font-size:clamp(27px,3vw,46px);font-weight:600;line-height:1.12;margin-top:6px;letter-spacing:-.01em;}
+.section-head h2 em{font-style:italic;color:var(--red);}
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px;}
+.fbtn{padding:9px 20px;font-size:12px;letter-spacing:.3px;font-family:"Inter",sans-serif;font-weight:600;border:1.5px solid var(--border);background:transparent;color:var(--muted-dark);cursor:pointer;border-radius:100px;transition:all .22s;}
+.fbtn.active,.fbtn:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+.pin-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+.pin-card{position:relative;overflow:hidden;border-radius:var(--r-md);cursor:pointer;background:#fff;transition:transform .35s cubic-bezier(.22,.61,.36,1),box-shadow .3s;border:1px solid var(--border);}
+.pin-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);}
+.pin-card img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block;transition:transform .6s ease;}
+.pin-card:hover img{transform:scale(1.05);}
+.pin-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(31,18,16,.94) 0%,transparent 55%);opacity:0;transition:opacity .35s;display:flex;flex-direction:column;justify-content:flex-end;padding:16px 14px;}
+.pin-card:hover .pin-overlay{opacity:1;}
+.pin-title{font-family:"Fraunces",serif;font-size:13px;font-weight:600;color:#fff;line-height:1.35;margin-bottom:5px;}
+.pin-kw{font-size:9.5px;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,220,220,.8);display:flex;align-items:center;gap:5px;}
+.pin-badge{position:absolute;top:10px;left:10px;background:rgba(255,255,255,.95);color:var(--ink);font-size:9.5px;font-weight:700;padding:4px 10px;border-radius:100px;opacity:0;transition:opacity .3s;letter-spacing:.3px;}
+.pin-card:hover .pin-badge{opacity:1;}
+
+#offer{background:var(--ink);position:relative;overflow:hidden;}
+#offer::before{content:"";position:absolute;top:-120px;right:-100px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(214,48,31,.18) 0%,transparent 70%);}
+.offer-inner{display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center;position:relative;z-index:1;}
+.offer-tag{font-size:11.5px;letter-spacing:2.6px;text-transform:uppercase;font-weight:700;color:var(--red-light);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.offer-tag::before{content:"";width:22px;height:2px;background:var(--red-light);border-radius:2px;}
+.offer-h2{font-family:"Fraunces",serif;font-size:clamp(30px,3.6vw,54px);font-weight:600;line-height:1.1;color:#fff;margin-bottom:18px;letter-spacing:-.01em;}
+.offer-h2 em{font-style:italic;color:var(--red-light);}
+.offer-desc{font-size:15px;line-height:1.85;color:rgba(255,255,255,.62);max-width:500px;margin-bottom:30px;}
+.offer-steps{display:flex;flex-direction:column;gap:13px;margin-bottom:32px;}
+.offer-step{display:flex;align-items:flex-start;gap:14px;font-size:14px;color:rgba(255,255,255,.62);}
+.offer-step-num{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;}
+.offer-card{background:#fff;border-radius:var(--r-lg);padding:38px 34px;min-width:260px;text-align:center;box-shadow:0 30px 70px rgba(0,0,0,.35);}
+.offer-was{font-size:13px;color:rgba(31,18,16,.32);text-decoration:line-through;margin-bottom:6px;}
+.offer-price{font-family:"Fraunces",serif;font-size:52px;font-weight:700;color:var(--red);line-height:1;}
+.offer-price-lbl{font-size:12px;color:var(--muted);letter-spacing:.4px;margin-top:6px;margin-bottom:20px;font-weight:600;}
+.offer-feats{list-style:none;text-align:left;display:flex;flex-direction:column;gap:11px;margin-bottom:26px;}
+.offer-feats li{font-size:13px;color:var(--muted-dark);display:flex;align-items:center;gap:10px;}
+.offer-feats li .icon{color:var(--red);flex-shrink:0;}
+.btn-offer{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--red);color:#fff;padding:16px 24px;font-size:12px;letter-spacing:.3px;font-weight:700;text-decoration:none;border-radius:100px;text-align:center;transition:all .22s;box-shadow:0 10px 26px rgba(214,48,31,.32);}
+.btn-offer:hover{background:var(--red-dark);transform:translateY(-2px);}
+.offer-note{font-size:11.5px;color:rgba(31,18,16,.35);text-align:center;margin-top:12px;letter-spacing:.2px;}
+.btn-white{display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--red);padding:17px 32px;font-size:13px;letter-spacing:.3px;font-weight:700;text-decoration:none;border-radius:100px;transition:all .25s;box-shadow:0 10px 26px rgba(0,0,0,.2);}
+.btn-white:hover{background:var(--red-pale);transform:translateY(-2px);}
+
+#services{background:#fff;}
+.plans-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:52px;}
+.pricing-toggle-wrap{margin-top:30px;}
+.pricing-toggle-btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;padding:16px 30px;font-size:13px;letter-spacing:.3px;font-weight:700;border:none;border-radius:100px;cursor:pointer;transition:all .22s;font-family:"Inter",sans-serif;box-shadow:var(--shadow-sm);}
+.pricing-toggle-btn:hover{background:var(--red);transform:translateY(-2px);box-shadow:var(--shadow-md);}
+.pricing-toggle-btn .icon{transition:transform .3s;}
+.pricing-toggle-wrap.open .pricing-toggle-btn .icon{transform:rotate(180deg);}
+#pricingPanel{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.16,1,.3,1);}
+#pricingPanel.open{max-height:2400px;}
+#pricingPanel .plans-grid{margin-top:38px;}
+.plan{background:var(--off-white);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:32px 26px;position:relative;transition:all .3s;}
+.plan:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:var(--border-red);}
+.plan.featured{background:var(--ink);border-color:var(--ink);}
+.plan-badge{display:inline-block;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700;background:var(--red);color:#fff;padding:5px 13px;border-radius:100px;margin-bottom:18px;}
+.plan-name{font-family:"Fraunces",serif;font-size:22px;font-weight:600;margin-bottom:8px;color:var(--ink);}
+.plan.featured .plan-name{color:#fff;}
+.plan-price{font-family:"Fraunces",serif;font-size:44px;font-weight:700;color:var(--red);line-height:1;margin-bottom:4px;}
+.plan.featured .plan-price{color:var(--red-light);}
+.plan-period{font-size:12px;color:var(--muted);letter-spacing:.3px;margin-bottom:12px;font-weight:600;}
+.plan.featured .plan-period{color:rgba(255,255,255,.4);}
+.plan-highlight{font-size:11px;font-weight:700;color:var(--red);background:var(--red-pale);border:1px solid var(--border-red);border-radius:100px;padding:5px 13px;display:inline-block;margin-bottom:20px;}
+.plan.featured .plan-highlight{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:rgba(255,210,205,.95);}
+.plan-desc{font-size:13px;line-height:1.7;color:var(--muted-dark);margin-bottom:20px;}
+.plan.featured .plan-desc{color:rgba(255,255,255,.45);}
+.plan-feats{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+.plan-feats li{font-size:13px;color:var(--muted-dark);display:flex;align-items:flex-start;gap:9px;line-height:1.55;}
+.plan-feats li .icon{color:var(--red);flex-shrink:0;margin-top:2px;}
+.plan.featured .plan-feats li{color:rgba(255,255,255,.5);}
+.plan.featured .plan-feats li .icon{color:var(--red-light);}
+.plan-btn{display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;padding:14px 20px;font-size:12px;letter-spacing:.3px;font-weight:700;text-decoration:none;border-radius:100px;transition:all .22s;cursor:pointer;background:none;border:1.5px solid var(--border);color:var(--muted-dark);font-family:"Inter",sans-serif;width:100%;}
+.plan-btn:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+.plan.featured .plan-btn{background:var(--red);color:#fff;border-color:var(--red);}
+.plan.featured .plan-btn:hover{background:var(--red-light);}
+
+#seo-sample{background:var(--off-white);}
+.seo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px;}
+.seo-card{background:#fff;border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;transition:all .3s;}
+.seo-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--border-red);}
+.seo-pin{width:100%;height:220px;object-fit:cover;display:block;}
+.seo-info{padding:20px 22px;}
+.seo-title{font-family:"Fraunces",serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:10px;line-height:1.4;}
+.seo-kw-label{font-size:9.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;font-weight:700;display:flex;align-items:center;gap:6px;}
+.seo-kw-label .icon{color:var(--red);}
+.seo-kw{font-size:13px;color:var(--red);font-weight:600;}
+
+#contact{background:#fff;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.contact-intro h2{font-family:"Fraunces",serif;font-size:clamp(27px,3vw,44px);font-weight:600;line-height:1.12;margin-top:10px;margin-bottom:20px;letter-spacing:-.01em;}
+.contact-intro h2 em{font-style:italic;color:var(--red);}
+.contact-intro p{font-size:15px;line-height:1.9;color:var(--muted-dark);margin-bottom:30px;}
+.contact-reassure{display:flex;flex-direction:column;gap:14px;}
+.reassure-item{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted-dark);}
+.reassure-icon{width:24px;height:24px;background:var(--red-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--red);flex-shrink:0;}
+.reassure-icon .icon{width:12px;height:12px;stroke-width:3;}
+.contact-form{display:flex;flex-direction:column;gap:20px;background:var(--off-white);border:1px solid var(--border);border-radius:var(--r-lg);padding:36px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.fg{display:flex;flex-direction:column;gap:8px;}
+.fl{font-size:11.5px;letter-spacing:.4px;font-weight:700;color:var(--muted-dark);}
+.fi{background:#fff;border:1.5px solid var(--border);border-radius:var(--r-sm);padding:13px 16px;font-size:14px;font-family:"Inter",sans-serif;color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s;width:100%;}
+.fi:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(214,48,31,.09);}
+.fi::placeholder{color:rgba(122,90,84,.45);}
+select.fi{-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path d="M1 1l5 5 5-5" stroke="%237A5A54" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>');background-repeat:no-repeat;background-position:right 16px center;padding-right:36px;}
+textarea.fi{resize:none;height:96px;}
+.form-submit{display:flex;align-items:center;justify-content:center;gap:9px;background:var(--red);color:#fff;border:none;padding:17px 36px;font-size:12.5px;letter-spacing:.3px;font-weight:700;cursor:pointer;font-family:"Inter",sans-serif;transition:all .22s;align-self:flex-start;border-radius:100px;box-shadow:0 8px 24px rgba(214,48,31,.28);}
+.form-submit:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:0 12px 28px rgba(214,48,31,.36);}
+.form-legal{font-size:11px;color:var(--muted);line-height:1.6;margin-top:-6px;}
+.form-legal a{color:var(--red);text-decoration:none;}
+.form-legal a:hover{text-decoration:underline;}
+
+#faq{background:var(--off-white);}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 60px;margin-top:52px;}
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:20px 0;cursor:pointer;gap:20px;}
+.faq-q-text{font-family:"Fraunces",serif;font-size:16.5px;font-weight:600;color:var(--ink);line-height:1.35;}
+.faq-icon{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s;color:var(--muted-dark);}
+.faq-item.open .faq-icon{background:var(--red);border-color:var(--red);color:#fff;}
+.faq-icon .icon{transition:transform .3s;}
+.faq-item.open .faq-icon .icon{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+.faq-item.open .faq-a{max-height:220px;}
+.faq-a p{font-size:14px;line-height:1.85;color:var(--muted-dark);padding-bottom:20px;}
+
+footer{background:var(--ink);padding:40px 70px;}
+.footer-main{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:20px;}
+.footer-logo-wrap{display:flex;align-items:center;gap:10px;}
+.footer-logo-icon{width:32px;height:32px;}
+.footer-logo-text{font-family:"Bebas Neue",sans-serif;font-size:21px;color:#fff;letter-spacing:2px;}
+.footer-logo-text span{color:var(--red-light);}
+.footer-nav{display:flex;gap:26px;flex-wrap:wrap;}
+.footer-nav a{font-size:13px;color:rgba(255,255,255,.82);text-decoration:none;letter-spacing:.2px;font-weight:600;transition:color .2s;}
+.footer-nav a:hover{color:var(--red-light);}
+.footer-menu{position:relative;}
+.footer-menu-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);color:#fff;padding:10px 18px;font-size:12.5px;letter-spacing:.3px;font-weight:600;border-radius:100px;cursor:pointer;transition:all .2s;font-family:"Inter",sans-serif;}
+.footer-menu-btn:hover{background:rgba(255,255,255,.12);}
+.footer-menu-btn .icon{transition:transform .25s;}
+.footer-menu.open .footer-menu-btn .icon{transform:rotate(180deg);}
+.footer-menu-panel{max-height:0;overflow:hidden;transition:max-height .35s ease;width:100%;}
+.footer-menu.open .footer-menu-panel{max-height:220px;}
+.footer-menu-panel-inner{display:flex;flex-direction:column;gap:2px;padding-top:14px;}
+.footer-menu-panel-inner a{font-size:13.5px;color:rgba(255,255,255,.82);text-decoration:none;padding:9px 4px;border-bottom:1px solid rgba(255,255,255,.08);transition:color .2s;}
+.footer-menu-panel-inner a:hover{color:var(--red-light);}
+.footer-menu-panel-inner a:last-child{border-bottom:none;}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.55);letter-spacing:.2px;}
+.footer-legal{display:flex;gap:18px;flex-wrap:wrap;}
+.footer-legal a{font-size:12px;color:rgba(255,255,255,.55);text-decoration:none;letter-spacing:.2px;transition:color .2s;}
+.footer-legal a:hover{color:#fff;}
+
+.sticky{position:fixed;bottom:0;left:0;right:0;z-index:500;background:rgba(31,18,16,.97);backdrop-filter:blur(16px);padding:14px 48px;display:flex;align-items:center;justify-content:space-between;gap:14px;transform:translateY(100%);transition:transform .4s cubic-bezier(.25,.46,.45,.94);box-shadow:0 -4px 32px rgba(0,0,0,.35);}
+.sticky.show{transform:translateY(0);}
+.sticky-left{display:flex;align-items:center;gap:12px;}
+.sticky-text{font-size:13px;color:rgba(255,255,255,.55);}
+.sticky-text strong{color:#fff;}
+.sticky-right{display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.sticky-btn{display:inline-flex;align-items:center;gap:7px;background:var(--red);color:#fff;padding:11px 22px;font-size:12px;letter-spacing:.3px;font-weight:700;text-decoration:none;border-radius:100px;transition:background .2s;white-space:nowrap;}
+.sticky-btn:hover{background:var(--red-light);}
+.sticky-x{background:none;border:none;color:rgba(255,255,255,.4);cursor:pointer;line-height:1;transition:color .2s;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;}
+.sticky-x:hover{color:#fff;background:rgba(255,255,255,.1);}
+
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+@media(max-width:1100px){.pin-grid{grid-template-columns:repeat(4,1fr);}.plans-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:900px){
+  nav{padding:0 20px;}.nav-links,.nav-cta{display:none;}.hamburger{display:flex;}
+  #hero{grid-template-columns:1fr;min-height:auto;}.hero-left{padding:44px 22px 32px;}
+  .hero-right{height:340px;}.hero-mosaic{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;}
+  .hm-pin{grid-row:auto!important;}.hm-pin:nth-child(5){display:none;}
+  .who-grid{grid-template-columns:1fr;gap:38px;}.how-steps{grid-template-columns:1fr 1fr;row-gap:36px;}.how-steps::before{display:none;}
+  .pin-grid{grid-template-columns:repeat(3,1fr);}.plans-grid{grid-template-columns:1fr;}.seo-grid{grid-template-columns:1fr 1fr;}
+  .faq-grid{grid-template-columns:1fr;}.offer-inner{grid-template-columns:1fr;gap:36px;}.offer-card{width:100%;}
+  #contact{grid-template-columns:1fr;gap:44px;}.form-row{grid-template-columns:1fr;}
+  footer{padding:32px 22px;}.footer-main{flex-direction:column;text-align:center;}.footer-menu{width:100%;display:flex;flex-direction:column;align-items:center;}
+  .footer-bottom{flex-direction:column;text-align:center;}.sticky{padding:12px 16px;}.sticky-left{display:none;}.sticky-right{width:100%;justify-content:center;}
+}
+@media(max-width:600px){
+  .pin-grid{grid-template-columns:repeat(2,1fr);}.seo-grid{grid-template-columns:1fr;}
+  .hero-btns{flex-direction:column;}.hero-btns a{justify-content:center;}
+  .contact-form{padding:26px 20px;}section{padding:56px 18px;}
+  .topbar{font-size:11.5px;padding:10px 14px;}
+}
+</style>
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="i-gift" viewBox="0 0 24 24"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 22V7M12 7a2.5 2.5 0 1 1 2.5-2.5C14.5 6.5 12 7 12 7ZM12 7a2.5 2.5 0 1 0-2.5-2.5C9.5 6.5 12 7 12 7Z"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.27l-6.18 3.24L7 14.63l-5-4.87 6.91-1L12 2.5z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11.5 4.5"/><path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07l1.36-1.36"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5l-8-3z"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></symbol>
+<symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.59 13.41 12 22 2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82Z"/><circle cx="7.5" cy="7.5" r="1.5"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></symbol>
+<symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+</defs>
+</svg>
+
 <div class="topbar">
-  <strong>🎁 Limited Free Offer:</strong> Get 2 Custom Pinterest Pins at Absolutely No Cost —
-  <a href="#offer">Claim Now, Zero Commitment →</a>
+  <svg class="icon" width="15" height="15"><use href="#i-gift"/></svg>
+  <span><strong>Limited offer:</strong> get 2 custom Pinterest pins at no cost.</span>
+  <a href="#offer">Claim yours <svg class="icon" width="12" height="12"><use href="#i-arrow-right"/></svg></a>
 </div>
 
 <nav id="mainNav">
   <a href="#" class="logo">
     <div class="logo-icon">
       <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle class="logo-pin-bg" cx="20" cy="18" r="13" fill="#E01919"/>
+        <circle class="logo-pin-bg" cx="20" cy="18" r="13" fill="#D6301F"/>
         <circle cx="20" cy="18" r="7" fill="white"/>
-        <circle cx="20" cy="18" r="3" fill="#E01919"/>
-        <line class="logo-pin-needle" x1="20" y1="31" x2="20" y2="39" stroke="#E01919" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="20" cy="18" r="3" fill="#D6301F"/>
+        <line x1="20" y1="31" x2="20" y2="39" stroke="#D6301F" stroke-width="3" stroke-linecap="round"/>
       </svg>
     </div>
     <div class="logo-text-wrap">
       <div class="logo-top">PIN<span>STUDIO</span></div>
-      <div class="logo-sub">Pinterest Design</div>
+      <div class="logo-sub">Pinterest Design Studio</div>
     </div>
   </a>
   <ul class="nav-links">
     <li><a href="#who">Who It's For</a></li>
     <li><a href="#work">Portfolio</a></li>
     <li><a href="#offer">Free Pins</a></li>
-    <li><a href="#services">Pricing</a></li>
+    <li><a href="#services" onclick="openPricingAndScroll(event)">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Get 2 Free Pins</a>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+  <a href="#contact" class="nav-cta">Get 2 free pins <svg class="icon" width="13" height="13"><use href="#i-arrow-right"/></svg></a>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -311,32 +400,38 @@
   <a href="#who" onclick="closeMenu()">Who It's For</a>
   <a href="#work" onclick="closeMenu()">Portfolio</a>
   <a href="#offer" onclick="closeMenu()">Free Pins</a>
-  <a href="#services" onclick="closeMenu()">Pricing</a>
+  <a href="#services" onclick="closeMenu();openPricingAndScroll(event)">Pricing</a>
   <a href="#faq" onclick="closeMenu()">FAQ</a>
-  <a href="#contact" onclick="closeMenu()">🎁 Get 2 Free Pins</a>
+  <a href="#contact" onclick="closeMenu()"><svg class="icon" width="14" height="14"><use href="#i-gift"/></svg> Get 2 free pins</a>
 </div>
 
 <section id="hero">
   <div class="hero-left">
-    <div class="hero-badge">Pinterest Pin Designer · SEO-Optimized</div>
-    <h1 class="hero-h1">Get More Traffic &amp; Sales from Pinterest<br><em>Without Ads</em></h1>
-    <p class="hero-sub">I help Etsy &amp; Shopify store owners, bloggers, and content creators turn Pinterest into a consistent free traffic source — using SEO-based pin designs that rank, get clicked, and drive real sales.</p>
+    <div class="hero-badge"><svg class="icon" width="12" height="12"><use href="#i-target"/></svg> Pinterest pin designer · SEO-optimized</div>
+    <h1 class="hero-h1">Turn Pinterest into a traffic source<br><em>that never sleeps</em></h1>
+    <p class="hero-sub">I help Etsy &amp; Shopify store owners, bloggers, and content creators drive consistent, free traffic from Pinterest — with SEO-based pin designs that rank, get clicked, and turn into sales.</p>
     <div class="hero-free-box">
-      <div class="hero-free-title">🎁 Get 2 FREE Pinterest Pins</div>
+      <div class="hero-free-title"><span class="icon-badge"><svg class="icon" width="15" height="15"><use href="#i-gift"/></svg></span>Get 2 free Pinterest pins</div>
       <div class="hero-free-steps">
         <div class="hero-free-step"><div class="hfs-num">1</div>Send your store or blog link</div>
         <div class="hero-free-step"><div class="hfs-num">2</div>I design 2 custom pins for free</div>
-        <div class="hero-free-step"><div class="hfs-num">3</div>Review the quality — love it or leave it</div>
-        <div class="hero-free-step"><div class="hfs-num">4</div>Continue only if you want more results</div>
+        <div class="hero-free-step"><div class="hfs-num">3</div>Review the quality — no obligation</div>
+        <div class="hero-free-step"><div class="hfs-num">4</div>Continue only if you want more</div>
       </div>
     </div>
     <div class="hero-btns">
-      <a href="#contact" class="btn-primary">Get My Free Pins →</a>
-      <a href="#work" class="btn-ghost">See My Work</a>
+      <a href="#contact" class="btn-primary">Get my free pins <svg class="icon" width="15" height="15"><use href="#i-arrow-right"/></svg></a>
+      <a href="#work" class="btn-ghost">See my work</a>
     </div>
     <div class="hero-trust">
-      <span class="hero-trust-stars">★★★★★</span>
-      <span>Trusted by sellers in USA · UK · France · Germany · Australia</span>
+      <span class="star-row" aria-hidden="true">
+        <svg class="icon filled" width="13" height="13"><use href="#i-star"/></svg>
+        <svg class="icon filled" width="13" height="13"><use href="#i-star"/></svg>
+        <svg class="icon filled" width="13" height="13"><use href="#i-star"/></svg>
+        <svg class="icon filled" width="13" height="13"><use href="#i-star"/></svg>
+        <svg class="icon filled" width="13" height="13"><use href="#i-star"/></svg>
+      </span>
+      <span>Trusted by sellers in the US · UK · France · Germany · Australia</span>
     </div>
   </div>
   <div class="hero-right">
@@ -348,80 +443,80 @@
       <div class="hm-pin"><img src="5.png" alt="Etsy shop pin design"/></div>
     </div>
     <div class="hero-overlay-badge">
-      <div class="hob-val">100%</div>
-      <div class="hob-lbl">Free · No Risk · No Commitment</div>
+      <div class="hob-icon"><svg class="icon" width="17" height="17"><use href="#i-shield"/></svg></div>
+      <div><div class="hob-val">100% free</div><div class="hob-lbl">No risk · no commitment</div></div>
     </div>
   </div>
 </section>
 
 <div class="marquee-wrap">
   <div class="marquee-track">
-    <span>ETSY SELLERS</span><span class="dot">·</span><span>SHOPIFY STORES</span><span class="dot">·</span><span>FOOD BLOGGERS</span><span class="dot">·</span><span>FASHION BRANDS</span><span class="dot">·</span><span>HOME DECOR</span><span class="dot">·</span><span>WELLNESS BLOGS</span><span class="dot">·</span><span>DIY CREATORS</span><span class="dot">·</span><span>RECIPE BLOGGERS</span><span class="dot">·</span><span>TRAVEL BLOGS</span><span class="dot">·</span><span>ETSY SELLERS</span><span class="dot">·</span><span>SHOPIFY STORES</span><span class="dot">·</span><span>FOOD BLOGGERS</span><span class="dot">·</span><span>FASHION BRANDS</span><span class="dot">·</span><span>HOME DECOR</span><span class="dot">·</span><span>WELLNESS BLOGS</span><span class="dot">·</span><span>DIY CREATORS</span><span class="dot">·</span><span>RECIPE BLOGGERS</span><span class="dot">·</span><span>TRAVEL BLOGS</span><span class="dot">·</span>
+    <span>ETSY SELLERS</span><span class="dot">●</span><span>SHOPIFY STORES</span><span class="dot">●</span><span>FOOD BLOGGERS</span><span class="dot">●</span><span>FASHION BRANDS</span><span class="dot">●</span><span>HOME DECOR</span><span class="dot">●</span><span>WELLNESS BLOGS</span><span class="dot">●</span><span>DIY CREATORS</span><span class="dot">●</span><span>RECIPE BLOGGERS</span><span class="dot">●</span><span>TRAVEL BLOGS</span><span class="dot">●</span><span>ETSY SELLERS</span><span class="dot">●</span><span>SHOPIFY STORES</span><span class="dot">●</span><span>FOOD BLOGGERS</span><span class="dot">●</span><span>FASHION BRANDS</span><span class="dot">●</span><span>HOME DECOR</span><span class="dot">●</span><span>WELLNESS BLOGS</span><span class="dot">●</span><span>DIY CREATORS</span><span class="dot">●</span><span>RECIPE BLOGGERS</span><span class="dot">●</span><span>TRAVEL BLOGS</span><span class="dot">●</span>
   </div>
 </div>
 
 <section id="who">
-  <div class="eyebrow reveal">Who This Is For</div>
+  <div class="eyebrow reveal">Who this is for</div>
   <div class="who-grid">
     <div class="who-copy reveal">
-      <h2>I Help People Who Want <em>Real Traffic</em> from Pinterest</h2>
+      <h2>I help people who want <em>real traffic</em> from Pinterest</h2>
       <p>Pinterest is one of the most powerful free traffic sources available — but only if your pins are designed to rank and get clicked. Most store owners and bloggers leave thousands of monthly visitors on the table because their pins aren't SEO-optimized.</p>
       <p>That's exactly what I fix — with beautifully designed pins that search engines and real people both love.</p>
       <ul class="who-list">
-        <li>Etsy sellers who want to drive traffic to their listings without paying for ads</li>
-        <li>Shopify store owners looking for consistent, free organic traffic</li>
-        <li>Food, fashion, wellness, home décor &amp; DIY bloggers growing their audience</li>
-        <li>Content creators who want their work seen by thousands of new people monthly</li>
-        <li>Anyone who's tried Pinterest before but didn't get results from their designs</li>
+        <li><svg class="icon" width="16" height="16"><use href="#i-arrow-right"/></svg>Etsy sellers who want to drive traffic to their listings without paying for ads</li>
+        <li><svg class="icon" width="16" height="16"><use href="#i-arrow-right"/></svg>Shopify store owners looking for consistent, free organic traffic</li>
+        <li><svg class="icon" width="16" height="16"><use href="#i-arrow-right"/></svg>Food, fashion, wellness, home décor &amp; DIY bloggers growing their audience</li>
+        <li><svg class="icon" width="16" height="16"><use href="#i-arrow-right"/></svg>Content creators who want their work seen by thousands of new people monthly</li>
+        <li><svg class="icon" width="16" height="16"><use href="#i-arrow-right"/></svg>Anyone who's tried Pinterest before but didn't get results from their designs</li>
       </ul>
     </div>
     <div class="who-cards reveal d2">
-      <div class="who-card" style="display:flex;align-items:center;gap:16px;">
-        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=80&h=80&fit=crop&q=80" alt="Etsy seller" style="width:60px;height:60px;border-radius:8px;object-fit:cover;flex-shrink:0;"/>
-        <div><div class="who-card-title">Etsy &amp; Shopify Sellers</div><div class="who-card-desc">Product pins with keyword-rich titles that rank in Pinterest search and send ready-to-buy shoppers directly to your listings every single day.</div></div>
+      <div class="who-card">
+        <img class="who-card-icon-wrap" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=120&h=120&fit=crop&q=80" alt="Etsy seller packaging a handmade product"/>
+        <div><div class="who-card-title">Etsy &amp; Shopify sellers</div><div class="who-card-desc">Product pins with keyword-rich titles that rank in Pinterest search and send ready-to-buy shoppers straight to your listings.</div></div>
       </div>
-      <div class="who-card" style="display:flex;align-items:center;gap:16px;">
-        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=80&h=80&fit=crop&q=80" alt="Blogger writing" style="width:60px;height:60px;border-radius:8px;object-fit:cover;flex-shrink:0;"/>
-        <div><div class="who-card-title">Bloggers &amp; Content Creators</div><div class="who-card-desc">High-click pins for your blog posts, recipes, tutorials, and guides — built to drive steady monthly traffic that compounds over time.</div></div>
+      <div class="who-card">
+        <img class="who-card-icon-wrap" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=120&h=120&fit=crop&q=80" alt="Blogger writing content"/>
+        <div><div class="who-card-title">Bloggers &amp; content creators</div><div class="who-card-desc">High-click pins for your blog posts, recipes, tutorials, and guides — built to drive steady monthly traffic that compounds over time.</div></div>
       </div>
-      <div class="who-card" style="display:flex;align-items:center;gap:16px;">
-        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=80&h=80&fit=crop&q=80" alt="Fashion brand" style="width:60px;height:60px;border-radius:8px;object-fit:cover;flex-shrink:0;"/>
-        <div><div class="who-card-title">Fashion &amp; Lifestyle Brands</div><div class="who-card-desc">Editorial-style pins that make your brand look premium and get saves from exactly the right audience who buys what you sell.</div></div>
+      <div class="who-card">
+        <img class="who-card-icon-wrap" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=120&h=120&fit=crop&q=80" alt="Fashion brand rack of clothes"/>
+        <div><div class="who-card-title">Fashion &amp; lifestyle brands</div><div class="who-card-desc">Editorial-style pins that make your brand look premium and get saves from exactly the audience who buys what you sell.</div></div>
       </div>
-      <div class="who-card" style="display:flex;align-items:center;gap:16px;">
-        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=80&h=80&fit=crop&q=80" alt="Home decor" style="width:60px;height:60px;border-radius:8px;object-fit:cover;flex-shrink:0;"/>
-        <div><div class="who-card-title">Home Décor &amp; DIY</div><div class="who-card-desc">Inspirational pins that attract engaged savers who click through, explore, and shop — turning Pinterest scrollers into loyal customers.</div></div>
+      <div class="who-card">
+        <img class="who-card-icon-wrap" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=120&h=120&fit=crop&q=80" alt="Home decor interior"/>
+        <div><div class="who-card-title">Home décor &amp; DIY</div><div class="who-card-desc">Inspirational pins that attract engaged savers who click through, explore, and shop — turning scrollers into customers.</div></div>
       </div>
     </div>
   </div>
 </section>
 
 <section id="how">
-  <div class="eyebrow reveal">Simple Process</div>
-  <div class="section-head reveal d1"><h2>How It <em>Works</em></h2></div>
+  <div class="eyebrow reveal">Simple process</div>
+  <div class="section-head reveal d1"><h2>How it <em>works</em></h2></div>
   <div class="how-steps">
     <div class="step reveal">
-      <div class="step-num">01</div>
-      <div class="step-icon" style="overflow:hidden;padding:0;"><img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=72&h=72&fit=crop&q=80" alt="Share your link" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/></div>
-      <div class="step-title">You Share Your Link</div>
+      <div class="step-icon"><img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=140&h=140&fit=crop&q=80" alt="Sharing a store link"/></div>
+      <div class="step-tag">1</div>
+      <div class="step-title">You share your link</div>
       <div class="step-desc">Send me your Etsy shop, Shopify store, blog URL, or any product or post you want to promote on Pinterest.</div>
     </div>
     <div class="step reveal d1">
-      <div class="step-num">02</div>
-      <div class="step-icon" style="overflow:hidden;padding:0;"><img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=72&h=72&fit=crop&q=80" alt="Keyword research" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/></div>
-      <div class="step-title">I Research Keywords</div>
+      <div class="step-icon"><img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=140&h=140&fit=crop&q=80" alt="Researching Pinterest keywords"/></div>
+      <div class="step-tag">2</div>
+      <div class="step-title">I research keywords</div>
       <div class="step-desc">I find the exact Pinterest search terms your ideal audience is already typing — so your pins appear when it matters most.</div>
     </div>
     <div class="step reveal d2">
-      <div class="step-num">03</div>
-      <div class="step-icon" style="overflow:hidden;padding:0;"><img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=72&h=72&fit=crop&q=80" alt="Pin design" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/></div>
-      <div class="step-title">I Design Your Pins</div>
+      <div class="step-icon"><img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=140&h=140&fit=crop&q=80" alt="Designing a pin"/></div>
+      <div class="step-tag">3</div>
+      <div class="step-title">I design your pins</div>
       <div class="step-desc">Each pin gets an SEO-optimized title, a scroll-stopping visual, and a clear call to click — matched to your unique brand identity.</div>
     </div>
     <div class="step reveal d3">
-      <div class="step-num">04</div>
-      <div class="step-icon" style="overflow:hidden;padding:0;"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=72&h=72&fit=crop&q=80" alt="Traffic grows" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/></div>
-      <div class="step-title">You Post &amp; Traffic Grows</div>
+      <div class="step-icon"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=140&h=140&fit=crop&q=80" alt="Traffic growth chart"/></div>
+      <div class="step-tag">4</div>
+      <div class="step-title">You post &amp; traffic grows</div>
       <div class="step-desc">You receive high-resolution PNG files ready to upload. Start pinning and watch impressions, saves, and clicks climb steadily.</div>
     </div>
   </div>
@@ -429,48 +524,48 @@
 
 <section id="work">
   <div class="section-head">
-    <div class="eyebrow reveal">My Work</div>
-    <h2 class="reveal d1">Real Pin <em>Designs</em></h2>
+    <div class="eyebrow reveal">My work</div>
+    <h2 class="reveal d1">Real pin <em>designs</em></h2>
   </div>
   <div class="filter-bar reveal d2">
-    <button class="fbtn active" data-filter="all">All Pins</button>
-    <button class="fbtn" data-filter="food">Food &amp; Recipes</button>
-    <button class="fbtn" data-filter="fashion">Fashion &amp; Style</button>
-    <button class="fbtn" data-filter="etsy">Etsy &amp; Products</button>
+    <button class="fbtn active" data-filter="all">All pins</button>
+    <button class="fbtn" data-filter="food">Food &amp; recipes</button>
+    <button class="fbtn" data-filter="fashion">Fashion &amp; style</button>
+    <button class="fbtn" data-filter="etsy">Etsy &amp; products</button>
   </div>
   <div class="pin-grid" id="pinGrid">
-    <div class="pin-card reveal" data-cat="food"><img src="1.png" alt="Healthy breakfast recipe pin"/><span class="pin-badge">Food Blog</span><div class="pin-overlay"><div class="pin-title">Healthy Breakfast Ideas for Busy Mornings</div><div class="pin-kw">keyword: "healthy breakfast ideas quick"</div></div></div>
-    <div class="pin-card reveal d1" data-cat="food"><img src="2.png" alt="Coffee lifestyle pin"/><span class="pin-badge">Lifestyle</span><div class="pin-overlay"><div class="pin-title">Life Begins After Coffee</div><div class="pin-kw">keyword: "aesthetic coffee shop vibes"</div></div></div>
-    <div class="pin-card reveal d2" data-cat="food"><img src="3.png" alt="Bold healthy breakfast pin"/><span class="pin-badge">Food</span><div class="pin-overlay"><div class="pin-title">5 High-Protein Breakfasts You'll Actually Make</div><div class="pin-kw">keyword: "high protein breakfast ideas"</div></div></div>
-    <div class="pin-card reveal" data-cat="food"><img src="4.png" alt="Easy healthy meals pin"/><span class="pin-badge">Recipe</span><div class="pin-overlay"><div class="pin-title">Easy Healthy Meals Under 30 Minutes</div><div class="pin-kw">keyword: "easy healthy dinner recipes"</div></div></div>
-    <div class="pin-card reveal d1" data-cat="food"><img src="5.png" alt="52 breakfast ideas pin"/><span class="pin-badge">List Post</span><div class="pin-overlay"><div class="pin-title">52 Breakfast Ideas You Haven't Tried Yet</div><div class="pin-kw">keyword: "breakfast ideas for the week"</div></div></div>
-    <div class="pin-card reveal d2" data-cat="food"><img src="6.png" alt="Clean eating pin"/><span class="pin-badge">Wellness</span><div class="pin-overlay"><div class="pin-title">Clean Eating Recipes for Beginners</div><div class="pin-kw">keyword: "clean eating meal prep"</div></div></div>
-    <div class="pin-card reveal" data-cat="food"><img src="7.png" alt="Chicken recipes pin"/><span class="pin-badge">Dinner</span><div class="pin-overlay"><div class="pin-title">5 Quick Chicken Dinners for Weeknights</div><div class="pin-kw">keyword: "quick chicken recipes easy"</div></div></div>
-    <div class="pin-card reveal d1" data-cat="fashion"><img src="f1.png" alt="Fashion new arrivals pin"/><span class="pin-badge">Fashion</span><div class="pin-overlay"><div class="pin-title">New Arrivals — Spring Style Edit</div><div class="pin-kw">keyword: "spring fashion outfits 2024"</div></div></div>
-    <div class="pin-card reveal d2" data-cat="fashion"><img src="f2.png" alt="Fashion collection pin"/><span class="pin-badge">Collection</span><div class="pin-overlay"><div class="pin-title">Minimal Wardrobe Essentials</div><div class="pin-kw">keyword: "minimalist wardrobe capsule"</div></div></div>
-    <div class="pin-card reveal" data-cat="fashion"><img src="f3.png" alt="Style guide pin"/><span class="pin-badge">Style</span><div class="pin-overlay"><div class="pin-title">How to Style a Neutral Wardrobe</div><div class="pin-kw">keyword: "neutral outfit ideas women"</div></div></div>
-    <div class="pin-card reveal d1" data-cat="fashion"><img src="f4.png" alt="Fashion lookbook pin"/><span class="pin-badge">Lookbook</span><div class="pin-overlay"><div class="pin-title">Summer Lookbook — Beach to Brunch</div><div class="pin-kw">keyword: "summer outfits aesthetic"</div></div></div>
-    <div class="pin-card reveal d2" data-cat="fashion etsy"><img src="f5.png" alt="Fashion Etsy pin"/><span class="pin-badge">Etsy</span><div class="pin-overlay"><div class="pin-title">Handmade Linen Dress — Perfect for Summer</div><div class="pin-kw">keyword: "linen dress etsy handmade"</div></div></div>
-    <div class="pin-card reveal" data-cat="etsy"><img src="f6.png" alt="Etsy product pin"/><span class="pin-badge">Etsy</span><div class="pin-overlay"><div class="pin-title">Boho Earrings — Unique Gift for Her</div><div class="pin-kw">keyword: "boho earrings gift for women"</div></div></div>
+    <div class="pin-card reveal" data-cat="food"><img src="1.png" alt="Healthy breakfast recipe pin"/><span class="pin-badge">Food blog</span><div class="pin-overlay"><div class="pin-title">Healthy Breakfast Ideas for Busy Mornings</div><div class="pin-kw"><svg class="icon" width="10" height="10"><use href="#i-search"/></svg>healthy breakfast ideas quick</div></div></div>
+    <div class="pin-card reveal d1" data-cat="food"><img src="2.png" alt="Coffee lifestyle pin"/><span class="pin-badge">Lifestyle</span><div class="pin-overlay"><div class="pin-title">Life Begins After Coffee</div><div class="pin-kw"><svg class="icon" width="10" height="10"><use href="#i-search"/></svg>aesthetic coffee shop vibes</div></div></div>
+    <div class="pin-card reveal d2" data-cat="food"><img src="3.png" alt="Bold healthy breakfast pin"/><span class="pin-badge">Food</span><div class="pin-overlay"><div class="pin-title">5 High-Protein Breakfasts You'll Actually Make</div><div class="pin-kw"><svg class="icon" width="10" height="10"><use href="#i-search"/></svg>high protein breakfast ideas</div></div></div>
+    <div class="pin-card reveal" data-cat="food"><img src="4.png" alt="Easy healthy meals pin"/><span class="pin-badge">Recipe</span><div class="pin-overlay"><div class="pin-title">Easy Healthy Meals Under 30 Minutes</div><div class="pin-kw"><svg class="icon" width="10" height="10"><use href="#i-search"/></svg>easy healthy dinner recipes</div></div></div>
+    <div class="pin-card reveal d1" data-cat="food"><img src="5.png" alt="52 breakfast ideas pin"/><span class="pin-badge">List post</span><div class="pin-overlay"><div class="pin-title">52 Breakfast Ideas You Haven't Tried Yet</div><div class="pin-kw"><svg class="icon" width="10" height="10"><use href="#i-search"/></svg>breakfast ideas for the week</div></div></div>
+    <div class="pin-card reveal d2" data-cat="food"><img src="6.png" alt="Clean eating pin"/><span class="pin-badge">Wellness</span><div class="pin-overlay"><div class="pin-title">Clean Eating Recipes for Beginners</div><div class="pin-kw"><svg class="icon" width="10" height="10"><use href="#i-search"/></svg>clean eating meal prep</div></div></div>
+    <div class="pin-card reveal" data-cat="food"><img src="7.png" alt="Chicken recipes pin"/><span class="pin-badge">Dinner</span><div class="pin-overlay"><div class="pin-title">5 Quick Chicken Dinners for Weeknights</div><div class="pin-kw"><svg class="icon" width="10" height="10"><use href="#i-search"/></svg>quick chicken recipes easy</div></div></div>
+    <div class="pin-card reveal d1" data-cat="fashion"><img src="f1.png" alt="Fashion new arrivals pin"/><span class="pin-badge">Fashion</span><div class="pin-overlay"><div class="pin-title">New Arrivals — Spring Style Edit</div><div class="pin-kw"><svg class="icon" width="10" height="10"><use href="#i-search"/></svg>spring fashion outfits</div></div></div>
+    <div class="pin-card reveal d2" data-cat="fashion"><img src="f2.png" alt="Fashion collection pin"/><span class="pin-badge">Collection</span><div class="pin-overlay"><div class="pin-title">Minimal Wardrobe Essentials</div><div class="pin-kw"><svg class="icon" width="10" height="10"><use href="#i-search"/></svg>minimalist wardrobe capsule</div></div></div>
+    <div class="pin-card reveal" data-cat="fashion"><img src="f3.png" alt="Style guide pin"/><span class="pin-badge">Style</span><div class="pin-overlay"><div class="pin-title">How to Style a Neutral Wardrobe</div><div class="pin-kw"><svg class="icon" width="10" height="10"><use href="#i-search"/></svg>neutral outfit ideas women</div></div></div>
+    <div class="pin-card reveal d1" data-cat="fashion"><img src="f4.png" alt="Fashion lookbook pin"/><span class="pin-badge">Lookbook</span><div class="pin-overlay"><div class="pin-title">Summer Lookbook — Beach to Brunch</div><div class="pin-kw"><svg class="icon" width="10" height="10"><use href="#i-search"/></svg>summer outfits aesthetic</div></div></div>
+    <div class="pin-card reveal d2" data-cat="fashion etsy"><img src="f5.png" alt="Fashion Etsy pin"/><span class="pin-badge">Etsy</span><div class="pin-overlay"><div class="pin-title">Handmade Linen Dress — Perfect for Summer</div><div class="pin-kw"><svg class="icon" width="10" height="10"><use href="#i-search"/></svg>linen dress etsy handmade</div></div></div>
+    <div class="pin-card reveal" data-cat="etsy"><img src="f6.png" alt="Etsy product pin"/><span class="pin-badge">Etsy</span><div class="pin-overlay"><div class="pin-title">Boho Earrings — Unique Gift for Her</div><div class="pin-kw"><svg class="icon" width="10" height="10"><use href="#i-search"/></svg>boho earrings gift for women</div></div></div>
   </div>
 </section>
 
 <section id="seo-sample">
-  <div class="eyebrow reveal">Pinterest SEO Built In</div>
-  <div class="section-head reveal d1"><h2>Every Pin Comes With a<br><em>Keyword Strategy</em></h2></div>
-  <p class="reveal d2" style="font-size:15px;line-height:1.85;color:var(--muted);max-width:580px;margin-top:12px;">Good design is only half the job. Pinterest is a visual search engine — every pin I create includes a keyword-optimized title and target search term so your content actually gets found. Here are real examples:</p>
+  <div class="eyebrow reveal">Pinterest SEO built in</div>
+  <div class="section-head reveal d1"><h2>Every pin comes with a<br><em>keyword strategy</em></h2></div>
+  <p class="reveal d2" style="font-size:15px;line-height:1.85;color:var(--muted-dark);max-width:580px;margin-top:14px;">Good design is only half the job. Pinterest is a visual search engine — every pin I create includes a keyword-optimized title and target search term so your content actually gets found. Here are real examples:</p>
   <div class="seo-grid">
-    <div class="seo-card reveal"><img class="seo-pin" src="f5.png" alt="Etsy linen dress pin example"/><div class="seo-info"><div class="seo-title">Handmade Linen Dress — Perfect for Warm Days</div><div class="seo-kw-label">Target Keyword</div><div class="seo-kw">"linen dress etsy handmade summer"</div></div></div>
-    <div class="seo-card reveal d1"><img class="seo-pin" src="1.png" alt="Food blog pin example"/><div class="seo-info"><div class="seo-title">15 Easy Breakfast Recipes You Can Meal Prep</div><div class="seo-kw-label">Target Keyword</div><div class="seo-kw">"easy breakfast meal prep ideas"</div></div></div>
-    <div class="seo-card reveal d2"><img class="seo-pin" src="f6.png" alt="Etsy jewelry pin example"/><div class="seo-info"><div class="seo-title">Minimalist Gold Ring — Perfect Gift for Her</div><div class="seo-kw-label">Target Keyword</div><div class="seo-kw">"gold ring aesthetic etsy gift"</div></div></div>
+    <div class="seo-card reveal"><img class="seo-pin" src="f5.png" alt="Etsy linen dress pin example"/><div class="seo-info"><div class="seo-title">Handmade Linen Dress — Perfect for Warm Days</div><div class="seo-kw-label"><svg class="icon" width="11" height="11"><use href="#i-tag"/></svg>Target keyword</div><div class="seo-kw">linen dress etsy handmade summer</div></div></div>
+    <div class="seo-card reveal d1"><img class="seo-pin" src="1.png" alt="Food blog pin example"/><div class="seo-info"><div class="seo-title">15 Easy Breakfast Recipes You Can Meal Prep</div><div class="seo-kw-label"><svg class="icon" width="11" height="11"><use href="#i-tag"/></svg>Target keyword</div><div class="seo-kw">easy breakfast meal prep ideas</div></div></div>
+    <div class="seo-card reveal d2"><img class="seo-pin" src="f6.png" alt="Etsy jewelry pin example"/><div class="seo-info"><div class="seo-title">Minimalist Gold Ring — Perfect Gift for Her</div><div class="seo-kw-label"><svg class="icon" width="11" height="11"><use href="#i-tag"/></svg>Target keyword</div><div class="seo-kw">gold ring aesthetic etsy gift</div></div></div>
   </div>
 </section>
 
 <section id="offer">
   <div class="offer-inner">
     <div>
-      <div class="offer-tag">Limited Free Offer</div>
-      <h2 class="offer-h2 reveal">Get <em>2 Free Pins</em> —<br>No Risk, No Commitment</h2>
+      <div class="offer-tag"><svg class="icon" width="13" height="13"><use href="#i-gift"/></svg>Limited free offer</div>
+      <h2 class="offer-h2 reveal">Get <em>2 free pins</em> —<br>no risk, no commitment</h2>
       <p class="offer-desc reveal d1">I'm offering a completely free batch of 2 custom Pinterest pins so you can experience the quality and see real results before spending a single dollar. No strings. No pressure. No credit card.</p>
       <div class="offer-steps reveal d2">
         <div class="offer-step"><div class="offer-step-num">1</div><span>Send me your store, shop, or blog link plus your niche</span></div>
@@ -478,20 +573,20 @@
         <div class="offer-step"><div class="offer-step-num">3</div><span>Post them, watch how they perform, decide if you want more</span></div>
         <div class="offer-step"><div class="offer-step-num">4</div><span>Zero pressure — continue only when you love the results</span></div>
       </div>
-      <a href="#contact" class="btn-white reveal d3">Claim My 2 Free Pins →</a>
+      <a href="#contact" class="btn-white reveal d3">Claim my 2 free pins <svg class="icon" width="15" height="15"><use href="#i-arrow-right"/></svg></a>
     </div>
     <div class="offer-card reveal d2">
       <div class="offer-was">$19 value</div>
-      <div class="offer-price">FREE</div>
-      <div class="offer-price-lbl">2 Custom Pins Included</div>
+      <div class="offer-price">Free</div>
+      <div class="offer-price-lbl">2 custom pins included</div>
       <ul class="offer-feats">
-        <li>2 professionally designed pins</li>
-        <li>SEO keyword strategy included</li>
-        <li>Matched to your brand &amp; colors</li>
-        <li>PNG files ready to post</li>
-        <li>No payment, no commitment ever</li>
+        <li><svg class="icon" width="15" height="15"><use href="#i-check"/></svg>2 professionally designed pins</li>
+        <li><svg class="icon" width="15" height="15"><use href="#i-check"/></svg>SEO keyword strategy included</li>
+        <li><svg class="icon" width="15" height="15"><use href="#i-check"/></svg>Matched to your brand &amp; colors</li>
+        <li><svg class="icon" width="15" height="15"><use href="#i-check"/></svg>PNG files ready to post</li>
+        <li><svg class="icon" width="15" height="15"><use href="#i-check"/></svg>No payment, no commitment ever</li>
       </ul>
-      <a href="#contact" class="btn-offer">Get My Free Pins →</a>
+      <a href="#contact" class="btn-offer">Get my free pins <svg class="icon" width="14" height="14"><use href="#i-arrow-right"/></svg></a>
       <div class="offer-note">Just send your link. I'll handle everything else.</div>
     </div>
   </div>
@@ -499,85 +594,114 @@
 
 <section id="services">
   <div class="eyebrow reveal">Pricing</div>
-  <div class="section-head reveal d1"><h2>Simple, Transparent <em>Plans</em></h2></div>
+  <div class="section-head reveal d1"><h2>Simple, transparent <em>plans</em></h2></div>
+  <div class="pricing-toggle-wrap reveal d2" id="pricingToggleWrap">
+    <button class="pricing-toggle-btn" onclick="togglePricing()" aria-expanded="false" aria-controls="pricingPanel">
+      View pricing plans <svg class="icon" width="14" height="14"><use href="#i-chevron-down"/></svg>
+    </button>
+  </div>
+  <div id="pricingPanel">
   <div class="plans-grid">
     <div class="plan reveal">
       <div class="plan-name">Starter</div>
       <div class="plan-price">$49</div>
       <div class="plan-period">one-time payment</div>
-      <div class="plan-highlight">15 Pins · 1-Day Delivery</div>
+      <div class="plan-highlight">15 pins · 1-day delivery</div>
       <div class="plan-desc">Perfect for testing the strategy. Get 15 high-converting pins with basic SEO delivered in 24 hours.</div>
       <ul class="plan-feats">
-        <li>15 custom pin designs</li><li>1-day delivery</li><li>Basic keyword research</li><li>Brand colors &amp; fonts</li><li>PNG files ready to post</li><li>Unlimited revisions</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>15 custom pin designs</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>1-day delivery</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>Basic keyword research</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>Brand colors &amp; fonts</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>PNG files ready to post</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>Unlimited revisions</li>
       </ul>
-      <button class="plan-btn" onclick="window.location.href='/checkout.html?plan=starter'">Get Started →</button>
+      <button class="plan-btn" onclick="window.location.href='/checkout.html?plan=starter'">Get started <svg class="icon" width="13" height="13"><use href="#i-arrow-right"/></svg></button>
     </div>
     <div class="plan featured reveal d1">
-      <div class="plan-badge">BEST VALUE</div>
+      <div class="plan-badge">Best value</div>
       <div class="plan-name">Growth</div>
       <div class="plan-price">$99</div>
       <div class="plan-period">one-time payment</div>
-      <div class="plan-highlight">50 Pins · 2-Day Delivery</div>
+      <div class="plan-highlight">50 pins · 2-day delivery</div>
       <div class="plan-desc">Serious growth. 50 pins with full keyword research and SEO-optimized titles for maximum Pinterest reach.</div>
       <ul class="plan-feats">
-        <li>50 custom pin designs</li><li>2-day delivery</li><li>Advanced Pinterest SEO</li><li>Keyword title suggestions</li><li>Brand kit matching</li><li>PNG + PSD source files</li><li>Unlimited revisions</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>50 custom pin designs</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>2-day delivery</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>Advanced Pinterest SEO</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>Keyword title suggestions</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>Brand kit matching</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>PNG + PSD source files</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>Unlimited revisions</li>
       </ul>
-      <button class="plan-btn" onclick="window.location.href='/checkout.html?plan=growth'">Get Started →</button>
+      <button class="plan-btn" onclick="window.location.href='/checkout.html?plan=growth'">Get started <svg class="icon" width="13" height="13"><use href="#i-arrow-right"/></svg></button>
     </div>
     <div class="plan reveal d2">
       <div class="plan-name">Monthly</div>
       <div class="plan-price">$249</div>
       <div class="plan-period">per month</div>
-      <div class="plan-highlight">Daily 5 Pins · Full Management</div>
+      <div class="plan-highlight">Daily 5 pins · full management</div>
       <div class="plan-desc">Ongoing growth. Daily fresh pins, full Pinterest management, and monthly performance tracking included.</div>
       <ul class="plan-feats">
-        <li>5 custom pins daily</li><li>Full Pinterest management</li><li>Monthly SEO keyword refresh</li><li>Board optimization</li><li>Performance report monthly</li><li>Priority support</li><li>Unlimited revisions</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>5 custom pins daily</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>Full Pinterest management</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>Monthly SEO keyword refresh</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>Board optimization</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>Performance report monthly</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>Priority support</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>Unlimited revisions</li>
       </ul>
-      <button class="plan-btn" onclick="window.location.href='/checkout.html?plan=monthly'">Get Started →</button>
+      <button class="plan-btn" onclick="window.location.href='/checkout.html?plan=monthly'">Get started <svg class="icon" width="13" height="13"><use href="#i-arrow-right"/></svg></button>
     </div>
     <div class="plan reveal d3">
       <div class="plan-name">Custom</div>
-      <div class="plan-price" style="font-size:38px;line-height:1.3;padding-top:6px;">Let's Talk</div>
+      <div class="plan-price" style="font-size:30px;line-height:1.3;padding-top:6px;">Let's talk</div>
       <div class="plan-period">&nbsp;</div>
-      <div class="plan-highlight">Tailored to Your Business</div>
+      <div class="plan-highlight">Tailored to your business</div>
       <div class="plan-desc">Have a unique setup or a big launch coming? Let's build a strategy and quote around exactly what you need.</div>
       <ul class="plan-feats">
-        <li>Bespoke pin volume &amp; schedule</li><li>Strategy call included</li><li>Product launch support</li><li>Rush orders available</li><li>Dedicated account management</li><li>Everything in Monthly +</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>Bespoke pin volume &amp; schedule</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>Strategy call included</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>Product launch support</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>Rush orders available</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>Dedicated account management</li>
+        <li><svg class="icon" width="14" height="14"><use href="#i-check"/></svg>Everything in Monthly, plus more</li>
       </ul>
-      <button class="plan-btn" onclick="scrollToContact()">Contact Me →</button>
+      <button class="plan-btn" onclick="scrollToContact()">Contact me <svg class="icon" width="13" height="13"><use href="#i-arrow-right"/></svg></button>
     </div>
+  </div>
   </div>
 </section>
 
 <section id="faq">
-  <div class="eyebrow reveal">Got Questions?</div>
-  <div class="section-head reveal d1"><h2>Frequently Asked <em>Questions</em></h2></div>
+  <div class="eyebrow reveal">Got questions?</div>
+  <div class="section-head reveal d1"><h2>Frequently asked <em>questions</em></h2></div>
   <div class="faq-grid">
     <div>
-      <div class="faq-item open reveal"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">How long does delivery take?</span><div class="faq-icon"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1.5v10M1.5 6.5h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>Starter (15 pins): 1 business day. Growth (50 pins): 2 business days. Monthly plan: 5 fresh pins delivered every day. Rush same-day orders are also available — just ask.</p></div></div>
-      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">What do I need to provide?</span><div class="faq-icon"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1.5v10M1.5 6.5h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>Just your store or blog link, your niche, and any brand colors or fonts you use. That's it. I handle the keyword research, pin titles, and all the design from there.</p></div></div>
-      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Do you offer revisions?</span><div class="faq-icon"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1.5v10M1.5 6.5h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>Yes — all plans include unlimited revisions. I work until you are 100% happy with every design. Colors, layout, text, style — just tell me what needs changing and I'll fix it.</p></div></div>
-      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">What file format do I receive?</span><div class="faq-icon"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1.5v10M1.5 6.5h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>High-resolution PNG files at 1000×1500px (the optimal 2:3 Pinterest ratio), ready to upload immediately. Growth plan and above also includes editable PSD source files.</p></div></div>
+      <div class="faq-item open reveal"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">How long does delivery take?</span><div class="faq-icon"><svg class="icon" width="13" height="13"><use href="#i-plus"/></svg></div></div><div class="faq-a"><p>Starter (15 pins): 1 business day. Growth (50 pins): 2 business days. Monthly plan: 5 fresh pins delivered every day. Rush same-day orders are also available — just ask.</p></div></div>
+      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">What do I need to provide?</span><div class="faq-icon"><svg class="icon" width="13" height="13"><use href="#i-plus"/></svg></div></div><div class="faq-a"><p>Just your store or blog link, your niche, and any brand colors or fonts you use. That's it. I handle the keyword research, pin titles, and all the design from there.</p></div></div>
+      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Do you offer revisions?</span><div class="faq-icon"><svg class="icon" width="13" height="13"><use href="#i-plus"/></svg></div></div><div class="faq-a"><p>Yes — all plans include unlimited revisions. I work until you are 100% happy with every design. Colors, layout, text, style — just tell me what needs changing and I'll fix it.</p></div></div>
+      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">What file format do I receive?</span><div class="faq-icon"><svg class="icon" width="13" height="13"><use href="#i-plus"/></svg></div></div><div class="faq-a"><p>High-resolution PNG files at 1000×1500px (the optimal 2:3 Pinterest ratio), ready to upload immediately. Growth plan and above also includes editable PSD source files.</p></div></div>
     </div>
     <div>
-      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Is the free sample really free?</span><div class="faq-icon"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1.5v10M1.5 6.5h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>Completely free. No payment, no credit card, no commitment whatsoever. You send your link, I design 2 pins, you post them. If you want more we continue — if not, no hard feelings at all.</p></div></div>
-      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Do you do keyword research for every pin?</span><div class="faq-icon"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1.5v10M1.5 6.5h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>Yes, every single pin. Each design comes with a suggested title and target keyword so you know exactly what to write in the pin description to maximize your search visibility.</p></div></div>
-      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">I'm new to Pinterest. Will this still work?</span><div class="faq-icon"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1.5v10M1.5 6.5h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>Absolutely — this is actually the best time to start. A brand-new Pinterest account with well-designed, SEO-optimized pins will grow faster than an existing account with poor designs.</p></div></div>
-      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Can I order for multiple niches?</span><div class="faq-icon"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1.5v10M1.5 6.5h10" stroke-width="1.5" stroke-linecap="round"/></svg></div></div><div class="faq-a"><p>Yes. If you run multiple stores or boards, I can split your pin order across niches. Just mention this when you message me and we'll plan it out together — no extra charge.</p></div></div>
+      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Is the free sample really free?</span><div class="faq-icon"><svg class="icon" width="13" height="13"><use href="#i-plus"/></svg></div></div><div class="faq-a"><p>Completely free. No payment, no credit card, no commitment whatsoever. You send your link, I design 2 pins, you post them. If you want more we continue — if not, no hard feelings at all.</p></div></div>
+      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Do you do keyword research for every pin?</span><div class="faq-icon"><svg class="icon" width="13" height="13"><use href="#i-plus"/></svg></div></div><div class="faq-a"><p>Yes, every single pin. Each design comes with a suggested title and target keyword so you know exactly what to write in the pin description to maximize your search visibility.</p></div></div>
+      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">I'm new to Pinterest. Will this still work?</span><div class="faq-icon"><svg class="icon" width="13" height="13"><use href="#i-plus"/></svg></div></div><div class="faq-a"><p>Absolutely — this is actually the best time to start. A brand-new Pinterest account with well-designed, SEO-optimized pins will grow faster than an existing account with poor designs.</p></div></div>
+      <div class="faq-item reveal"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Can I order for multiple niches?</span><div class="faq-icon"><svg class="icon" width="13" height="13"><use href="#i-plus"/></svg></div></div><div class="faq-a"><p>Yes. If you run multiple stores or boards, I can split your pin order across niches. Just mention this when you message me and we'll plan it out together — no extra charge.</p></div></div>
     </div>
   </div>
 </section>
 
 <section id="contact">
   <div class="contact-intro">
-    <div class="eyebrow reveal">Get In Touch</div>
-    <h2 class="reveal d1">Let's Grow Your Pinterest <em>Together</em></h2>
+    <div class="eyebrow reveal">Get in touch</div>
+    <h2 class="reveal d1">Let's grow your Pinterest <em>together</em></h2>
     <p class="reveal d2">Tell me about your store or blog and I'll get back to you within 24 hours. We'll start with your 2 free pins — no commitment needed at all.</p>
     <div class="contact-reassure reveal d3">
-      <div class="reassure-item"><div class="reassure-icon">✓</div>2 free pins and no payment required</div>
-      <div class="reassure-item"><div class="reassure-icon">✓</div>Response within 24 hours guaranteed</div>
-      <div class="reassure-item"><div class="reassure-icon">✓</div>No commitment, no contracts, no pressure</div>
-      <div class="reassure-item"><div class="reassure-icon">✓</div>Works for Etsy, Shopify, blogs, and more</div>
+      <div class="reassure-item"><div class="reassure-icon"><svg class="icon" width="12" height="12"><use href="#i-check"/></svg></div>2 free pins and no payment required</div>
+      <div class="reassure-item"><div class="reassure-icon"><svg class="icon" width="12" height="12"><use href="#i-check"/></svg></div>Response within 24 hours guaranteed</div>
+      <div class="reassure-item"><div class="reassure-icon"><svg class="icon" width="12" height="12"><use href="#i-check"/></svg></div>No commitment, no contracts, no pressure</div>
+      <div class="reassure-item"><div class="reassure-icon"><svg class="icon" width="12" height="12"><use href="#i-check"/></svg></div>Works for Etsy, Shopify, blogs, and more</div>
     </div>
   </div>
   <form class="contact-form reveal d2" action="https://api.web3forms.com/submit" method="POST">
@@ -585,8 +709,8 @@
     <input type="hidden" name="subject" value="New Contact from PinStudio Website"/>
     <input type="hidden" name="from_name" value="PinStudio"/>
     <div class="form-row">
-      <div class="fg"><label class="fl">Your Name</label><input type="text" name="name" class="fi" placeholder="Emily Carter" required/></div>
-      <div class="fg"><label class="fl">Email Address</label><input type="email" name="email" class="fi" placeholder="you@email.com" required/></div>
+      <div class="fg"><label class="fl">Your name</label><input type="text" name="name" class="fi" placeholder="Emily Carter" required/></div>
+      <div class="fg"><label class="fl">Email address</label><input type="email" name="email" class="fi" placeholder="you@email.com" required/></div>
     </div>
     <div class="fg">
       <label class="fl">What type of business?</label>
@@ -595,9 +719,9 @@
         <option>Etsy Seller</option><option>Shopify Store</option><option>Food / Recipe Blog</option><option>Fashion Brand or Blog</option><option>Home Décor Blog or Shop</option><option>Wellness / Health Blog</option><option>DIY / Crafts Blog</option><option>Other</option>
       </select>
     </div>
-    <div class="fg"><label class="fl">Your Store / Blog Link</label><input type="url" name="link" class="fi" placeholder="https://yourstore.etsy.com"/></div>
+    <div class="fg"><label class="fl">Your store / blog link</label><input type="url" name="link" class="fi" placeholder="https://yourstore.etsy.com"/></div>
     <div class="fg"><label class="fl">What do you want to promote?</label><textarea name="message" class="fi" placeholder="Tell me about your product or blog post — the more detail, the better!" required></textarea></div>
-    <button type="submit" class="form-submit">Send &amp; Get My Free Pins →</button>
+    <button type="submit" class="form-submit">Send &amp; get my free pins <svg class="icon" width="14" height="14"><use href="#i-arrow-right"/></svg></button>
     <p class="form-legal">By submitting this form you agree to our <a href="/terms.html">Terms &amp; Conditions</a>, <a href="/privacy-policy.html">Privacy Policy</a> and <a href="/refund-policy.html">Refund Policy</a>.</p>
   </form>
 </section>
@@ -606,23 +730,30 @@
   <div class="footer-main">
     <div class="footer-logo-wrap">
       <svg class="footer-logo-icon" viewBox="0 0 32 32" fill="none">
-        <circle cx="16" cy="14" r="10" fill="#E01919"/>
+        <circle cx="16" cy="14" r="10" fill="#D6301F"/>
         <circle cx="16" cy="14" r="5.5" fill="white"/>
-        <circle cx="16" cy="14" r="2.5" fill="#E01919"/>
-        <line x1="16" y1="24" x2="16" y2="31" stroke="#E01919" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="16" cy="14" r="2.5" fill="#D6301F"/>
+        <line x1="16" y1="24" x2="16" y2="31" stroke="#D6301F" stroke-width="2.5" stroke-linecap="round"/>
       </svg>
       <div class="footer-logo-text">PIN<span>STUDIO</span></div>
     </div>
-    <nav class="footer-nav">
-      <a href="#who">About</a>
-      <a href="#work">Portfolio</a>
-      <a href="#services">Pricing</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="footer-menu" id="footerMenu">
+      <button class="footer-menu-btn" onclick="toggleFooterMenu()" aria-expanded="false" aria-controls="footerMenuPanel">
+        Quick links <svg class="icon" width="12" height="12"><use href="#i-chevron-down"/></svg>
+      </button>
+      <div class="footer-menu-panel" id="footerMenuPanel">
+        <div class="footer-menu-panel-inner">
+          <a href="#who">About</a>
+          <a href="#work">Portfolio</a>
+          <a href="#services" onclick="openPricingAndScroll(event)">Pricing</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2025 PinStudio — All Rights Reserved</div>
+    <div class="footer-copy">© 2025 PinStudio — All rights reserved</div>
     <div class="footer-legal">
       <a href="/terms.html">Terms &amp; Conditions</a>
       <a href="/privacy-policy.html">Privacy Policy</a>
@@ -633,28 +764,54 @@
 
 <div class="sticky" id="stickyBar">
   <div class="sticky-left">
-    <span class="sticky-stars">★★★★★</span>
-    <span class="sticky-text"><strong>Free Offer Active:</strong> Get 2 custom Pinterest pins at absolutely no cost</span>
+    <span class="star-row" aria-hidden="true">
+      <svg class="icon filled" width="13" height="13"><use href="#i-star"/></svg><svg class="icon filled" width="13" height="13"><use href="#i-star"/></svg><svg class="icon filled" width="13" height="13"><use href="#i-star"/></svg><svg class="icon filled" width="13" height="13"><use href="#i-star"/></svg><svg class="icon filled" width="13" height="13"><use href="#i-star"/></svg>
+    </span>
+    <span class="sticky-text"><strong>Free offer active:</strong> get 2 custom Pinterest pins at no cost</span>
   </div>
   <div class="sticky-right">
-    <a href="#contact" class="sticky-btn" onclick="scrollToContact(event)">Claim Free Pins</a>
-    <button class="sticky-x" onclick="document.getElementById('stickyBar').remove()">×</button>
+    <a href="#contact" class="sticky-btn" onclick="scrollToContact(event)">Claim free pins <svg class="icon" width="12" height="12"><use href="#i-arrow-right"/></svg></a>
+    <button class="sticky-x" onclick="document.getElementById('stickyBar').remove()" aria-label="Dismiss">
+      <svg class="icon" width="15" height="15"><use href="#i-x"/></svg>
+    </button>
   </div>
 </div>
 
 <script>
+function togglePricing(open){
+  const panel=document.getElementById('pricingPanel');
+  const wrap=document.getElementById('pricingToggleWrap');
+  const btn=wrap.querySelector('.pricing-toggle-btn');
+  const shouldOpen = (open===true) ? true : (open===false ? false : !panel.classList.contains('open'));
+  panel.classList.toggle('open',shouldOpen);
+  wrap.classList.toggle('open',shouldOpen);
+  btn.setAttribute('aria-expanded',shouldOpen?'true':'false');
+}
+function openPricingAndScroll(e){
+  e.preventDefault();
+  togglePricing(true);
+  setTimeout(()=>{document.getElementById('services').scrollIntoView({behavior:'smooth',block:'start'});},80);
+}
+function toggleFooterMenu(){
+  const el=document.getElementById('footerMenu');
+  const open=el.classList.toggle('open');
+  el.querySelector('.footer-menu-btn').setAttribute('aria-expanded',open?'true':'false');
+}
 function scrollToContact(e){
   if(e)e.preventDefault();
   const el=document.getElementById('contact');
   if(el){el.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>{const inp=el.querySelector('input[name="name"]');if(inp)inp.focus();},600);}
 }
 function toggleMenu(){
-  document.getElementById('hamburger').classList.toggle('open');
+  const h=document.getElementById('hamburger');
+  const open=h.classList.toggle('open');
   document.getElementById('mobileMenu').classList.toggle('open');
+  h.setAttribute('aria-expanded',open?'true':'false');
 }
 function closeMenu(){
   document.getElementById('hamburger').classList.remove('open');
   document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').setAttribute('aria-expanded','false');
 }
 window.addEventListener('scroll',()=>{
   document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>10);
